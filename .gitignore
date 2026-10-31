@@ -1,0 +1,5 @@
+# Local user guides (not distributed)
+/user-guide/
+
+__pycache__/
+*.py[cod]
