@@ -1,0 +1,881 @@
+{
+  "checked_at": "2026-10-31T11:56:44.094921+00:00",
+  "url": "http://192.168.0.65:8787",
+  "result": "FAIL",
+  "scope": "18 viewport/theme captures; sampled opaque muted text contrast only, not a full accessibility audit",
+  "failures": [
+    "agents/1440/dark: {'selector': 'kpi-metric-label', 'font_px': 11, 'contrast': 5.292594427121752}",
+    "agents/1440/dark: {'selector': 'text-muted', 'font_px': 11, 'contrast': 5.292594427121752}",
+    "skills/1440/dark: {'selector': 'badge text-muted', 'font_px': 11, 'contrast': 4.78421727186771}",
+    "skills/1440/dark: {'selector': 'kpi-metric-label', 'font_px': 11, 'contrast': 5.292594427121752}",
+    "agents/768/dark: {'selector': 'kpi-metric-label', 'font_px': 11, 'contrast': 5.292594427121752}",
+    "agents/768/dark: {'selector': 'text-muted', 'font_px': 11, 'contrast': 5.292594427121752}",
+    "skills/768/dark: {'selector': 'badge text-muted', 'font_px': 11, 'contrast': 4.78421727186771}",
+    "skills/768/dark: {'selector': 'kpi-metric-label', 'font_px': 11, 'contrast': 5.292594427121752}",
+    "agents/390/dark: overflow/navigation clipping",
+    "agents/390/dark: {'selector': 'kpi-metric-label', 'font_px': 11, 'contrast': 5.292594427121752}",
+    "agents/390/dark: {'selector': 'text-muted', 'font_px': 11, 'contrast': 5.292594427121752}",
+    "hardware/390/dark: overflow/navigation clipping",
+    "skills/390/dark: overflow/navigation clipping",
+    "skills/390/dark: {'selector': 'badge text-muted', 'font_px': 11, 'contrast': 4.78421727186771}",
+    "skills/390/dark: {'selector': 'kpi-metric-label', 'font_px': 11, 'contrast': 5.292594427121752}",
+    "agents/1440/light: {'selector': 'kpi-metric-label', 'font_px': 11, 'contrast': 4.699957096234196}",
+    "agents/1440/light: {'selector': 'block-desc', 'font_px': 12, 'contrast': 4.381238030403676}",
+    "agents/1440/light: {'selector': 'text-muted', 'font_px': 11, 'contrast': 4.699957096234196}",
+    "hardware/1440/light: {'selector': 'block-desc', 'font_px': 12, 'contrast': 4.381238030403676}",
+    "skills/1440/light: {'selector': 'block-desc', 'font_px': 12, 'contrast': 4.381238030403676}",
+    "skills/1440/light: {'selector': 'filter-label', 'font_px': 12, 'contrast': 4.381238030403676}",
+    "skills/1440/light: {'selector': 'badge text-muted', 'font_px': 11, 'contrast': 4.196014313168713}",
+    "skills/1440/light: {'selector': 'kpi-metric-label', 'font_px': 11, 'contrast': 4.699957096234196}",
+    "agents/768/light: {'selector': 'kpi-metric-label', 'font_px': 11, 'contrast': 4.699957096234196}",
+    "agents/768/light: {'selector': 'block-desc', 'font_px': 12, 'contrast': 4.381238030403676}",
+    "agents/768/light: {'selector': 'text-muted', 'font_px': 11, 'contrast': 4.699957096234196}",
+    "hardware/768/light: {'selector': 'block-desc', 'font_px': 12, 'contrast': 4.381238030403676}",
+    "skills/768/light: {'selector': 'block-desc', 'font_px': 12, 'contrast': 4.381238030403676}",
+    "skills/768/light: {'selector': 'filter-label', 'font_px': 12, 'contrast': 4.381238030403676}",
+    "skills/768/light: {'selector': 'badge text-muted', 'font_px': 11, 'contrast': 4.196014313168713}",
+    "skills/768/light: {'selector': 'kpi-metric-label', 'font_px': 11, 'contrast': 4.699957096234196}",
+    "agents/390/light: overflow/navigation clipping",
+    "agents/390/light: {'selector': 'kpi-metric-label', 'font_px': 11, 'contrast': 4.699957096234196}",
+    "agents/390/light: {'selector': 'block-desc', 'font_px': 12, 'contrast': 4.381238030403676}",
+    "agents/390/light: {'selector': 'text-muted', 'font_px': 11, 'contrast': 4.699957096234196}",
+    "hardware/390/light: overflow/navigation clipping",
+    "hardware/390/light: {'selector': 'block-desc', 'font_px': 12, 'contrast': 4.381238030403676}",
+    "skills/390/light: overflow/navigation clipping",
+    "skills/390/light: {'selector': 'block-desc', 'font_px': 12, 'contrast': 4.381238030403676}",
+    "skills/390/light: {'selector': 'filter-label', 'font_px': 12, 'contrast': 4.381238030403676}",
+    "skills/390/light: {'selector': 'badge text-muted', 'font_px': 11, 'contrast': 4.196014313168713}",
+    "skills/390/light: {'selector': 'kpi-metric-label', 'font_px': 11, 'contrast': 4.699957096234196}"
+  ],
+  "page_errors": [],
+  "measurements": [
+    {
+      "view": "agents",
+      "width": 1440,
+      "theme": "dark",
+      "page_overflow": false,
+      "navigation": [
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        },
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        },
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        }
+      ],
+      "muted_labels": [
+        {
+          "selector": "kpi-metric-label",
+          "font_px": 11,
+          "contrast": 5.292594427121752,
+          "count": 12
+        },
+        {
+          "selector": "block-desc",
+          "font_px": 12,
+          "contrast": 5.695945273844039,
+          "count": 2
+        },
+        {
+          "selector": "text-muted",
+          "font_px": 11,
+          "contrast": 5.292594427121752,
+          "count": 9
+        }
+      ],
+      "skill_rows": 0
+    },
+    {
+      "view": "hardware",
+      "width": 1440,
+      "theme": "dark",
+      "page_overflow": false,
+      "navigation": [
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        },
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        },
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        }
+      ],
+      "muted_labels": [
+        {
+          "selector": "block-desc",
+          "font_px": 12,
+          "contrast": 5.695945273844039,
+          "count": 1
+        }
+      ],
+      "skill_rows": 0
+    },
+    {
+      "view": "skills",
+      "width": 1440,
+      "theme": "dark",
+      "page_overflow": false,
+      "navigation": [
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        },
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        },
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        }
+      ],
+      "muted_labels": [
+        {
+          "selector": "block-desc",
+          "font_px": 12,
+          "contrast": 5.695945273844039,
+          "count": 1
+        },
+        {
+          "selector": "filter-label",
+          "font_px": 12,
+          "contrast": 5.695945273844039,
+          "count": 2
+        },
+        {
+          "selector": "skill-desc-cell text-muted",
+          "font_px": 13,
+          "contrast": 5.292594427121752,
+          "count": 812
+        },
+        {
+          "selector": "badge text-muted",
+          "font_px": 11,
+          "contrast": 4.78421727186771,
+          "count": 664
+        },
+        {
+          "selector": "text-muted",
+          "font_px": 13,
+          "contrast": 5.292594427121752,
+          "count": 822
+        },
+        {
+          "selector": "kpi-metric-label",
+          "font_px": 11,
+          "contrast": 5.292594427121752,
+          "count": 12
+        }
+      ],
+      "skill_rows": 812
+    },
+    {
+      "view": "agents",
+      "width": 768,
+      "theme": "dark",
+      "page_overflow": false,
+      "navigation": [
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        },
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        },
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        }
+      ],
+      "muted_labels": [
+        {
+          "selector": "kpi-metric-label",
+          "font_px": 11,
+          "contrast": 5.292594427121752,
+          "count": 12
+        },
+        {
+          "selector": "block-desc",
+          "font_px": 12,
+          "contrast": 5.695945273844039,
+          "count": 2
+        },
+        {
+          "selector": "text-muted",
+          "font_px": 11,
+          "contrast": 5.292594427121752,
+          "count": 9
+        }
+      ],
+      "skill_rows": 0
+    },
+    {
+      "view": "hardware",
+      "width": 768,
+      "theme": "dark",
+      "page_overflow": false,
+      "navigation": [
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        },
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        },
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        }
+      ],
+      "muted_labels": [
+        {
+          "selector": "block-desc",
+          "font_px": 12,
+          "contrast": 5.695945273844039,
+          "count": 1
+        }
+      ],
+      "skill_rows": 0
+    },
+    {
+      "view": "skills",
+      "width": 768,
+      "theme": "dark",
+      "page_overflow": false,
+      "navigation": [
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        },
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        },
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        }
+      ],
+      "muted_labels": [
+        {
+          "selector": "block-desc",
+          "font_px": 12,
+          "contrast": 5.695945273844039,
+          "count": 1
+        },
+        {
+          "selector": "filter-label",
+          "font_px": 12,
+          "contrast": 5.695945273844039,
+          "count": 2
+        },
+        {
+          "selector": "skill-desc-cell text-muted",
+          "font_px": 13,
+          "contrast": 5.292594427121752,
+          "count": 812
+        },
+        {
+          "selector": "badge text-muted",
+          "font_px": 11,
+          "contrast": 4.78421727186771,
+          "count": 664
+        },
+        {
+          "selector": "text-muted",
+          "font_px": 13,
+          "contrast": 5.292594427121752,
+          "count": 822
+        },
+        {
+          "selector": "kpi-metric-label",
+          "font_px": 11,
+          "contrast": 5.292594427121752,
+          "count": 12
+        }
+      ],
+      "skill_rows": 812
+    },
+    {
+      "view": "agents",
+      "width": 390,
+      "theme": "dark",
+      "page_overflow": false,
+      "navigation": [
+        {
+          "x": 12,
+          "right": 143.46875,
+          "height": 39
+        },
+        {
+          "x": 151.46875,
+          "right": 329.921875,
+          "height": 39
+        },
+        {
+          "x": 337.921875,
+          "right": 460.734375,
+          "height": 39
+        }
+      ],
+      "muted_labels": [
+        {
+          "selector": "kpi-metric-label",
+          "font_px": 11,
+          "contrast": 5.292594427121752,
+          "count": 12
+        },
+        {
+          "selector": "block-desc",
+          "font_px": 12,
+          "contrast": 5.695945273844039,
+          "count": 2
+        },
+        {
+          "selector": "text-muted",
+          "font_px": 11,
+          "contrast": 5.292594427121752,
+          "count": 9
+        }
+      ],
+      "skill_rows": 0
+    },
+    {
+      "view": "hardware",
+      "width": 390,
+      "theme": "dark",
+      "page_overflow": false,
+      "navigation": [
+        {
+          "x": 12,
+          "right": 139.171875,
+          "height": 39
+        },
+        {
+          "x": 147.171875,
+          "right": 332.84375,
+          "height": 39
+        },
+        {
+          "x": 340.84375,
+          "right": 463.65625,
+          "height": 39
+        }
+      ],
+      "muted_labels": [
+        {
+          "selector": "block-desc",
+          "font_px": 12,
+          "contrast": 5.695945273844039,
+          "count": 1
+        }
+      ],
+      "skill_rows": 0
+    },
+    {
+      "view": "skills",
+      "width": 390,
+      "theme": "dark",
+      "page_overflow": false,
+      "navigation": [
+        {
+          "x": -62,
+          "right": 65.171875,
+          "height": 39
+        },
+        {
+          "x": 73.171875,
+          "right": 251.625,
+          "height": 39
+        },
+        {
+          "x": 259.625,
+          "right": 388.9375,
+          "height": 39
+        }
+      ],
+      "muted_labels": [
+        {
+          "selector": "block-desc",
+          "font_px": 12,
+          "contrast": 5.695945273844039,
+          "count": 1
+        },
+        {
+          "selector": "filter-label",
+          "font_px": 12,
+          "contrast": 5.695945273844039,
+          "count": 2
+        },
+        {
+          "selector": "skill-desc-cell text-muted",
+          "font_px": 13,
+          "contrast": 5.292594427121752,
+          "count": 812
+        },
+        {
+          "selector": "badge text-muted",
+          "font_px": 11,
+          "contrast": 4.78421727186771,
+          "count": 664
+        },
+        {
+          "selector": "text-muted",
+          "font_px": 13,
+          "contrast": 5.292594427121752,
+          "count": 822
+        },
+        {
+          "selector": "kpi-metric-label",
+          "font_px": 11,
+          "contrast": 5.292594427121752,
+          "count": 12
+        }
+      ],
+      "skill_rows": 812
+    },
+    {
+      "view": "agents",
+      "width": 1440,
+      "theme": "light",
+      "page_overflow": false,
+      "navigation": [
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        },
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        },
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        }
+      ],
+      "muted_labels": [
+        {
+          "selector": "kpi-metric-label",
+          "font_px": 11,
+          "contrast": 4.699957096234196,
+          "count": 12
+        },
+        {
+          "selector": "block-desc",
+          "font_px": 12,
+          "contrast": 4.381238030403676,
+          "count": 2
+        },
+        {
+          "selector": "text-muted",
+          "font_px": 11,
+          "contrast": 4.699957096234196,
+          "count": 9
+        }
+      ],
+      "skill_rows": 0
+    },
+    {
+      "view": "hardware",
+      "width": 1440,
+      "theme": "light",
+      "page_overflow": false,
+      "navigation": [
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        },
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        },
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        }
+      ],
+      "muted_labels": [
+        {
+          "selector": "block-desc",
+          "font_px": 12,
+          "contrast": 4.381238030403676,
+          "count": 1
+        }
+      ],
+      "skill_rows": 0
+    },
+    {
+      "view": "skills",
+      "width": 1440,
+      "theme": "light",
+      "page_overflow": false,
+      "navigation": [
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        },
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        },
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        }
+      ],
+      "muted_labels": [
+        {
+          "selector": "block-desc",
+          "font_px": 12,
+          "contrast": 4.381238030403676,
+          "count": 1
+        },
+        {
+          "selector": "filter-label",
+          "font_px": 12,
+          "contrast": 4.381238030403676,
+          "count": 2
+        },
+        {
+          "selector": "skill-desc-cell text-muted",
+          "font_px": 13,
+          "contrast": 4.699957096234196,
+          "count": 812
+        },
+        {
+          "selector": "badge text-muted",
+          "font_px": 11,
+          "contrast": 4.196014313168713,
+          "count": 664
+        },
+        {
+          "selector": "text-muted",
+          "font_px": 13,
+          "contrast": 4.699957096234196,
+          "count": 822
+        },
+        {
+          "selector": "kpi-metric-label",
+          "font_px": 11,
+          "contrast": 4.699957096234196,
+          "count": 12
+        }
+      ],
+      "skill_rows": 812
+    },
+    {
+      "view": "agents",
+      "width": 768,
+      "theme": "light",
+      "page_overflow": false,
+      "navigation": [
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        },
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        },
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        }
+      ],
+      "muted_labels": [
+        {
+          "selector": "kpi-metric-label",
+          "font_px": 11,
+          "contrast": 4.699957096234196,
+          "count": 12
+        },
+        {
+          "selector": "block-desc",
+          "font_px": 12,
+          "contrast": 4.381238030403676,
+          "count": 2
+        },
+        {
+          "selector": "text-muted",
+          "font_px": 11,
+          "contrast": 4.699957096234196,
+          "count": 9
+        }
+      ],
+      "skill_rows": 0
+    },
+    {
+      "view": "hardware",
+      "width": 768,
+      "theme": "light",
+      "page_overflow": false,
+      "navigation": [
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        },
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        },
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        }
+      ],
+      "muted_labels": [
+        {
+          "selector": "block-desc",
+          "font_px": 12,
+          "contrast": 4.381238030403676,
+          "count": 1
+        }
+      ],
+      "skill_rows": 0
+    },
+    {
+      "view": "skills",
+      "width": 768,
+      "theme": "light",
+      "page_overflow": false,
+      "navigation": [
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        },
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        },
+        {
+          "x": 10,
+          "right": 229,
+          "height": 44
+        }
+      ],
+      "muted_labels": [
+        {
+          "selector": "block-desc",
+          "font_px": 12,
+          "contrast": 4.381238030403676,
+          "count": 1
+        },
+        {
+          "selector": "filter-label",
+          "font_px": 12,
+          "contrast": 4.381238030403676,
+          "count": 2
+        },
+        {
+          "selector": "skill-desc-cell text-muted",
+          "font_px": 13,
+          "contrast": 4.699957096234196,
+          "count": 812
+        },
+        {
+          "selector": "badge text-muted",
+          "font_px": 11,
+          "contrast": 4.196014313168713,
+          "count": 664
+        },
+        {
+          "selector": "text-muted",
+          "font_px": 13,
+          "contrast": 4.699957096234196,
+          "count": 822
+        },
+        {
+          "selector": "kpi-metric-label",
+          "font_px": 11,
+          "contrast": 4.699957096234196,
+          "count": 12
+        }
+      ],
+      "skill_rows": 812
+    },
+    {
+      "view": "agents",
+      "width": 390,
+      "theme": "light",
+      "page_overflow": false,
+      "navigation": [
+        {
+          "x": 0,
+          "right": 131.46875,
+          "height": 39
+        },
+        {
+          "x": 139.46875,
+          "right": 317.921875,
+          "height": 39
+        },
+        {
+          "x": 325.921875,
+          "right": 448.734375,
+          "height": 39
+        }
+      ],
+      "muted_labels": [
+        {
+          "selector": "kpi-metric-label",
+          "font_px": 11,
+          "contrast": 4.699957096234196,
+          "count": 12
+        },
+        {
+          "selector": "block-desc",
+          "font_px": 12,
+          "contrast": 4.381238030403676,
+          "count": 2
+        },
+        {
+          "selector": "text-muted",
+          "font_px": 11,
+          "contrast": 4.699957096234196,
+          "count": 9
+        }
+      ],
+      "skill_rows": 0
+    },
+    {
+      "view": "hardware",
+      "width": 390,
+      "theme": "light",
+      "page_overflow": false,
+      "navigation": [
+        {
+          "x": 0,
+          "right": 127.171875,
+          "height": 39
+        },
+        {
+          "x": 135.171875,
+          "right": 320.84375,
+          "height": 39
+        },
+        {
+          "x": 328.84375,
+          "right": 451.65625,
+          "height": 39
+        }
+      ],
+      "muted_labels": [
+        {
+          "selector": "block-desc",
+          "font_px": 12,
+          "contrast": 4.381238030403676,
+          "count": 1
+        }
+      ],
+      "skill_rows": 0
+    },
+    {
+      "view": "skills",
+      "width": 390,
+      "theme": "light",
+      "page_overflow": false,
+      "navigation": [
+        {
+          "x": -62,
+          "right": 65.171875,
+          "height": 39
+        },
+        {
+          "x": 73.171875,
+          "right": 251.625,
+          "height": 39
+        },
+        {
+          "x": 259.625,
+          "right": 388.9375,
+          "height": 39
+        }
+      ],
+      "muted_labels": [
+        {
+          "selector": "block-desc",
+          "font_px": 12,
+          "contrast": 4.381238030403676,
+          "count": 1
+        },
+        {
+          "selector": "filter-label",
+          "font_px": 12,
+          "contrast": 4.381238030403676,
+          "count": 2
+        },
+        {
+          "selector": "skill-desc-cell text-muted",
+          "font_px": 13,
+          "contrast": 4.699957096234196,
+          "count": 812
+        },
+        {
+          "selector": "badge text-muted",
+          "font_px": 11,
+          "contrast": 4.196014313168713,
+          "count": 664
+        },
+        {
+          "selector": "text-muted",
+          "font_px": 13,
+          "contrast": 4.699957096234196,
+          "count": 822
+        },
+        {
+          "selector": "kpi-metric-label",
+          "font_px": 11,
+          "contrast": 4.699957096234196,
+          "count": 12
+        }
+      ],
+      "skill_rows": 812
+    }
+  ]
+}

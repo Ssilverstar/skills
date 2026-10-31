@@ -1,0 +1,56 @@
+{
+  "checked_at": "2026-10-31T11:56:20.051608+00:00",
+  "url": "http://127.0.0.1:8787",
+  "result": "FAIL",
+  "checks": [
+    {
+      "check": "skills scope/status/dedupe",
+      "width": 1440,
+      "status": "failed",
+      "detail": "TimeoutError: Page.wait_for_selector: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"#filter-skill-scope\") to be visible\n",
+      "page_errors": []
+    },
+    {
+      "check": "skills jump 390",
+      "width": 390,
+      "status": "failed",
+      "detail": "TimeoutError: Page.wait_for_selector: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"#filter-skill-scope\") to be visible\n",
+      "page_errors": []
+    },
+    {
+      "check": "skills jump 1440",
+      "width": 1440,
+      "status": "failed",
+      "detail": "TimeoutError: Page.wait_for_selector: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"#filter-skill-scope\") to be visible\n",
+      "page_errors": []
+    },
+    {
+      "check": "scroll preserved",
+      "width": 768,
+      "status": "failed",
+      "detail": "AssertionError: {'y_refresh': 0, 'x_refresh': 80, 'y_lang': 0}",
+      "page_errors": []
+    },
+    {
+      "check": "contrast/touch 390",
+      "width": 390,
+      "status": "failed",
+      "detail": "TimeoutError: Locator.bounding_box: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"#filter-skill-scope\").first\n",
+      "page_errors": []
+    },
+    {
+      "check": "contrast/touch 768",
+      "width": 768,
+      "status": "failed",
+      "detail": "AssertionError: {'dark': {'min_ratio': {'text': '비활성', 'px': 11, 'ratio': 4.78}, 'min_px': {'text': '비활성', 'px': 11, 'ratio': 4.78}, 'below_4_5': []}, 'light': {'min_ratio': {'text': 'GB10 공유 메모리: 전용 VRAM 카운터 미지원', 'px': 11, 'ratio': 1.79}, 'min_px': {'text': 'GB10 공유 메모리: 전용 VRAM 카운터 미지원', 'px': 11, 'ratio': 1.79}, 'below_4_5': [{'text': 'GB10 공유 메모리: 전용 VRAM 카운터 미지원', 'px': 11, 'ratio': 1.79}, {'text': '비활성', 'px': 11, 'ratio': 4.2}, {'text': '비활성', 'px': 11, 'ratio': 4.2}, {'text': '비활성', 'px': 11, 'ratio': 4.2}, {'text': '비활성', 'px': 11, 'ratio': 4.2}]}}",
+      "page_errors": []
+    },
+    {
+      "check": "contrast/touch 1440",
+      "width": 1440,
+      "status": "failed",
+      "detail": "AssertionError: {'dark': {'min_ratio': {'text': '비활성', 'px': 11, 'ratio': 4.78}, 'min_px': {'text': '비활성', 'px': 11, 'ratio': 4.78}, 'below_4_5': []}, 'light': {'min_ratio': {'text': 'GB10 공유 메모리: 전용 VRAM 카운터 미지원', 'px': 11, 'ratio': 1.79}, 'min_px': {'text': 'GB10 공유 메모리: 전용 VRAM 카운터 미지원', 'px': 11, 'ratio': 1.79}, 'below_4_5': [{'text': 'GB10 공유 메모리: 전용 VRAM 카운터 미지원', 'px': 11, 'ratio': 1.79}, {'text': '비활성', 'px': 11, 'ratio': 4.2}, {'text': '비활성', 'px': 11, 'ratio': 4.2}, {'text': '비활성', 'px': 11, 'ratio': 4.2}, {'text': '비활성', 'px': 11, 'ratio': 4.2}]}}",
+      "page_errors": []
+    }
+  ]
+}

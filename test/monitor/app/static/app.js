@@ -29,10 +29,14 @@ const I18N = {
     statusWaiting: '수집 대기',
     statusRestored: 'DB 복원본',
     statusError: '수집 오류',
+    statusDisconnected: '연결 끊김',
+    statusRecovered: '연결 복구됨',
     sidebarChecking: '상태 확인 중...',
     sidebarHealthy: '모니터링 정상',
     sidebarStale: '수집 지연 경고',
     sidebarWaiting: '스냅샷 수집 대기',
+    sidebarDisconnected: '연결 끊김',
+    sidebarRecovered: '연결 복구됨 · 모니터링 정상',
     snapshotTime: '스냅샷 시각:',
     btnRefresh: '새로고침',
     btnRefreshTitle: '스냅샷 즉시 새로고침',
@@ -46,7 +50,10 @@ const I18N = {
     staleBannerPrefix: '수집 지연: 마지막 정상 수집 이후',
     staleBannerSuffix: '가 경과했습니다.',
     staleBannerThreshold: '임계:',
+    staleBannerStatic: '수집 지연: 마지막 정상 수집 이후 임계 시간({threshold}초)을 초과했습니다.',
     errorBannerPrefix: '수집 경고:',
+    disconnectBannerMsg: '연결 끊김: 서버 응답 없음 ({error}). 마지막 성공: {time} ({elapsed})',
+    disconnectBannerNoPrior: '연결 끊김: 서버 응답 없음 ({error}). 마지막 성공 기록 없음',
     compactedBanner: '목록 로딩 중(이력 복원본) - 다음 수집 주기에 전체 스킬 목록이 복원됩니다.',
     emptyTitle: '스냅샷 수집 대기 중',
     emptyDesc: '호스트 프로브로부터 첫 번째 모니터링 스냅샷을 수집하고 있습니다. 잠시만 기다려 주세요.',
@@ -56,8 +63,12 @@ const I18N = {
     titleAgentKpi: '에이전트 KPI 요약',
     kpiPrimaryModel: '대표 모델:',
     kpiTotalTokens: '세션 누적 토큰:',
+    kpiTotalTokensNote: '관측된 세션 누적 · 청구량 아님',
     kpiMaxLimit: '최대 구독 한도:',
     kpiNoLimit: '한도 정보 없음',
+    kpiLimitAwaiting: '갱신 대기',
+    limitExpiredBadge: '초기화됨·갱신 대기',
+    limitObservedValueNote: '관측 당시 값',
     sectionAgentProfiles: '에이전트 프로필 및 구독 한도',
     sectionAgentTokens: '에이전트별 토큰 사용량',
     descAgentTokens: '세션 누적(브리지) 데이터입니다. 입력 토큰은 캐시 읽기/쓰기를 포함하며, 추론 토큰은 출력 토큰의 일부입니다. (중복 합산 금지)',
@@ -70,6 +81,7 @@ const I18N = {
     nativeLastReceived: '마지막 수신:',
     nativeUsageLimit: 'Prometheus increase() 추정값(외삽)입니다. 처음 받은 값이나 5분 넘게 쉰 뒤 첫 값은 빠질 수 있어 실제보다 적게 보일 수 있습니다.',
     modelPrefix: '모델:',
+    configuredModelPrefix: '설정 모델:',
     planPrefix: '플랜:',
     planHistoricalBadge: '과거 관측(이력)',
     sourcePrefix: '출처:',
@@ -148,6 +160,8 @@ const I18N = {
     chartGpuTemp: 'GPU 온도',
     chartGpuPower: 'GPU 전력',
     chartHostMem: '호스트 메모리 사용률',
+    chartAriaSummary: '{metric} ({range}): 최근 {latest}{unit}, 최소 {min}{unit}, 최대 {max}{unit}',
+    chartAriaNoData: '{metric} ({range}): 데이터 없음',
     resRaw: '원본 스냅샷(약 15초)',
     res5m: '5분 집계 · 평균(최소~최대)',
     sectionHistoryTable: '스냅샷 수집 이력 (최근 50건)',
@@ -167,14 +181,28 @@ const I18N = {
     retentionTotalPrefix: '전체 DB:',
 
     // Skills View
+    skillsJumpAria: '스킬 섹션 바로가기',
+    jumpOverview: '개요',
+    jumpSkillsList: '스킬 목록',
+    jumpMcp: 'MCP',
     sectionSkillsSummary: '에이전트별 스킬 개요',
     sectionSkillsList: '설치된 스킬 목록',
     descSkillsList: '호출 수는 요청 증거이며 성공 여부가 아닙니다. 미계측은 미사용과 구분됩니다.',
     filterAgentLabel: '에이전트:',
     filterAgentAll: '전체 에이전트',
     filterAgentRepo: '저장소 원본',
+    filterScopeLabel: '범위:',
+    filterScopeCommon: '공통 선택 (중복 제거)',
+    filterScopeAll: '등록 전체 (원본)',
+    filterStatusLabel: '상태:',
+    filterStatusAll: '전체 상태',
+    filterStatusEnabled: '활성',
+    filterStatusDisabled: '비활성',
+    filterStatusUnknown: '미확인',
     filterSearchLabel: '검색:',
     filterSearchPlaceholder: '이름, 설명, 경로 검색...',
+    skillsRowCountInit: '표시 0행 / 전체 0행',
+    skillsRowCount: '표시 {shown}행 / 전체 {total}행',
     skillInstalledPrefix: '등록 전체:',
     skillCommonCounts: '공통 선택 {selected} · 설치 {installed}',
     sortTitle: '{label} 정렬',
@@ -268,10 +296,14 @@ const I18N = {
     statusWaiting: 'Waiting',
     statusRestored: 'Restored',
     statusError: 'Collection error',
+    statusDisconnected: 'Disconnected',
+    statusRecovered: 'Connection restored',
     sidebarChecking: 'Checking status...',
     sidebarHealthy: 'Monitoring Healthy',
     sidebarStale: 'Collection Stale Warning',
     sidebarWaiting: 'Awaiting Snapshot',
+    sidebarDisconnected: 'Disconnected',
+    sidebarRecovered: 'Connection restored · Monitoring Healthy',
     snapshotTime: 'Snapshot Time:',
     btnRefresh: 'Refresh',
     btnRefreshTitle: 'Refresh snapshot now',
@@ -285,7 +317,10 @@ const I18N = {
     staleBannerPrefix: 'Collection stale: ',
     staleBannerSuffix: ' have passed since last regular collection.',
     staleBannerThreshold: 'Threshold:',
+    staleBannerStatic: 'Collection stale: exceeded threshold ({threshold}s) since last regular collection.',
     errorBannerPrefix: 'Collection warning:',
+    disconnectBannerMsg: 'Disconnected: Server unreachable ({error}). Last success: {time} ({elapsed})',
+    disconnectBannerNoPrior: 'Disconnected: Server unreachable ({error}). No prior successful snapshot',
     compactedBanner: 'Loading list (from restored history) - complete skill list will be restored in next cycle.',
     emptyTitle: 'Awaiting Snapshot Collection',
     emptyDesc: 'Collecting the first monitoring snapshot from the host probe. Please wait a moment.',
@@ -295,8 +330,12 @@ const I18N = {
     titleAgentKpi: 'Agent KPI Summary',
     kpiPrimaryModel: 'Primary Model:',
     kpiTotalTokens: 'Session Tokens:',
+    kpiTotalTokensNote: 'Observed session total · not billing',
     kpiMaxLimit: 'Max Limit:',
     kpiNoLimit: 'No limit info',
+    kpiLimitAwaiting: 'Awaiting update',
+    limitExpiredBadge: 'Reset — awaiting update',
+    limitObservedValueNote: 'Observed at collection',
     sectionAgentProfiles: 'Agent Profiles & Subscription Limits',
     sectionAgentTokens: 'Token Usage by Agent',
     descAgentTokens: 'Session accumulated (bridge) data. Input tokens include cache reads/writes. Reasoning tokens are a subset of output tokens. (No duplicate sum)',
@@ -309,6 +348,7 @@ const I18N = {
     nativeLastReceived: 'Last received:',
     nativeUsageLimit: 'Estimated by Prometheus increase() (extrapolated). The first value received, or the first after a 5+ minute gap, can be missed, so totals may read low.',
     modelPrefix: 'Model:',
+    configuredModelPrefix: 'Configured model:',
     planPrefix: 'Plan:',
     planHistoricalBadge: 'Historical Obs',
     sourcePrefix: 'Source:',
@@ -387,6 +427,8 @@ const I18N = {
     chartGpuTemp: 'GPU Temp',
     chartGpuPower: 'GPU Power',
     chartHostMem: 'Host Memory Usage',
+    chartAriaSummary: '{metric} ({range}): latest {latest}{unit}, min {min}{unit}, max {max}{unit}',
+    chartAriaNoData: '{metric} ({range}): No data available',
     resRaw: 'Raw snapshot (~15s)',
     res5m: '5m aggregation · Average (Min–Max)',
     sectionHistoryTable: 'Snapshot History (Recent 50)',
@@ -406,14 +448,28 @@ const I18N = {
     retentionTotalPrefix: 'DB Total:',
 
     // Skills View
+    skillsJumpAria: 'Skills section shortcuts',
+    jumpOverview: 'Overview',
+    jumpSkillsList: 'Skills List',
+    jumpMcp: 'MCP',
     sectionSkillsSummary: 'Skills Overview by Agent',
     sectionSkillsList: 'Installed Skills List',
     descSkillsList: 'Invocations represent request evidence, not successes. Unmeasured is distinct from unused.',
     filterAgentLabel: 'Agent:',
     filterAgentAll: 'All Agents',
     filterAgentRepo: 'Repository Origin',
+    filterScopeLabel: 'Scope:',
+    filterScopeCommon: 'Common (Deduplicated)',
+    filterScopeAll: 'All Registered (Raw)',
+    filterStatusLabel: 'Status:',
+    filterStatusAll: 'All Statuses',
+    filterStatusEnabled: 'Active',
+    filterStatusDisabled: 'Inactive',
+    filterStatusUnknown: 'Unknown',
     filterSearchLabel: 'Search:',
     filterSearchPlaceholder: 'Search name, description, path...',
+    skillsRowCountInit: 'Showing 0 of 0 rows',
+    skillsRowCount: 'Showing {shown} of {total} rows',
     skillInstalledPrefix: 'Registered (all):',
     skillCommonCounts: 'Common: selected {selected} · installed {installed}',
     sortTitle: 'Sort by {label}',
@@ -580,9 +636,26 @@ function selectPrimaryModel(input, lang = 'ko') {
   return null;
 }
 
-function selectMaxLimit(input, lang = 'ko') {
+function isLimitExpired(limit, now = new Date()) {
+  if (!limit || !limit.reset_at) return false;
+  const resetDate = new Date(limit.reset_at);
+  if (isNaN(resetDate.getTime())) return false;
+  const nowDate = (now instanceof Date) ? now : new Date(now);
+  if (isNaN(nowDate.getTime())) return false;
+  return resetDate.getTime() <= nowDate.getTime();
+}
+
+function selectMaxLimit(input, langOrNow = 'ko', maybeNow = new Date()) {
   if (!input) return null;
-  const limits = Array.isArray(input) ? input : (Array.isArray(input.limits) ? input.limits : []);
+  let nowDate = maybeNow;
+  if (langOrNow instanceof Date || typeof langOrNow === 'number' || (typeof langOrNow === 'string' && langOrNow !== 'ko' && langOrNow !== 'en')) {
+    nowDate = new Date(langOrNow);
+  } else {
+    nowDate = (maybeNow instanceof Date) ? maybeNow : new Date(maybeNow);
+  }
+  const rawLimits = Array.isArray(input) ? input : (Array.isArray(input.limits) ? input.limits : []);
+  if (rawLimits.length === 0) return null;
+  const limits = rawLimits.filter(lim => lim && !isLimitExpired(lim, nowDate));
   if (limits.length === 0) return null;
   let maxLim = null;
   let maxPct = -Infinity;
@@ -610,7 +683,9 @@ function calculateAgentKpi(agent, telemetry = {}, now = new Date(), lang = 'ko')
   const totalTokensNum = agent.usage && typeof agent.usage.total_tokens === 'number' ? agent.usage.total_tokens : null;
   const totalTokens = formatTokens(totalTokensNum, lang);
 
-  const maxLim = selectMaxLimit(agent.plan, lang);
+  const rawLimits = (agent.plan && Array.isArray(agent.plan.limits)) ? agent.plan.limits : [];
+  const maxLim = selectMaxLimit(agent.plan, lang, now);
+  const allLimitsExpired = rawLimits.length > 0 && !maxLim;
   let limitInfo = null;
   if (maxLim) {
     const rawLabel = maxLim.label || '';
@@ -628,6 +703,10 @@ function calculateAgentKpi(agent, telemetry = {}, now = new Date(), lang = 'ko')
     };
   }
 
+  const limitStatusText = limitInfo
+    ? `${limitInfo.label} (${limitInfo.usedPercent})`
+    : (allLimitsExpired ? dict.kpiLimitAwaiting : dict.kpiNoLimit);
+
   const telem = (telemetry && telemetry[agent.id]) || {};
   const usageMode = telem.usage ? formatTelemetryMode(telem.usage, lang) : null;
   const quotaMode = telem.quota ? formatTelemetryMode(telem.quota, lang) : null;
@@ -640,8 +719,11 @@ function calculateAgentKpi(agent, telemetry = {}, now = new Date(), lang = 'ko')
     observedAge,
     primaryModel,
     totalTokens,
+    totalTokensNote: dict.kpiTotalTokensNote,
     limitInfo,
     maxLimit: limitInfo,
+    allLimitsExpired,
+    limitStatusText,
     telemetry: {
       usage: usageMode,
       quota: quotaMode
@@ -652,6 +734,172 @@ function calculateAgentKpi(agent, telemetry = {}, now = new Date(), lang = 'ko')
 }
 
 const REPO_FILTER_VALUE = '__repository__';
+
+function resolveConnectionStatus(snapshotState, conn = {}, now = new Date(), lang = 'ko') {
+  const dict = I18N[lang] || I18N.ko;
+  const isDisconnected = Boolean(conn && (conn.isDisconnected || conn.disconnected));
+  const rawErr = conn && (conn.error || conn.errorMessage);
+  const errorMsg = rawErr ? String(rawErr) : 'Network Error';
+  const lastSuccessAt = (conn && conn.lastSuccessAt) || (snapshotState && snapshotState.snapshot && snapshotState.snapshot.collected_at) || null;
+  const justRecovered = Boolean(conn && conn.justRecovered);
+
+  if (isDisconnected) {
+    const timeStr = lastSuccessAt ? formatDateTime(lastSuccessAt, lang) : dict.unknown;
+    const elapsedStr = lastSuccessAt ? formatRelativeTime(lastSuccessAt, now, lang) : dict.unknown;
+    const bannerText = lastSuccessAt
+      ? dict.disconnectBannerMsg.replace('{error}', errorMsg).replace('{time}', timeStr).replace('{elapsed}', elapsedStr)
+      : dict.disconnectBannerNoPrior.replace('{error}', errorMsg);
+    return {
+      state: 'disconnected',
+      isDisconnected: true,
+      retainData: true,
+      badgeText: dict.statusDisconnected,
+      badgeClass: 'badge-critical',
+      sidebarDotClass: 'critical',
+      sidebarText: dict.sidebarDisconnected,
+      showErrorBanner: true,
+      errorBannerText: bannerText,
+      // live-region text: no ticking elapsed value, so it is announced once per state change
+      errorBannerLive: lastSuccessAt
+        ? dict.disconnectBannerMsg.replace(' ({elapsed})', '').replace('{error}', errorMsg).replace('{time}', timeStr)
+        : bannerText,
+      lastSuccessTime: timeStr,
+      lastSuccessElapsed: elapsedStr,
+      recoveredText: null,
+      recoveryText: null
+    };
+  }
+
+  const status = (snapshotState && snapshotState.status) ? snapshotState.status : 'waiting';
+  let badgeText = dict.statusWaiting;
+  let badgeClass = '';
+  let sidebarDotClass = 'serious';
+  let sidebarText = dict.sidebarWaiting;
+
+  if (status === 'ok') {
+    badgeText = dict.statusHealthy;
+    badgeClass = 'badge-good';
+    sidebarDotClass = 'good';
+    sidebarText = justRecovered ? dict.sidebarRecovered : dict.sidebarHealthy;
+  } else if (status === 'stale') {
+    badgeText = dict.statusStale;
+    badgeClass = 'badge-warning';
+    sidebarDotClass = 'warning';
+    sidebarText = justRecovered ? `${dict.statusRecovered} · ${dict.sidebarStale}` : dict.sidebarStale;
+  } else if (justRecovered) {
+    sidebarText = `${dict.statusRecovered} · ${dict.sidebarWaiting}`;
+  }
+
+  const serverErr = snapshotState && snapshotState.error ? String(snapshotState.error) : null;
+  return {
+    state: status,
+    isDisconnected: false,
+    retainData: true,
+    badgeText,
+    badgeClass,
+    sidebarDotClass,
+    sidebarText,
+    showErrorBanner: Boolean(serverErr),
+    errorBannerText: serverErr ? `${dict.errorBannerPrefix} ${serverErr}` : '',
+    lastSuccessTime: lastSuccessAt ? formatDateTime(lastSuccessAt, lang) : '-',
+    lastSuccessElapsed: lastSuccessAt ? formatRelativeTime(lastSuccessAt, now, lang) : '',
+    recoveredText: justRecovered ? dict.statusRecovered : null,
+    recoveryText: justRecovered ? dict.statusRecovered : null
+  };
+}
+
+function buildChartAriaSummary(metricLabel, rangeLabel, values = [], unit = '', lang = 'ko') {
+  const dict = I18N[lang] || I18N.ko;
+  const nums = (Array.isArray(values) ? values : []).filter(
+    v => v !== null && v !== undefined && typeof v === 'number' && !isNaN(v)
+  );
+  const rangeStr = rangeLabel || (lang === 'en' ? '24h' : '24시간');
+  if (nums.length === 0) {
+    return dict.chartAriaNoData
+      .replace('{metric}', metricLabel)
+      .replace('{range}', rangeStr);
+  }
+  const r1 = v => Math.round(v * 10) / 10;
+  const latest = r1(nums[nums.length - 1]);
+  const min = r1(Math.min(...nums));
+  const max = r1(Math.max(...nums));
+  return dict.chartAriaSummary
+    .replace('{metric}', metricLabel)
+    .replace('{range}', rangeStr)
+    .replace('{latest}', String(latest))
+    .replace(/\{min\}/g, String(min))
+    .replace(/\{max\}/g, String(max))
+    .replace(/\{unit\}/g, unit);
+}
+
+function filterSkillsList(allSkills, filters = {}) {
+  const rows = Array.isArray(allSkills) ? allSkills : [];
+  const totalCount = rows.length;
+  const agent = filters.agent || 'ALL';
+  const scope = filters.scope || 'common';
+  const status = filters.status || 'ALL';
+  const search = String(filters.search || '').trim().toLowerCase();
+
+  const statusPriority = (enabledVal) => {
+    if (enabledVal === true) return 3;
+    if (enabledVal === null || enabledVal === undefined) return 2;
+    return 1; // false
+  };
+
+  let scopedRows = [];
+  if (scope === 'common') {
+    const commonMap = new Map();
+    const orderKeys = [];
+    for (const item of rows) {
+      if (!item || typeof item !== 'object') continue;
+      if (item.isRepo === true) {
+        orderKeys.push({ type: 'repo', item });
+        continue;
+      }
+      if (!item.common_id) continue;
+      const agentKey = item.agentName || item.agent || '';
+      const key = `${agentKey}::${item.common_id}`;
+      if (!commonMap.has(key)) {
+        commonMap.set(key, item);
+        orderKeys.push({ type: 'common', key });
+      } else {
+        const prev = commonMap.get(key);
+        if (statusPriority(item.enabled) > statusPriority(prev.enabled)) {
+          commonMap.set(key, item);
+        }
+      }
+    }
+    scopedRows = orderKeys.map(entry => entry.type === 'repo' ? entry.item : commonMap.get(entry.key));
+  } else {
+    scopedRows = rows.slice();
+  }
+
+  const filtered = scopedRows.filter(s => {
+    if (!s || typeof s !== 'object') return false;
+    const filterKey = s.isRepo ? REPO_FILTER_VALUE : (s.agentName || s.agent);
+    if (agent !== 'ALL' && filterKey !== agent) {
+      return false;
+    }
+    if (status === 'enabled' && s.enabled !== true) return false;
+    if (status === 'disabled' && s.enabled !== false) return false;
+    if (status === 'unknown' && s.enabled !== null && s.enabled !== undefined) return false;
+
+    if (search) {
+      const matchName = String(s.name || '').toLowerCase().includes(search);
+      const matchDesc = String(s.description || '').toLowerCase().includes(search);
+      const matchPath = String(s.path || '').toLowerCase().includes(search);
+      const matchCommon = String(s.common_id || '').toLowerCase().includes(search);
+      if (!matchName && !matchDesc && !matchPath && !matchCommon) return false;
+    }
+    return true;
+  });
+
+  return {
+    rows: filtered,
+    shownCount: filtered.length,
+    totalCount
+  };
+}
 
 function calculateSkillBreakdown(agentSkills, lang = 'ko') {
   const dict = I18N[lang] || I18N.ko;
@@ -1432,7 +1680,17 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
     historyData: null,
     historyHours: 24,
     skillsFilterAgent: 'ALL',
+    skillsFilterScope: 'common',
+    skillsFilterStatus: 'ALL',
     skillsSearchQuery: '',
+    isDisconnected: false,
+    connectionError: null,
+    lastSuccessAt: null,
+    justRecovered: false,
+    lastStaleKey: null,
+    lastErrorKey: null,
+    lastRowCountText: null,
+    openDetailsKeys: new Set(),
     pollTimer: null,
     sortState: {
       tokens: { col: 'name', dir: 'asc' },
@@ -1443,6 +1701,119 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
       mcp: { col: 'agent', dir: 'asc' }
     }
   };
+
+  function captureUiState() {
+    document.querySelectorAll('details').forEach((d, idx) => {
+      const key = d.getAttribute('data-details-key') || d.id || `details-${idx}`;
+      if (d.open || d.hasAttribute('open')) {
+        state.openDetailsKeys.add(key);
+      } else {
+        state.openDetailsKeys.delete(key);
+      }
+    });
+
+    const tableScrolls = {};
+    document.querySelectorAll('.table-scroll').forEach((wrap, idx) => {
+      const tbl = wrap.querySelector('table');
+      const key = (tbl && tbl.id) ? tbl.id : `scroll-${idx}`;
+      tableScrolls[key] = { left: wrap.scrollLeft, top: wrap.scrollTop };
+    });
+
+    let focusInfo = null;
+    const active = document.activeElement;
+    if (active && active !== document.body && active !== document.documentElement) {
+      if (active.hasAttribute('data-sort-table') && active.hasAttribute('data-sort-col')) {
+        focusInfo = {
+          type: 'sort',
+          table: active.getAttribute('data-sort-table'),
+          col: active.getAttribute('data-sort-col')
+        };
+      } else if (active.tagName === 'SUMMARY' && active.parentElement && active.parentElement.getAttribute('data-details-key')) {
+        focusInfo = {
+          type: 'summary',
+          key: active.parentElement.getAttribute('data-details-key')
+        };
+      } else if (active.id) {
+        let selStart = null;
+        let selEnd = null;
+        try {
+          if (typeof active.selectionStart === 'number') {
+            selStart = active.selectionStart;
+            selEnd = active.selectionEnd;
+          }
+        } catch (_) {}
+        focusInfo = {
+          type: 'id',
+          id: active.id,
+          selStart,
+          selEnd
+        };
+      }
+    }
+
+    return {
+      // style.css gives html/body height:100% + overflow-x:hidden, so <body> is the actual scroller
+      scrollX: window.scrollX || document.body.scrollLeft || 0,
+      scrollY: window.scrollY || document.body.scrollTop || 0,
+      tableScrolls,
+      focusInfo
+    };
+  }
+
+  function restoreUiState(uiState) {
+    if (!uiState) return;
+
+    document.querySelectorAll('details').forEach((d, idx) => {
+      const key = d.getAttribute('data-details-key') || d.id || `details-${idx}`;
+      if (state.openDetailsKeys.has(key)) {
+        d.open = true;
+        d.setAttribute('open', '');
+      }
+    });
+
+    document.querySelectorAll('.table-scroll').forEach((wrap, idx) => {
+      const tbl = wrap.querySelector('table');
+      const key = (tbl && tbl.id) ? tbl.id : `scroll-${idx}`;
+      const saved = uiState.tableScrolls && uiState.tableScrolls[key];
+      if (saved) {
+        wrap.scrollLeft = saved.left;
+        wrap.scrollTop = saved.top;
+      }
+    });
+
+    if (uiState.focusInfo) {
+      const fi = uiState.focusInfo;
+      let target = null;
+      if (fi.type === 'sort') {
+        target = document.querySelector(`button[data-sort-table="${fi.table}"][data-sort-col="${fi.col}"]`);
+      } else if (fi.type === 'summary') {
+        const det = document.querySelector(`details[data-details-key="${fi.key}"]`);
+        if (det) target = det.querySelector('summary');
+      } else if (fi.type === 'id') {
+        target = document.getElementById(fi.id);
+      }
+      if (target && typeof target.focus === 'function') {
+        try {
+          target.focus({ preventScroll: true });
+          if (fi.type === 'id' && fi.selStart !== null && typeof target.setSelectionRange === 'function') {
+            target.setSelectionRange(fi.selStart, fi.selEnd);
+          }
+        } catch (_) {}
+      }
+    }
+
+    const scrollBack = () => {
+      window.scrollTo(uiState.scrollX, uiState.scrollY);
+      document.body.scrollLeft = uiState.scrollX;
+      document.body.scrollTop = uiState.scrollY;
+    };
+    if (typeof window.scrollTo === 'function') {
+      scrollBack();
+      if (typeof window.requestAnimationFrame === 'function') {
+        window.requestAnimationFrame(scrollBack);
+      }
+    }
+  }
 
   function t(key, params) {
     const dict = I18N[state.lang] || I18N.ko;
@@ -1507,6 +1878,7 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
   }
 
   function applyLang(lang) {
+    const uiState = captureUiState();
     state.lang = lang === 'en' ? 'en' : 'ko';
     document.documentElement.setAttribute('lang', state.lang);
     safeStorageSet('agent_obs_lang', state.lang);
@@ -1525,8 +1897,15 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
     updateStaticI18n();
     renderRoute();
     if (state.snapshotState) {
-      renderSnapshot();
+      renderSnapshot(uiState);
     }
+    if (state.historyData) {
+      renderHistory(uiState);
+    }
+    if (state.isDisconnected) {
+      renderErrorState(state.connectionError);
+    }
+    restoreUiState(uiState);
   }
 
   function updateStaticI18n() {
@@ -1649,19 +2028,42 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
       const resp = await fetch('/api/snapshot');
       if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
       const data = await resp.json();
+      const wasDisconnected = state.isDisconnected;
+      state.isDisconnected = false;
+      state.connectionError = null;
+      state.justRecovered = wasDisconnected;
       state.snapshotState = data;
+      if (data && data.snapshot && data.snapshot.collected_at) {
+        state.lastSuccessAt = data.snapshot.collected_at;
+      } else {
+        state.lastSuccessAt = new Date().toISOString();
+      }
       renderSnapshot();
       if (state.currentRoute === 'hardware') {
         fetchHistory(state.historyHours);
       }
     } catch (err) {
-      renderErrorState(err.message);
+      state.isDisconnected = true;
+      state.connectionError = (err && err.message) ? err.message : 'Network Error';
+      state.justRecovered = false;
+      renderErrorState(state.connectionError);
     }
+  }
+
+  function syncRangeButtons() {
+    const rangeButtons = document.querySelectorAll('.btn-range');
+    rangeButtons.forEach(b => {
+      const hrs = parseInt(b.getAttribute('data-hours'), 10) || 24;
+      const isMatch = hrs === state.historyHours;
+      b.classList.toggle('active', isMatch);
+      b.setAttribute('aria-pressed', isMatch ? 'true' : 'false');
+    });
   }
 
   async function fetchHistory(hours = 24) {
     try {
       state.historyHours = hours;
+      syncRangeButtons();
       const resp = await fetch(`/api/history?hours=${encodeURIComponent(hours)}&limit=500`);
       if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
       const data = await resp.json();
@@ -1673,24 +2075,67 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
   }
 
   function renderErrorState(msg) {
+    const now = new Date();
+    const connStatus = resolveConnectionStatus(state.snapshotState, {
+      isDisconnected: true,
+      error: msg,
+      lastSuccessAt: state.lastSuccessAt,
+      justRecovered: false
+    }, now, state.lang);
+
+    const statusBadge = document.getElementById('status-badge');
+    if (statusBadge) {
+      statusBadge.className = `badge ${connStatus.badgeClass}`.trim();
+      statusBadge.textContent = connStatus.badgeText;
+    }
+
+    const sidebarDot = document.getElementById('sidebar-status-dot');
+    const sidebarText = document.getElementById('sidebar-status-text');
+    if (sidebarDot && sidebarText) {
+      sidebarDot.className = `status-dot ${connStatus.sidebarDotClass}`.trim();
+      sidebarText.textContent = connStatus.sidebarText;
+    }
+
+    const collectedAtVal = document.getElementById('collected-at-val');
+    const collectedAgeVal = document.getElementById('collected-age-val');
+    if (state.lastSuccessAt) {
+      if (collectedAtVal) collectedAtVal.textContent = connStatus.lastSuccessTime;
+      if (collectedAgeVal) collectedAgeVal.textContent = `(${connStatus.lastSuccessElapsed})`;
+    }
+
     const errorBanner = document.getElementById('error-banner');
     const errorMsg = document.getElementById('error-msg');
     if (errorBanner && errorMsg) {
-      errorMsg.textContent = `${t('errorBannerPrefix')} ${msg}`;
+      const errKey = `disconnected:${state.lang}:${msg}:${state.lastSuccessAt || 'none'}`;
+      if (state.lastErrorKey !== errKey) {
+        errorMsg.textContent = connStatus.errorBannerLive;
+        state.lastErrorKey = errKey;
+      }
+      const elapsedEl = document.getElementById('error-elapsed');
+      if (elapsedEl) elapsedEl.textContent = state.lastSuccessAt ? `(${connStatus.lastSuccessElapsed})` : '';
       errorBanner.classList.remove('hidden');
     }
   }
 
   // Render Top Status & Snapshot
-  function renderSnapshot() {
+  function renderSnapshot(passedUiState = null) {
     const data = state.snapshotState;
     if (!data) return;
+
+    const uiState = passedUiState || captureUiState();
 
     const snap = data.snapshot;
     const status = data.status; // 'waiting' | 'ok' | 'stale'
     const source = data.source; // 'file' | 'history' | null
-    const ageSec = data.age_seconds;
     const err = data.error;
+    const now = new Date();
+
+    const connStatus = resolveConnectionStatus(data, {
+      isDisconnected: state.isDisconnected,
+      error: state.connectionError,
+      lastSuccessAt: state.lastSuccessAt || (snap && snap.collected_at),
+      justRecovered: state.justRecovered
+    }, now, state.lang);
 
     const statusBadge = document.getElementById('status-badge');
     const sourceBadge = document.getElementById('source-badge');
@@ -1698,16 +2143,8 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
     const sidebarText = document.getElementById('sidebar-status-text');
 
     if (statusBadge) {
-      statusBadge.className = 'badge';
-      if (status === 'ok') {
-        statusBadge.classList.add('badge-good');
-        statusBadge.textContent = t('statusHealthy');
-      } else if (status === 'stale') {
-        statusBadge.classList.add('badge-warning');
-        statusBadge.textContent = t('statusStale');
-      } else {
-        statusBadge.textContent = t('statusWaiting');
-      }
+      statusBadge.className = `badge ${connStatus.badgeClass}`.trim();
+      statusBadge.textContent = connStatus.badgeText;
     }
 
     if (sourceBadge) {
@@ -1720,24 +2157,15 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
     }
 
     if (sidebarDot && sidebarText) {
-      sidebarDot.className = 'status-dot';
-      if (status === 'ok') {
-        sidebarDot.classList.add('good');
-        sidebarText.textContent = t('sidebarHealthy');
-      } else if (status === 'stale') {
-        sidebarDot.classList.add('warning');
-        sidebarText.textContent = t('sidebarStale');
-      } else {
-        sidebarDot.classList.add('serious');
-        sidebarText.textContent = t('sidebarWaiting');
-      }
+      sidebarDot.className = `status-dot ${connStatus.sidebarDotClass}`.trim();
+      sidebarText.textContent = connStatus.sidebarText;
     }
 
     const collectedAtVal = document.getElementById('collected-at-val');
     const collectedAgeVal = document.getElementById('collected-age-val');
     if (snap && snap.collected_at) {
       if (collectedAtVal) collectedAtVal.textContent = formatDateTime(snap.collected_at, state.lang);
-      if (collectedAgeVal) collectedAgeVal.textContent = `(${formatRelativeTime(snap.collected_at, new Date(), state.lang)})`;
+      if (collectedAgeVal) collectedAgeVal.textContent = `(${formatRelativeTime(snap.collected_at, now, state.lang)})`;
     } else {
       if (collectedAtVal) collectedAtVal.textContent = '-';
       if (collectedAgeVal) collectedAgeVal.textContent = '';
@@ -1748,21 +2176,35 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
     if (staleBanner && staleMsg) {
       if (status === 'stale') {
         staleBanner.classList.remove('hidden');
-        const secText = (ageSec !== null && ageSec !== undefined) ? `${Math.round(ageSec)}s` : '';
-        staleMsg.textContent = `${t('staleBannerPrefix')} ${secText}${t('staleBannerSuffix')} (${t('staleBannerThreshold')} ${data.stale_after_seconds}s)`;
+        const thresholdSec = data.stale_after_seconds || 180;
+        const staleKey = `stale:${state.lang}:${thresholdSec}`;
+        if (state.lastStaleKey !== staleKey) {
+          staleMsg.textContent = t('staleBannerStatic', { threshold: thresholdSec });
+          state.lastStaleKey = staleKey;
+        }
       } else {
         staleBanner.classList.add('hidden');
+        state.lastStaleKey = 'not-stale';
       }
     }
 
     const errorBanner = document.getElementById('error-banner');
     const errorMsg = document.getElementById('error-msg');
     if (errorBanner && errorMsg) {
-      if (err) {
+      if (connStatus.showErrorBanner) {
         errorBanner.classList.remove('hidden');
-        errorMsg.textContent = `${t('errorBannerPrefix')} ${err}`;
+        const errKey = state.isDisconnected
+          ? `disconnected:${state.lang}:${state.connectionError}:${state.lastSuccessAt || 'none'}`
+          : `server-error:${state.lang}:${err}`;
+        if (state.lastErrorKey !== errKey) {
+          errorMsg.textContent = connStatus.errorBannerLive || connStatus.errorBannerText;
+          state.lastErrorKey = errKey;
+        }
+        const elapsedEl = document.getElementById('error-elapsed');
+        if (elapsedEl && !state.isDisconnected) elapsedEl.textContent = '';
       } else {
         errorBanner.classList.add('hidden');
+        state.lastErrorKey = 'none';
       }
     }
 
@@ -1781,6 +2223,10 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
       renderAgentsView(snap);
       renderHardwareView(snap);
       renderSkillsView(snap);
+    }
+
+    if (!passedUiState) {
+      restoreUiState(uiState);
     }
   }
 
@@ -1807,6 +2253,8 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
       const btn = el('button', {
         type: 'button',
         class: 'th-sort-btn',
+        'data-sort-table': tableKey,
+        'data-sort-col': col.id,
         title: t('sortTitle', { label: t(col.labelKey) })
       });
 
@@ -1819,6 +2267,7 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
       btn.appendChild(el('span', { class: 'sort-indicator', textContent: arrow }));
 
       const handleSort = () => {
+        const uiState = captureUiState();
         if (curSort.col === col.id) {
           curSort.dir = curSort.dir === 'asc' ? 'desc' : 'asc';
         } else {
@@ -1827,6 +2276,8 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
         }
         setupSortableHeader(tableKey, tableElem, columns, onSortChange);
         onSortChange();
+        uiState.focusInfo = { type: 'sort', table: tableKey, col: col.id };
+        restoreUiState(uiState);
       };
 
       btn.addEventListener('click', handleSort);
@@ -1882,7 +2333,10 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
 
         // Session Total Tokens
         const tRow = el('div', { class: 'kpi-metric-item' });
-        tRow.appendChild(el('span', { class: 'kpi-metric-label', textContent: t('kpiTotalTokens') }));
+        const tLabelWrap = el('div', { class: 'kpi-label-stack' });
+        tLabelWrap.appendChild(el('span', { class: 'kpi-metric-label', textContent: t('kpiTotalTokens') }));
+        tLabelWrap.appendChild(el('span', { class: 'kpi-metric-sub', textContent: t('kpiTotalTokensNote') }));
+        tRow.appendChild(tLabelWrap);
         tRow.appendChild(el('span', {
           class: 'kpi-metric-val',
           textContent: kpi.totalTokens.text,
@@ -1913,6 +2367,11 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
               textContent: t('planHistoricalBadge')
             }));
           }
+        } else if (kpi.allLimitsExpired) {
+          lBox.appendChild(el('span', {
+            class: 'badge badge-warning',
+            textContent: t('kpiLimitAwaiting')
+          }));
         } else {
           lBox.appendChild(el('span', { class: 'kpi-metric-val', textContent: t('kpiNoLimit') }));
         }
@@ -1957,7 +2416,10 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
         nameBox.appendChild(el('div', { class: 'agent-name', textContent: agent.name || agent.id }));
 
         const modelStr = translateProbeText(agent.model ? String(agent.model) : t('unknown'), state.lang);
-        nameBox.appendChild(el('span', { class: 'agent-model-tag', textContent: `${t('modelPrefix')} ${modelStr}` }));
+        // ponytail: probe has no model_source field; Antigravity's agent.model is the local settings value
+        // (host_probe.py configured_model), not the model that produced usage. Switch to a field if the probe adds one.
+        const modelPrefixKey = agent.id === 'antigravity' ? 'configuredModelPrefix' : 'modelPrefix';
+        nameBox.appendChild(el('span', { class: 'agent-model-tag', textContent: `${t(modelPrefixKey)} ${modelStr}` }));
 
         // Status badge
         const st = formatAgentStatus(agent.status, state.lang);
@@ -1995,8 +2457,19 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
             const labelRow = el('div', { class: 'limit-labels' });
             const friendlyLabel = formatLimitLabel(lim.label, state.lang);
             const rawLabel = state.lang === 'en' ? translateProbeText(lim.label, 'en') : (lim.label || t('unknown'));
+            const expired = isLimitExpired(lim, new Date());
             labelRow.appendChild(el('span', { textContent: friendlyLabel, title: rawLabel }));
-            labelRow.appendChild(el('span', { textContent: formatPercent(lim.used_percent, 1, state.lang) }));
+            if (expired) {
+              labelRow.appendChild(el('span', {
+                class: 'badge badge-warning',
+                textContent: t('limitExpiredBadge')
+              }));
+            }
+            const pctStr = formatPercent(lim.used_percent, 1, state.lang);
+            const pctDisplay = (expired && lim.used_percent !== null && lim.used_percent !== undefined)
+              ? `${pctStr} (${t('limitObservedValueNote')})`
+              : pctStr;
+            labelRow.appendChild(el('span', { textContent: pctDisplay }));
             limItem.appendChild(labelRow);
 
             if (lim.used_percent === null || lim.used_percent === undefined) {
@@ -2021,7 +2494,22 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
         card.appendChild(planBox);
 
         // Secondary Info folded in <details> (AC1: source/notes/수집원)
-        const detailsEl = el('details', { class: 'agent-details-toggle' });
+        const detailsKey = `agent-${agent.id}`;
+        const detailsEl = el('details', {
+          class: 'agent-details-toggle',
+          'data-details-key': detailsKey
+        });
+        if (state.openDetailsKeys.has(detailsKey)) {
+          detailsEl.open = true;
+          detailsEl.setAttribute('open', '');
+        }
+        detailsEl.addEventListener('toggle', () => {
+          if (detailsEl.open) {
+            state.openDetailsKeys.add(detailsKey);
+          } else {
+            state.openDetailsKeys.delete(detailsKey);
+          }
+        });
         const summaryEl = el('summary', { class: 'details-summary', textContent: t('detailsSummary') });
         detailsEl.appendChild(summaryEl);
 
@@ -2387,9 +2875,12 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
     }
   }
 
-  function renderHistory() {
+  function renderHistory(passedUiState = null) {
     const hist = state.historyData;
     if (!hist) return;
+
+    const uiState = passedUiState || captureUiState();
+    syncRangeButtons();
 
     const points = Array.isArray(hist.points) ? hist.points : [];
 
@@ -2433,10 +2924,10 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
     const valHostMem = document.getElementById('chart-val-host-mem');
     if (valHostMem) valHostMem.textContent = lastPoint ? formatPercent(lastPoint.memory_used_percent, 1, state.lang) : '-';
 
-    renderSvgChart('chart-svg-gpu-util', gpuUtils, points, '%', 0, 100);
-    renderSvgChart('chart-svg-gpu-temp', gpuTemps, points, '°C');
-    renderSvgChart('chart-svg-gpu-power', gpuPowers, points, 'W');
-    renderSvgChart('chart-svg-host-mem', hostMems, points, '%', 0, 100);
+    renderSvgChart('chart-svg-gpu-util', gpuUtils, points, '%', 0, 100, t('chartGpuUtil'));
+    renderSvgChart('chart-svg-gpu-temp', gpuTemps, points, '°C', null, null, t('chartGpuTemp'));
+    renderSvgChart('chart-svg-gpu-power', gpuPowers, points, 'W', null, null, t('chartGpuPower'));
+    renderSvgChart('chart-svg-host-mem', hostMems, points, '%', 0, 100, t('chartHostMem'));
 
     // 4. History Table with Sorting (Recent 50 snapshots)
     const recentPoints = points.slice(-50);
@@ -2499,9 +2990,22 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
       setupSortableHeader('history', histTable, activeCols, renderHistoryRows);
       renderHistoryRows();
     }
+
+    if (!passedUiState) {
+      restoreUiState(uiState);
+    }
   }
 
-  function renderSvgChart(containerId, series, points, unit = '', forcedMin = null, forcedMax = null) {
+  function getActiveRangeLabel() {
+    const hrs = state.historyHours;
+    if (hrs === 1) return t('range1h');
+    if (hrs === 6) return t('range6h');
+    if (hrs === 168) return t('range7d');
+    if (hrs === 720) return t('range30d');
+    return t('range24h');
+  }
+
+  function renderSvgChart(containerId, series, points, unit = '', forcedMin = null, forcedMax = null, metricLabel = '') {
     const container = document.getElementById(containerId);
     if (!container) return;
     container.textContent = '';
@@ -2513,11 +3017,21 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
     const axes = calculateChartAxes(points, series, forcedMin, forcedMax, unit, state.lang);
     const { d, points: coords } = calculateSvgPath(series, width, height, padding, axes.yTicks.min, axes.yTicks.max);
 
+    const rangeLabel = getActiveRangeLabel();
+    const chartLabel = metricLabel || containerId;
+    const summaryText = buildChartAriaSummary(chartLabel, rangeLabel, series, unit, state.lang);
+
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', summaryText);
+
+    const titleEl = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+    titleEl.textContent = summaryText;
+    svg.appendChild(titleEl);
 
     const strokeGrid = state.theme === 'light' ? '#dcdbd6' : '#33322f';
-    const textSubtle = state.theme === 'light' ? '#73726c' : '#8f8e86';
+    const textSubtle = state.theme === 'light' ? '#52514c' : '#aba99f';
 
     const yTop = padding.top;
     const yBottom = height - padding.bottom;
@@ -2547,7 +3061,7 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
     txtMax.setAttribute('x', String(padding.left - 4));
     txtMax.setAttribute('y', String(yTop + 4));
     txtMax.setAttribute('text-anchor', 'end');
-    txtMax.setAttribute('font-size', '10px');
+    txtMax.setAttribute('font-size', '12px');
     txtMax.setAttribute('font-family', 'var(--font-mono)');
     txtMax.setAttribute('fill', textSubtle);
     txtMax.textContent = axes.yTicks.maxLabel;
@@ -2557,7 +3071,7 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
     txtMin.setAttribute('x', String(padding.left - 4));
     txtMin.setAttribute('y', String(yBottom));
     txtMin.setAttribute('text-anchor', 'end');
-    txtMin.setAttribute('font-size', '10px');
+    txtMin.setAttribute('font-size', '12px');
     txtMin.setAttribute('font-family', 'var(--font-mono)');
     txtMin.setAttribute('fill', textSubtle);
     txtMin.textContent = axes.yTicks.minLabel;
@@ -2576,7 +3090,7 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
       } else {
         txtTime.setAttribute('text-anchor', 'middle');
       }
-      txtTime.setAttribute('font-size', '10px');
+      txtTime.setAttribute('font-size', '12px');
       txtTime.setAttribute('font-family', 'var(--font-mono)');
       txtTime.setAttribute('fill', textSubtle);
       txtTime.textContent = tick.label;
@@ -2587,7 +3101,7 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
       const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
       path.setAttribute('d', d);
       path.setAttribute('fill', 'none');
-      path.setAttribute('stroke', state.theme === 'light' ? '#2a78d6' : '#3987e5');
+      path.setAttribute('stroke', state.theme === 'light' ? '#1d5fb8' : '#3987e5');
       path.setAttribute('stroke-width', '2');
       svg.appendChild(path);
     }
@@ -2603,7 +3117,7 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
 
     const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     dot.setAttribute('r', '3.5');
-    dot.setAttribute('fill', state.theme === 'light' ? '#2a78d6' : '#3987e5');
+    dot.setAttribute('fill', state.theme === 'light' ? '#1d5fb8' : '#3987e5');
     dot.setAttribute('stroke', state.theme === 'light' ? '#ffffff' : '#f0efec');
     dot.setAttribute('stroke-width', '1.5');
     dot.setAttribute('display', 'none');
@@ -2641,17 +3155,18 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
         const timeStr = pt ? formatDateTime(pt.collected_at, state.lang) : '';
         const valStr = closest.value !== null ? `${closest.value}${unit}` : t('unknown');
 
-        let tooltipStr = `${timeStr} | ${valStr}`;
+        let tooltipStr = `${chartLabel}: ${timeStr} | ${valStr}`;
         if (pt && pt.samples) {
           tooltipStr += ` (${t('thSamples')}: ${pt.samples})`;
         }
-        svg.setAttribute('title', tooltipStr);
+        titleEl.textContent = tooltipStr;
       }
     });
 
     svg.addEventListener('mouseleave', () => {
       crosshair.setAttribute('display', 'none');
       dot.setAttribute('display', 'none');
+      titleEl.textContent = summaryText;
     });
 
     container.appendChild(svg);
@@ -2929,6 +3444,22 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
     if (agentFilterSelect) {
       const repoOpt = agentFilterSelect.querySelector(`option[value="${REPO_FILTER_VALUE}"]`);
       if (repoOpt) repoOpt.textContent = t('filterAgentRepo');
+      agentFilterSelect.value = state.skillsFilterAgent;
+    }
+
+    const scopeSelect = document.getElementById('filter-skill-scope');
+    if (scopeSelect) {
+      scopeSelect.value = state.skillsFilterScope;
+    }
+
+    const statusSelect = document.getElementById('filter-skill-status');
+    if (statusSelect) {
+      statusSelect.value = state.skillsFilterStatus;
+    }
+
+    const searchInputEl = document.getElementById('input-skill-search');
+    if (searchInputEl && document.activeElement !== searchInputEl) {
+      searchInputEl.value = state.skillsSearchQuery;
     }
 
     const allSkills = [];
@@ -2942,20 +3473,25 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
       });
     });
 
-    const filtered = allSkills.filter(s => {
-      const filterKey = s.isRepo ? REPO_FILTER_VALUE : s.agentName;
-      if (state.skillsFilterAgent !== 'ALL' && filterKey !== state.skillsFilterAgent) {
-        return false;
-      }
-      if (state.skillsSearchQuery) {
-        const q = state.skillsSearchQuery.toLowerCase();
-        const matchName = String(s.name || '').toLowerCase().includes(q);
-        const matchDesc = String(s.description || '').toLowerCase().includes(q);
-        const matchPath = String(s.path || '').toLowerCase().includes(q);
-        if (!matchName && !matchDesc && !matchPath) return false;
-      }
-      return true;
+    const filterResult = filterSkillsList(allSkills, {
+      agent: state.skillsFilterAgent,
+      scope: state.skillsFilterScope,
+      status: state.skillsFilterStatus,
+      search: state.skillsSearchQuery
     });
+    const filtered = filterResult.rows;
+
+    const rowCountEl = document.getElementById('skills-row-count');
+    if (rowCountEl) {
+      const countText = t('skillsRowCount', {
+        shown: filterResult.shownCount,
+        total: filterResult.totalCount
+      });
+      if (state.lastRowCountText !== countText) {
+        rowCountEl.textContent = countText;
+        state.lastRowCountText = countText;
+      }
+    }
 
     const skillCols = [
       { id: 'name', labelKey: 'thSkillName', type: 'string', get: s => s.name },
@@ -3097,10 +3633,28 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
   const rangeButtons = document.querySelectorAll('.btn-range');
   rangeButtons.forEach(btn => {
     btn.addEventListener('click', () => {
-      rangeButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
       const hours = parseInt(btn.getAttribute('data-hours'), 10) || 24;
+      state.historyHours = hours;
+      syncRangeButtons();
       fetchHistory(hours);
+    });
+  });
+
+  const jumpButtons = document.querySelectorAll('.btn-jump');
+  jumpButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-jump-target');
+      const targetEl = targetId ? document.getElementById(targetId) : null;
+      if (targetEl) {
+        if (typeof targetEl.scrollIntoView === 'function') {
+          targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        if (typeof targetEl.focus === 'function') {
+          try {
+            targetEl.focus({ preventScroll: true });
+          } catch (_) {}
+        }
+      }
     });
   });
 
@@ -3108,6 +3662,26 @@ function sortTableData(items, keyExtractor, type, direction, lang = 'ko') {
   if (filterSelect) {
     filterSelect.addEventListener('change', (e) => {
       state.skillsFilterAgent = e.target.value;
+      if (state.snapshotState && state.snapshotState.snapshot) {
+        renderSkillsView(state.snapshotState.snapshot);
+      }
+    });
+  }
+
+  const scopeSelect = document.getElementById('filter-skill-scope');
+  if (scopeSelect) {
+    scopeSelect.addEventListener('change', (e) => {
+      state.skillsFilterScope = e.target.value;
+      if (state.snapshotState && state.snapshotState.snapshot) {
+        renderSkillsView(state.snapshotState.snapshot);
+      }
+    });
+  }
+
+  const statusSelect = document.getElementById('filter-skill-status');
+  if (statusSelect) {
+    statusSelect.addEventListener('change', (e) => {
+      state.skillsFilterStatus = e.target.value;
       if (state.snapshotState && state.snapshotState.snapshot) {
         renderSkillsView(state.snapshotState.snapshot);
       }
@@ -3163,8 +3737,12 @@ if (typeof module !== 'undefined' && module.exports) {
     translateProbeText,
     KNOWN_PROBE_TRANSLATIONS,
     selectPrimaryModel,
+    isLimitExpired,
     selectMaxLimit,
     calculateAgentKpi,
+    resolveConnectionStatus,
+    buildChartAriaSummary,
+    filterSkillsList,
     calculateSkillBreakdown,
     calculateMcpSummary,
     formatMcpStatus,

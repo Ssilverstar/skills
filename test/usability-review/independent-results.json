@@ -1,0 +1,36 @@
+{
+  "checked_at": "2026-10-31T12:54:07.642140+00:00",
+  "url": "http://192.168.0.65:8787",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "details stay open after refresh and language change",
+      "result": "PASS"
+    },
+    {
+      "name": "sort click and automatic polling retain keyboard focus",
+      "result": "PASS"
+    },
+    {
+      "name": "connection failure is visible, retains data and recovers",
+      "result": "PASS"
+    },
+    {
+      "name": "expired quota is excluded from current KPI and marked awaiting refresh",
+      "result": "PASS"
+    },
+    {
+      "name": "charts expose accessible summaries and selected range",
+      "result": "PASS"
+    },
+    {
+      "name": "390px navigation is fully reachable and controls have usable targets",
+      "result": "PASS"
+    },
+    {
+      "name": "English stays English across all views and hidden labels",
+      "result": "PASS"
+    }
+  ],
+  "scope": "Independent browser checks; failures and expired quotas are client-only fixtures."
+}

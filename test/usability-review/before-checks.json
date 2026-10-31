@@ -1,0 +1,42 @@
+{
+  "checked_at": "2026-10-31T11:52:20.879082+00:00",
+  "url": "http://192.168.0.65:8787",
+  "result": "FAIL",
+  "checks": [
+    {
+      "name": "details stay open after refresh and language change",
+      "result": "FAIL",
+      "reason": "refresh closed expanded details"
+    },
+    {
+      "name": "sort click and automatic polling retain keyboard focus",
+      "result": "FAIL",
+      "reason": "sorting lost focus"
+    },
+    {
+      "name": "connection failure is visible, retains data and recovers",
+      "result": "FAIL",
+      "reason": "healthy"
+    },
+    {
+      "name": "expired quota is excluded from current KPI and marked awaiting refresh",
+      "result": "FAIL",
+      "reason": "Client fixture: expired 99% limit remained the KPI maximum instead of the current 12% limit."
+    },
+    {
+      "name": "charts expose accessible summaries and selected range",
+      "result": "FAIL",
+      "reason": "GPU chart SVG lacked the required accessible role/summary."
+    },
+    {
+      "name": "390px navigation is fully reachable and controls have usable targets",
+      "result": "FAIL",
+      "reason": "[{'x': 12, 'right': 143.46875, 'height': 39}, {'x': 151.46875, 'right': 329.921875, 'height': 39}, {'x': 337.921875, 'right': 460.734375, 'height': 39}]"
+    },
+    {
+      "name": "English stays English across all views and hidden labels",
+      "result": "PASS"
+    }
+  ],
+  "scope": "Independent browser checks; failures and expired quotas are client-only fixtures."
+}

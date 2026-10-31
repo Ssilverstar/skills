@@ -69,6 +69,7 @@
         <div class="alert-banner alert-critical hidden" id="error-banner" role="alert">
           <span class="alert-icon">❌</span>
           <span class="alert-msg" id="error-msg" data-i18n="errorMsgDefault">수집 오류가 발생했습니다.</span>
+          <span class="alert-msg" id="error-elapsed" aria-hidden="true"></span>
         </div>
         <div class="alert-banner alert-info hidden" id="compacted-banner" role="status">
           <span class="alert-icon">ℹ️</span>
@@ -196,11 +197,11 @@
                 <p class="block-desc" data-i18n="descCharts">호스트 및 GPU 주요 성능 지표의 과거 추이입니다. 데이터 미수집 구간은 선이 연결되지 않습니다.</p>
               </div>
               <div class="range-selector" role="group" aria-label="조회 시간 범위" data-i18n-aria="rangeSelectorAria">
-                <button type="button" class="btn btn-range" data-hours="1" data-i18n="range1h">1시간</button>
-                <button type="button" class="btn btn-range" data-hours="6" data-i18n="range6h">6시간</button>
-                <button type="button" class="btn btn-range active" data-hours="24" data-i18n="range24h">24시간</button>
-                <button type="button" class="btn btn-range" data-hours="168" data-i18n="range7d">7일</button>
-                <button type="button" class="btn btn-range" data-hours="720" data-i18n="range30d">30일</button>
+                <button type="button" class="btn btn-range" data-hours="1" aria-pressed="false" data-i18n="range1h">1시간</button>
+                <button type="button" class="btn btn-range" data-hours="6" aria-pressed="false" data-i18n="range6h">6시간</button>
+                <button type="button" class="btn btn-range active" data-hours="24" aria-pressed="true" data-i18n="range24h">24시간</button>
+                <button type="button" class="btn btn-range" data-hours="168" aria-pressed="false" data-i18n="range7d">7일</button>
+                <button type="button" class="btn btn-range" data-hours="720" aria-pressed="false" data-i18n="range30d">30일</button>
                 <span class="badge badge-resolution" id="history-resolution-badge" data-i18n="resRaw">원본 스냅샷(약 15초)</span>
               </div>
             </div>
@@ -271,8 +272,14 @@
 
         <!-- Skills View -->
         <section class="view-section hidden" id="view-skills">
+          <div class="skills-jump-bar" role="region" aria-label="스킬 섹션 바로가기" data-i18n-aria="skillsJumpAria">
+            <button type="button" class="btn btn-jump" id="btn-jump-overview" data-jump-target="title-skills-summary" data-i18n="jumpOverview">개요</button>
+            <button type="button" class="btn btn-jump" id="btn-jump-list" data-jump-target="title-skills-list" data-i18n="jumpSkillsList">스킬 목록</button>
+            <button type="button" class="btn btn-jump" id="btn-jump-mcp" data-jump-target="title-mcp-section" data-i18n="jumpMcp">MCP</button>
+          </div>
+
           <div class="section-block">
-            <h3 class="block-title" id="title-skills-summary" data-i18n="sectionSkillsSummary">에이전트별 스킬 개요</h3>
+            <h3 class="block-title" id="title-skills-summary" tabindex="-1" data-i18n="sectionSkillsSummary">에이전트별 스킬 개요</h3>
             <div class="skills-summary-grid" id="skills-summary-cards">
               <!-- Summary cards dynamically rendered -->
             </div>
@@ -297,7 +304,7 @@
           <div class="section-block">
             <div class="block-header-with-actions">
               <div>
-                <h3 class="block-title" data-i18n="sectionSkillsList">설치된 스킬 목록</h3>
+                <h3 class="block-title" id="title-skills-list" tabindex="-1" data-i18n="sectionSkillsList">설치된 스킬 목록</h3>
                 <p class="block-desc" data-i18n="descSkillsList">호출 수는 요청 증거이며 성공 여부가 아닙니다. 미계측은 미사용과 구분됩니다.</p>
               </div>
               <div class="filters-toolbar">
@@ -308,11 +315,29 @@
                   </select>
                 </div>
                 <div class="filter-item">
+                  <label for="filter-skill-scope" class="filter-label" data-i18n="filterScopeLabel">범위:</label>
+                  <select id="filter-skill-scope" class="form-select">
+                    <option value="common" data-i18n="filterScopeCommon">공통 선택 (중복 제거)</option>
+                    <option value="all" data-i18n="filterScopeAll">등록 전체 (원본)</option>
+                  </select>
+                </div>
+                <div class="filter-item">
+                  <label for="filter-skill-status" class="filter-label" data-i18n="filterStatusLabel">상태:</label>
+                  <select id="filter-skill-status" class="form-select">
+                    <option value="ALL" data-i18n="filterStatusAll">전체 상태</option>
+                    <option value="enabled" data-i18n="filterStatusEnabled">활성</option>
+                    <option value="disabled" data-i18n="filterStatusDisabled">비활성</option>
+                    <option value="unknown" data-i18n="filterStatusUnknown">미확인</option>
+                  </select>
+                </div>
+                <div class="filter-item">
                   <label for="input-skill-search" class="filter-label" data-i18n="filterSearchLabel">검색:</label>
                   <input type="text" id="input-skill-search" class="form-input" placeholder="이름, 설명, 경로 검색..." data-i18n-placeholder="filterSearchPlaceholder">
                 </div>
               </div>
             </div>
+
+            <div class="skills-row-count" id="skills-row-count" aria-live="polite" data-i18n="skillsRowCountInit">표시 0행 / 전체 0행</div>
 
             <div class="table-scroll">
               <table class="data-table" id="skills-table">
@@ -340,7 +365,7 @@
           </div>
 
           <div class="section-block" id="mcp-section-block">
-            <h3 class="block-title" id="title-mcp-section" data-i18n="titleMcpSection">MCP 서버 현황</h3>
+            <h3 class="block-title" id="title-mcp-section" tabindex="-1" data-i18n="titleMcpSection">MCP 서버 현황</h3>
             <div id="mcp-container">
               <!-- MCP status & table dynamically rendered -->
             </div>

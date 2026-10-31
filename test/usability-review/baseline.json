@@ -1,0 +1,383 @@
+{
+  "checked_at": "2026-10-31T11:47:34.233625+00:00",
+  "browser_errors": [],
+  "details_refresh": {
+    "before_open": true,
+    "after_open": false
+  },
+  "sort_focus": "inconclusive: initial focus did not settle on header; no pass/fail conclusion",
+  "layout": [
+    {
+      "view": "agents",
+      "width": 1440,
+      "tables": [
+        {
+          "id": "agent-tokens-table",
+          "rows": 4,
+          "width": 1150,
+          "viewport": 1150
+        },
+        {
+          "id": "model-usage-table",
+          "rows": 9,
+          "width": 1165.640625,
+          "viewport": 1150
+        }
+      ],
+      "headings": [
+        {
+          "text": "Agent KPI Summary",
+          "top": 88
+        },
+        {
+          "text": "Agent Profiles & Subscription Limits",
+          "top": 381.5
+        },
+        {
+          "text": "Token Usage by Agent",
+          "top": 1286
+        },
+        {
+          "text": "Detailed Usage by Model",
+          "top": 1578
+        }
+      ]
+    },
+    {
+      "view": "hardware",
+      "width": 1440,
+      "tables": [
+        {
+          "id": "snapshot-history-table",
+          "rows": 50,
+          "width": 1150,
+          "viewport": 1150
+        }
+      ],
+      "headings": [
+        {
+          "text": "Host Machine",
+          "top": 107
+        },
+        {
+          "text": "NVIDIA GPU",
+          "top": 107
+        },
+        {
+          "text": "Inference Server",
+          "top": 107
+        },
+        {
+          "text": "Metrics History (Small Multiples)",
+          "top": 514
+        },
+        {
+          "text": "Snapshot History (Recent 50)",
+          "top": 1028
+        }
+      ]
+    },
+    {
+      "view": "skills",
+      "width": 1440,
+      "tables": [
+        {
+          "id": "skills-category-table",
+          "rows": 4,
+          "width": 1150,
+          "viewport": 1150
+        },
+        {
+          "id": "skills-table",
+          "rows": 812,
+          "width": 1492.078125,
+          "viewport": 1150
+        },
+        {
+          "id": "mcp-status-table",
+          "rows": 13,
+          "width": 1307.53125,
+          "viewport": 1150
+        }
+      ],
+      "headings": [
+        {
+          "text": "Skills Overview by Agent",
+          "top": 88
+        },
+        {
+          "text": "Skills Breakdown by Agent",
+          "top": 440.5
+        },
+        {
+          "text": "Installed Skills List",
+          "top": 702.5
+        },
+        {
+          "text": "Skills Notes",
+          "top": 1337.5
+        },
+        {
+          "text": "MCP Server Status",
+          "top": 1468
+        },
+        {
+          "text": "MCP Overview by Agent",
+          "top": 1504
+        },
+        {
+          "text": "MCP Server Details",
+          "top": 1689.5
+        }
+      ]
+    },
+    {
+      "view": "agents",
+      "width": 768,
+      "tables": [
+        {
+          "id": "agent-tokens-table",
+          "rows": 4,
+          "width": 848.5625,
+          "viewport": 478
+        },
+        {
+          "id": "model-usage-table",
+          "rows": 9,
+          "width": 1165.640625,
+          "viewport": 478
+        }
+      ],
+      "headings": [
+        {
+          "text": "Agent KPI Summary",
+          "top": 88
+        },
+        {
+          "text": "Agent Profiles & Subscription Limits",
+          "top": 587
+        },
+        {
+          "text": "Token Usage by Agent",
+          "top": 2014
+        },
+        {
+          "text": "Detailed Usage by Model",
+          "top": 2324
+        }
+      ]
+    },
+    {
+      "view": "hardware",
+      "width": 768,
+      "tables": [
+        {
+          "id": "snapshot-history-table",
+          "rows": 50,
+          "width": 865.625,
+          "viewport": 478
+        }
+      ],
+      "headings": [
+        {
+          "text": "Host Machine",
+          "top": 107
+        },
+        {
+          "text": "NVIDIA GPU",
+          "top": 409.5
+        },
+        {
+          "text": "Inference Server",
+          "top": 823.5
+        },
+        {
+          "text": "Metrics History (Small Multiples)",
+          "top": 1189
+        },
+        {
+          "text": "Snapshot History (Recent 50)",
+          "top": 2196
+        }
+      ]
+    },
+    {
+      "view": "skills",
+      "width": 768,
+      "tables": [
+        {
+          "id": "skills-category-table",
+          "rows": 4,
+          "width": 1030.859375,
+          "viewport": 478
+        },
+        {
+          "id": "skills-table",
+          "rows": 812,
+          "width": 1492.078125,
+          "viewport": 478
+        },
+        {
+          "id": "mcp-status-table",
+          "rows": 13,
+          "width": 1307.53125,
+          "viewport": 478
+        }
+      ],
+      "headings": [
+        {
+          "text": "Skills Overview by Agent",
+          "top": 88
+        },
+        {
+          "text": "Skills Breakdown by Agent",
+          "top": 792.5
+        },
+        {
+          "text": "Installed Skills List",
+          "top": 1054.5
+        },
+        {
+          "text": "Skills Notes",
+          "top": 1754.5
+        },
+        {
+          "text": "MCP Server Status",
+          "top": 1939
+        },
+        {
+          "text": "MCP Overview by Agent",
+          "top": 1975
+        },
+        {
+          "text": "MCP Server Details",
+          "top": 2301
+        }
+      ]
+    },
+    {
+      "view": "agents",
+      "width": 390,
+      "tables": [
+        {
+          "id": "agent-tokens-table",
+          "rows": 4,
+          "width": 848.5625,
+          "viewport": 356
+        },
+        {
+          "id": "model-usage-table",
+          "rows": 9,
+          "width": 1165.640625,
+          "viewport": 356
+        }
+      ],
+      "headings": [
+        {
+          "text": "Agent KPI Summary",
+          "top": 231.5
+        },
+        {
+          "text": "Agent Profiles & Subscription Limits",
+          "top": 1033
+        },
+        {
+          "text": "Token Usage by Agent",
+          "top": 2460
+        },
+        {
+          "text": "Detailed Usage by Model",
+          "top": 2788
+        }
+      ]
+    },
+    {
+      "view": "hardware",
+      "width": 390,
+      "tables": [
+        {
+          "id": "snapshot-history-table",
+          "rows": 50,
+          "width": 865.625,
+          "viewport": 356
+        }
+      ],
+      "headings": [
+        {
+          "text": "Host Machine",
+          "top": 250.5
+        },
+        {
+          "text": "NVIDIA GPU",
+          "top": 553
+        },
+        {
+          "text": "Inference Server",
+          "top": 983.5
+        },
+        {
+          "text": "Metrics History (Small Multiples)",
+          "top": 1367
+        },
+        {
+          "text": "Snapshot History (Recent 50)",
+          "top": 2387.5
+        }
+      ]
+    },
+    {
+      "view": "skills",
+      "width": 390,
+      "tables": [
+        {
+          "id": "skills-category-table",
+          "rows": 4,
+          "width": 1030.859375,
+          "viewport": 356
+        },
+        {
+          "id": "skills-table",
+          "rows": 812,
+          "width": 1492.078125,
+          "viewport": 356
+        },
+        {
+          "id": "mcp-status-table",
+          "rows": 13,
+          "width": 1307.53125,
+          "viewport": 356
+        }
+      ],
+      "headings": [
+        {
+          "text": "Skills Overview by Agent",
+          "top": 231.5
+        },
+        {
+          "text": "Skills Breakdown by Agent",
+          "top": 1326.5
+        },
+        {
+          "text": "Installed Skills List",
+          "top": 1588.5
+        },
+        {
+          "text": "Skills Notes",
+          "top": 2331.5
+        },
+        {
+          "text": "MCP Server Status",
+          "top": 2516
+        },
+        {
+          "text": "MCP Overview by Agent",
+          "top": 2552
+        },
+        {
+          "text": "MCP Server Details",
+          "top": 3159
+        }
+      ]
+    }
+  ]
+}

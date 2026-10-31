@@ -6,8 +6,8 @@
   --color-border: #33322f;
 
   --color-text: #f0efec;
-  --color-text-muted: #c3c2b7;
-  --color-text-dim: #8f8e86;
+  --color-text-muted: #d0cfc6;
+  --color-text-dim: #aba99f;
 
   --color-series: #3987e5;
 
@@ -31,15 +31,15 @@
   --color-border: #dcdbd6;
 
   --color-text: #0b0b0b;
-  --color-text-muted: #52514e;
-  --color-text-dim: #73726c;
+  --color-text-muted: #454440;
+  --color-text-dim: #52514c;
 
-  --color-series: #2a78d6;
+  --color-series: #1d5fb8;
 
-  --color-good: #0ca30c;
-  --color-warning: #fab219;
-  --color-serious: #ec835a;
-  --color-critical: #d03b3b;
+  --color-good: #087a08;
+  --color-warning: #8a5a00;
+  --color-serious: #a8471f;
+  --color-critical: #b02323;
 }
 
 *, *::before, *::after {
@@ -263,7 +263,7 @@ html, body {
 
 .timestamp-rel {
   color: var(--color-text-dim);
-  font-size: 11px;
+  font-size: 12px;
 }
 
 /* Banners */
@@ -310,7 +310,7 @@ html, body {
   gap: 4px;
   padding: 3px 8px;
   border-radius: var(--radius-sm);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.3px;
@@ -365,7 +365,7 @@ html, body {
   border-color: var(--color-series);
   color: var(--color-series);
   background-color: rgba(57, 135, 229, 0.08);
-  font-size: 11px;
+  font-size: 12px;
   padding: 3px 8px;
   font-weight: 500;
   text-transform: none;
@@ -395,7 +395,7 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .native-usage-header {
@@ -413,7 +413,7 @@ html, body {
 
 .native-usage-rel {
   color: var(--color-text-dim);
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .native-usage-list {
@@ -448,7 +448,7 @@ html, body {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 12px;
   color: var(--color-text);
 }
 
@@ -569,6 +569,30 @@ html, body {
   .kpi-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  /* 761–1100px keeps the sidebar, so the header has ~500px: wrap instead of overflowing */
+  .top-header {
+    height: auto;
+    min-height: 64px;
+    flex-wrap: wrap;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    row-gap: 8px;
+  }
+
+  .header-right {
+    flex-wrap: wrap;
+    min-width: 0;
+  }
+
+  .timestamp-value {
+    white-space: nowrap;
+  }
+}
+
+/* token count next to its two-line label must not split (e.g. "99.3" / "M") */
+.kpi-label-stack + .kpi-metric-val {
+  white-space: nowrap;
 }
 
 @media (max-width: 600px) {
@@ -603,7 +627,7 @@ html, body {
 .kpi-meta-row {
   display: flex;
   justify-content: space-between;
-  font-size: 11px;
+  font-size: 12px;
   color: var(--color-text-dim);
 }
 
@@ -621,10 +645,22 @@ html, body {
   gap: 8px;
 }
 
+.kpi-label-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
 .kpi-metric-label {
   color: var(--color-text-dim);
-  font-size: 11px;
+  font-size: 12px;
   flex-shrink: 0;
+}
+
+.kpi-metric-sub {
+  color: var(--color-text-dim);
+  font-size: 12px;
+  line-height: 1.3;
 }
 
 .kpi-metric-val {
@@ -655,7 +691,7 @@ html, body {
   grid-template-columns: repeat(2, 1fr);
   gap: 6px;
   margin-top: 8px;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .skill-cat-item {
@@ -678,7 +714,7 @@ html, body {
 
 .skill-aux-counts {
   margin-top: 6px;
-  font-size: 11px;
+  font-size: 12px;
   color: var(--color-text-dim);
   border-top: 1px dashed var(--color-border);
   padding-top: 6px;
@@ -711,7 +747,7 @@ html, body {
 .agent-details-toggle {
   border-top: 1px solid var(--color-border);
   padding-top: 8px;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .details-summary {
@@ -749,7 +785,7 @@ html, body {
 
 .agent-model-tag {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--color-series);
   background-color: var(--color-surface-2);
   padding: 2px 6px;
@@ -776,7 +812,7 @@ html, body {
 }
 
 .plan-source-meta {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--color-text-dim);
   display: flex;
   flex-direction: column;
@@ -793,19 +829,22 @@ html, body {
 .limit-labels {
   display: flex;
   justify-content: space-between;
-  font-size: 11px;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 12px;
   color: var(--color-text-muted);
 }
 
 .limit-reset {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--color-text-dim);
 }
 
 .agent-notes-box {
   border-top: 1px solid var(--color-border);
   padding-top: 10px;
-  font-size: 11px;
+  font-size: 12px;
   color: var(--color-text-dim);
   display: flex;
   flex-direction: column;
@@ -848,7 +887,7 @@ html, body {
 }
 
 .card-tag {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--color-text-muted);
   background-color: var(--color-surface-2);
@@ -887,7 +926,7 @@ html, body {
 }
 
 .memory-note-text {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--color-warning);
   margin-top: 4px;
   background-color: rgba(250, 178, 25, 0.08);
@@ -1000,9 +1039,8 @@ html, body {
 }
 
 .sort-indicator {
-  font-size: 10px;
+  font-size: 12px;
   color: var(--color-text-dim);
-  opacity: 0.5;
   flex-shrink: 0;
   display: inline-block;
   margin-left: auto;
@@ -1044,6 +1082,18 @@ th[aria-sort="descending"] .sort-indicator {
 }
 
 /* Skills View */
+.skills-jump-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.skills-row-count {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
 .skills-summary-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -1122,7 +1172,7 @@ th[aria-sort="descending"] .sort-indicator {
   text-overflow: ellipsis;
   white-space: nowrap;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--color-text-dim);
 }
 
@@ -1253,16 +1303,28 @@ th[aria-sort="descending"] .sort-indicator {
   }
 
   .nav-menu {
-    flex-direction: row;
-    overflow-x: auto;
-    padding: 8px 12px;
-    gap: 8px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    overflow-x: hidden;
+    padding: 8px 8px;
+    gap: 6px;
   }
 
   .nav-item {
-    padding: 6px 10px;
-    font-size: 13px;
-    white-space: nowrap;
+    min-height: 42px;
+    padding: 6px 6px;
+    gap: 4px;
+    justify-content: center;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.2;
+    white-space: normal;
+  }
+
+  .nav-icon {
+    font-size: 14px;
+    width: auto;
+    flex-shrink: 0;
   }
 
   .nav-item.active,
@@ -1272,7 +1334,8 @@ th[aria-sort="descending"] .sort-indicator {
   }
 
   .sidebar-footer {
-    display: none;
+    display: block;
+    padding: 8px 14px;
   }
 
   .top-header {
@@ -1300,7 +1363,7 @@ th[aria-sort="descending"] .sort-indicator {
   .timestamp-box {
     width: 100%;
     justify-content: space-between;
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .header-controls {
@@ -1311,13 +1374,37 @@ th[aria-sort="descending"] .sort-indicator {
     flex-wrap: wrap;
   }
 
+  .btn,
+  .btn-header-toggle,
+  .btn-refresh,
+  .btn-range,
+  .btn-jump {
+    min-height: 42px;
+    font-size: 12px;
+  }
+
   .btn-header-toggle,
   .btn-refresh {
     flex: 1 1 auto;
     min-width: 70px;
-    padding: 6px 8px;
-    font-size: 11px;
+    padding: 8px 8px;
     text-align: center;
+  }
+
+  .form-select,
+  .form-input {
+    min-height: 42px;
+    font-size: 12px;
+  }
+
+  .th-sort-btn {
+    min-height: 42px;
+  }
+
+  .details-summary {
+    min-height: 42px;
+    display: flex;
+    align-items: center;
   }
 
   .content-container {
@@ -1338,8 +1425,14 @@ th[aria-sort="descending"] .sort-indicator {
     align-items: stretch;
   }
 
+  .filter-item {
+    justify-content: space-between;
+  }
+
+  .form-select,
   .form-input {
     width: 100%;
+    flex: 1;
   }
 }
 
@@ -1352,8 +1445,9 @@ th[aria-sort="descending"] .sort-indicator {
 
   .btn-header-toggle,
   .btn-refresh {
-    padding: 6px 4px;
-    font-size: 11px;
+    padding: 8px 4px;
+    font-size: 12px;
+    min-height: 42px;
     width: 100%;
     min-width: 0;
   }
@@ -1365,7 +1459,8 @@ th[aria-sort="descending"] .sort-indicator {
   }
 
   .btn-range {
-    padding: 4px 8px;
-    font-size: 11px;
+    padding: 8px 10px;
+    font-size: 12px;
+    min-height: 42px;
   }
 }
