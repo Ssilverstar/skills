@@ -1,0 +1,80 @@
+{
+  "checked_at": "2026-10-31T13:20:26.622869+00:00",
+  "result": "PASS",
+  "tasks": [
+    {
+      "id": "UX-001",
+      "agent": "argon-ui",
+      "model": "gemini-4-argon-medium",
+      "result": "implementation handed over and integrated",
+      "ui_observed": "input prompt; no dialog or queued request",
+      "panel": "w3:pD",
+      "panel_closed": true
+    },
+    {
+      "id": "UX-002",
+      "agent": "opus-polish",
+      "model": "claude-opus-5-5",
+      "effort": "high",
+      "result": "tablet fix deployed and verified; merge approved conditional on independent PASS",
+      "approval_conditions_satisfied": true,
+      "ui_observed": "latest result and input prompt; no active tools or dialog",
+      "background_jobs_reported": 0,
+      "panel": "w3:pC",
+      "panel_closed": true
+    }
+  ],
+  "remaining_workspace": {
+    "id": "w3",
+    "pane_count": 1,
+    "agent": "Codex"
+  },
+  "tests": {
+    "repository": 5,
+    "probe": 10,
+    "server": 41,
+    "ui": 51,
+    "unit_total": 107,
+    "existing_browser_e2e": 12,
+    "orchestrator_browser": 11,
+    "independent_browser": 7,
+    "visual_combinations": 18
+  },
+  "root_checks": {
+    "node_ui_exit": 0,
+    "node_ui_pass": 51,
+    "node_syntax_exit": 0,
+    "git_diff_check_exit": 0,
+    "independent_browser_exit": 0,
+    "visual_exit": 0
+  },
+  "artifact_sha256": {
+    "test/monitor/app/static/app.js": "7d6a5593ec323c845c6ac0c3b6a5ac3abf8b839a490bbd79eb3bb196d54c16e9",
+    "test/monitor/app/static/style.css": "0da65504ba372983fad834dace1e7ea49e15e834d6f72c402b87876ceeae299b",
+    "test/monitor/app/static/index.html": "991c3ddafa8b2f0950d5c0a862c004cb447acc6f23d1ed8d362523fb29cb00b8",
+    "test/monitor/tests/ui/usability.test.js": "4252375f8d6af0499c9a3f4a0995469b72dde5be8aa92ce206543d9deb7588b8"
+  },
+  "deployment_assets": {
+    "app.js": {
+      "source_sha256": "7d6a5593ec323c845c6ac0c3b6a5ac3abf8b839a490bbd79eb3bb196d54c16e9",
+      "served_sha256": "7d6a5593ec323c845c6ac0c3b6a5ac3abf8b839a490bbd79eb3bb196d54c16e9",
+      "matches": true
+    },
+    "style.css": {
+      "source_sha256": "0da65504ba372983fad834dace1e7ea49e15e834d6f72c402b87876ceeae299b",
+      "served_sha256": "0da65504ba372983fad834dace1e7ea49e15e834d6f72c402b87876ceeae299b",
+      "matches": true
+    },
+    "index.html": {
+      "source_sha256": "991c3ddafa8b2f0950d5c0a862c004cb447acc6f23d1ed8d362523fb29cb00b8",
+      "served_sha256": "991c3ddafa8b2f0950d5c0a862c004cb447acc6f23d1ed8d362523fb29cb00b8",
+      "matches": true
+    }
+  },
+  "limitations": [
+    "Windows client not exercised",
+    "No solo-model speed or cost comparison",
+    "Existing telemetry limitations preserved",
+    "Contrast sampling is not a full accessibility audit"
+  ]
+}

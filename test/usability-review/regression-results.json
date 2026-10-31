@@ -1,0 +1,259 @@
+{
+  "checked_at": "2026-10-31T12:56:34.687500+00:00",
+  "url": "http://127.0.0.1:8787",
+  "result": "PASS",
+  "checks": [
+    {
+      "check": "skills scope/status/dedupe",
+      "width": 1440,
+      "status": "passed",
+      "detail": {
+        "default_scope": "common",
+        "default": 145,
+        "all": 836,
+        "codex": 36,
+        "claude": 36,
+        "opencode": 36,
+        "antigravity": 36,
+        "__repository__": 1,
+        "claude_dupes": 0,
+        "agy_unknown": 36,
+        "agy_enabled": 0,
+        "all_disabled": 686,
+        "count_text": [
+          "표시 145행 / 전체 836행"
+        ],
+        "summary_has_36": true,
+        "status_kept": true
+      },
+      "page_errors": []
+    },
+    {
+      "check": "skills jump 390",
+      "width": 390,
+      "status": "passed",
+      "detail": {
+        "#title-mcp-section": {
+          "top": 0,
+          "hash": "#skills",
+          "focused": "title-mcp-section"
+        },
+        "#title-skills-list": {
+          "top": 0,
+          "hash": "#skills",
+          "focused": "title-skills-list"
+        },
+        "#title-skills-summary": {
+          "top": 0,
+          "hash": "#skills",
+          "focused": "title-skills-summary"
+        }
+      },
+      "page_errors": []
+    },
+    {
+      "check": "skills jump 1440",
+      "width": 1440,
+      "status": "passed",
+      "detail": {
+        "#title-mcp-section": {
+          "top": 178,
+          "hash": "#skills",
+          "focused": "title-mcp-section"
+        },
+        "#title-skills-list": {
+          "top": 0,
+          "hash": "#skills",
+          "focused": "title-skills-list"
+        },
+        "#title-skills-summary": {
+          "top": 0,
+          "hash": "#skills",
+          "focused": "title-skills-summary"
+        }
+      },
+      "page_errors": []
+    },
+    {
+      "check": "scroll preserved",
+      "width": 768,
+      "status": "passed",
+      "detail": {
+        "y_refresh": 900,
+        "x_refresh": 80,
+        "y_lang": 900
+      },
+      "page_errors": []
+    },
+    {
+      "check": "contrast/touch 390",
+      "width": 390,
+      "status": "passed",
+      "detail": {
+        "dark": {
+          "min_ratio": {
+            "text": "대표 모델:",
+            "px": 12,
+            "ratio": 7.39
+          },
+          "min_px": {
+            "text": "대표 모델:",
+            "px": 12,
+            "ratio": 7.39
+          },
+          "below_4_5": []
+        },
+        "light": {
+          "min_ratio": {
+            "text": "GB10 공유 메모리: 전용 VRAM 카운터 미지원",
+            "px": 12,
+            "ratio": 5.77
+          },
+          "min_px": {
+            "text": "GB10 공유 메모리: 전용 VRAM 카운터 미지원",
+            "px": 12,
+            "ratio": 5.77
+          },
+          "below_4_5": []
+        },
+        "#btn-manual-refresh": 42,
+        "#btn-toggle-lang": 42,
+        "#btn-toggle-theme": 42,
+        "#nav-agents": 42,
+        "#nav-hardware": 42,
+        "#nav-skills": 42,
+        ".btn-range": 42,
+        "#filter-skill-agent": 42,
+        "#filter-skill-scope": 42,
+        "#filter-skill-status": 42,
+        "#input-skill-search": 42,
+        "#skills-table th button": 42
+      },
+      "page_errors": []
+    },
+    {
+      "check": "contrast/touch 768",
+      "width": 768,
+      "status": "passed",
+      "detail": {
+        "dark": {
+          "min_ratio": {
+            "text": "대표 모델:",
+            "px": 12,
+            "ratio": 7.39
+          },
+          "min_px": {
+            "text": "대표 모델:",
+            "px": 12,
+            "ratio": 7.39
+          },
+          "below_4_5": []
+        },
+        "light": {
+          "min_ratio": {
+            "text": "GB10 공유 메모리: 전용 VRAM 카운터 미지원",
+            "px": 12,
+            "ratio": 5.77
+          },
+          "min_px": {
+            "text": "GB10 공유 메모리: 전용 VRAM 카운터 미지원",
+            "px": 12,
+            "ratio": 5.77
+          },
+          "below_4_5": []
+        }
+      },
+      "page_errors": []
+    },
+    {
+      "check": "contrast/touch 1440",
+      "width": 1440,
+      "status": "passed",
+      "detail": {
+        "dark": {
+          "min_ratio": {
+            "text": "대표 모델:",
+            "px": 12,
+            "ratio": 7.39
+          },
+          "min_px": {
+            "text": "대표 모델:",
+            "px": 12,
+            "ratio": 7.39
+          },
+          "below_4_5": []
+        },
+        "light": {
+          "min_ratio": {
+            "text": "GB10 공유 메모리: 전용 VRAM 카운터 미지원",
+            "px": 12,
+            "ratio": 5.77
+          },
+          "min_px": {
+            "text": "GB10 공유 메모리: 전용 VRAM 카운터 미지원",
+            "px": 12,
+            "ratio": 5.77
+          },
+          "below_4_5": []
+        }
+      },
+      "page_errors": []
+    },
+    {
+      "check": "no overflow/clipping 390",
+      "width": 390,
+      "status": "passed",
+      "detail": {
+        "dark-agents": 390,
+        "dark-hardware": 390,
+        "dark-skills": 390,
+        "light-agents": 390,
+        "light-hardware": 390,
+        "light-skills": 390
+      },
+      "page_errors": []
+    },
+    {
+      "check": "no overflow/clipping 768",
+      "width": 768,
+      "status": "passed",
+      "detail": {
+        "dark-agents": 768,
+        "dark-hardware": 768,
+        "dark-skills": 768,
+        "light-agents": 768,
+        "light-hardware": 768,
+        "light-skills": 768
+      },
+      "page_errors": []
+    },
+    {
+      "check": "no overflow/clipping 1024",
+      "width": 1024,
+      "status": "passed",
+      "detail": {
+        "dark-agents": 1024,
+        "dark-hardware": 1024,
+        "dark-skills": 1024,
+        "light-agents": 1024,
+        "light-hardware": 1024,
+        "light-skills": 1024
+      },
+      "page_errors": []
+    },
+    {
+      "check": "no overflow/clipping 1440",
+      "width": 1440,
+      "status": "passed",
+      "detail": {
+        "dark-agents": 1440,
+        "dark-hardware": 1440,
+        "dark-skills": 1440,
+        "light-agents": 1440,
+        "light-hardware": 1440,
+        "light-skills": 1440
+      },
+      "page_errors": []
+    }
+  ]
+}
