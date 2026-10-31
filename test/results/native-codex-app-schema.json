@@ -1,0 +1,54 @@
+{
+  "observed_at": "2026-10-31T08:30:14.606041+00:00",
+  "privacy": "Only schema keys, known service/event names and counts; no body or identity values",
+  "samples": [
+    {
+      "service": "codex-app-server",
+      "signal": "metrics",
+      "requests": 1,
+      "items": 10,
+      "names": [
+        "codex.app_server.codex_home.size_bytes",
+        "codex.auth_storage.duration",
+        "codex.auth_storage.operation",
+        "codex.plugins.loaded_cache.event",
+        "codex.plugins.loaded_cache.load.duration_ms",
+        "codex.plugins.loaded_cache.request",
+        "codex.plugins.loaded_cache.wait.duration_ms",
+        "codex.process.start",
+        "codex.sqlite.init.count",
+        "codex.sqlite.init.duration_ms"
+      ],
+      "attribute_keys": [
+        "actual_store",
+        "compression_enabled",
+        "credential_kind",
+        "db",
+        "directory",
+        "error",
+        "event",
+        "fallback_reason",
+        "operation",
+        "originator",
+        "outcome",
+        "phase",
+        "secure_error",
+        "secure_outcome",
+        "selected_store",
+        "status",
+        "storage_phase",
+        "store_mode"
+      ],
+      "resource_keys": [
+        "env",
+        "os",
+        "os_version",
+        "service.name",
+        "service.version",
+        "telemetry.sdk.language",
+        "telemetry.sdk.name",
+        "telemetry.sdk.version"
+      ]
+    }
+  ]
+}

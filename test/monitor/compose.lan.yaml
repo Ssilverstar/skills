@@ -1,0 +1,6 @@
+# LAN 노출 override: 기본 127.0.0.1 바인딩은 유지하고 앱(UI·API)만 지정한 LAN IP에 추가로 연다.
+# Prometheus·collector는 열지 않는다. IP는 환경별 로컬 파일(../.local/monitor-lan.env)에 둔다.
+services:
+  app:
+    ports:
+      - "${MONITOR_LAN_IP:?MONITOR_LAN_IP를 ../.local/monitor-lan.env에 설정하세요}:${MONITOR_PORT:-8787}:8787"

@@ -1,0 +1,92 @@
+extensions:
+  health_check:
+    endpoint: 0.0.0.0:13133
+
+receivers:
+  # 앱 전용(컨테이너 네트워크 내부만)
+  otlp:
+    protocols:
+      http:
+        endpoint: 0.0.0.0:4318
+  # 에이전트 native OTel 수신. compose에서 호스트 127.0.0.1:4318 → 컨테이너 4320으로만 게시(LAN 미게시)
+  otlp/native:
+    protocols:
+      http:
+        endpoint: 0.0.0.0:4320
+
+processors:
+  batch: {}
+  # native: 알려진 송신자(service.name)의 사용량 지표만 통과. 그 외 지표·송신자는 버린다.
+  # Codex는 exec(codex_exec)와 App/TUI 백엔드(codex-app-server) 두 이름으로 보낸다.
+  filter/native_allowlist:
+    error_mode: ignore
+    metrics:
+      metric:
+        - >-
+          not (
+            (resource.attributes["service.name"] == "claude-code" and
+              (name == "claude_code.token.usage" or name == "claude_code.cost.usage" or name == "claude_code.session.count"))
+            or
+            ((resource.attributes["service.name"] == "codex_exec" or resource.attributes["service.name"] == "codex-app-server") and
+              (name == "codex.turn.token_usage" or name == "codex.conversation.turn.count"))
+          )
+  # 세션별 cumulative를 원래 시계열(session.id 등 포함)로 delta 변환한다. 식별자를 지운 뒤에 바꾸면 세션끼리 덮어쓴다.
+  # Claude 기본 delta는 그대로 통과. reset(start 변경·값 감소)은 새 시계열로 처리.
+  cumulative_to_delta/native: {}
+  # 허용 라벨만 남은 delta를 같은 최종 시계열로 누적(여러 세션 합산). 5분 무수신이면 상태를 버리고 다시 시작(Prometheus에는 reset으로 보임).
+  delta_to_cumulative/native: {}
+  # 식별자(user.*, organization.id, session.id, conversation.id 등)를 지우고 허용 라벨만 남긴다.
+  transform/native_labels:
+    error_mode: ignore
+    metric_statements:
+      - context: resource
+        statements:
+          - keep_keys(attributes, ["service.name"])
+      - context: scope
+        statements:
+          - keep_keys(attributes, [])
+          - set(name, "")
+          - set(version, "")
+      - context: datapoint
+        statements:
+          - keep_keys(attributes, ["model", "type", "token_type"])
+          # 수집기 수신 시각으로 바꾼다. 세션이 합쳐진 delta가 송신측 시각 역전으로 버려지지 않게 하고,
+          # Prometheus timestamp()가 마지막 스크랩이 아니라 실제 수신 시각이 되게 한다(send_timestamps).
+          - set(start_time, Now())
+          - set(time, Now())
+
+connectors:
+  # 앱 트레이스 → 요청 수·지연 지표. 트레이스 전송을 Prometheus에서 확인할 수 있게 한다.
+  span_metrics: {}
+
+exporters:
+  prometheus:
+    endpoint: 0.0.0.0:8889
+    # 표본에 OTLP 시각(native는 위 수신 시각)을 실어 보낸다. false면 timestamp()가 마지막 스크랩 시각이 된다.
+    send_timestamps: true
+  debug:
+    verbosity: basic
+  # native logs/traces는 받기만 하고 버린다(원문·식별자 키가 많아 저장·전달하지 않음).
+  nop: {}
+
+service:
+  extensions: [health_check]
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [span_metrics, debug]
+    metrics:
+      receivers: [otlp, span_metrics]
+      processors: [batch]
+      exporters: [prometheus]
+    metrics/native:
+      receivers: [otlp/native]
+      processors: [filter/native_allowlist, cumulative_to_delta/native, transform/native_labels, delta_to_cumulative/native, batch]
+      exporters: [prometheus]
+    logs/native:
+      receivers: [otlp/native]
+      exporters: [nop]
+    traces/native:
+      receivers: [otlp/native]
+      exporters: [nop]

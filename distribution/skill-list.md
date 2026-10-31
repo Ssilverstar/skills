@@ -4,9 +4,52 @@
 
 2026-10-31 · Codex + Opus 5.5 high 합의. [공통 기준·에이전트별 예외](skill-policy.md)를 함께 적용합니다.
 
-Codex 설치 364개: 활성 35개, 비활성 329개. 개수는 목표가 아니라 이 환경의 결과입니다.
+Codex 프로필 검토 목록 395개(로컬·앱 항목 포함): 활성 36개, 비활성 359개. 개수는 목표가 아니라 이 환경의 결과입니다.
 
-필수 목록은 네 에이전트 공통입니다. 아래 전체 인벤토리와 활성/비활성 수치는 Codex 기준이며, Claude의 ECC 플러그인 유지 예외와 앱 동기화 스킬은 별도로 관리합니다.
+전체 기본 선택 36개는 네 에이전트 공통입니다. Claude ECC 전체 노출 예외는 폐기했습니다. 플랫폼 내장·앱 동기화 항목은 별도이며 실제 도구 전제조건을 충족해야 실행할 수 있습니다.
+
+## 공통 목록과 실제 이름
+
+원본: [common-general-sw.json](profiles/common-general-sw.json). Claude의 ECC 13개는 `ecc-common` 로컬 플러그인으로 배포하며 원본 훅·보조 파일을 보존합니다.
+
+| 공통 ID | Claude | OpenCode / Antigravity | 실행 전제 |
+| --- | --- | --- | --- |
+| `archify` | `archify` | `archify` | Consult SKILL.md and verify current tools |
+| `docx` | `anthropic-skills:docx` | `docx` | Consult SKILL.md and verify current tools |
+| `ecc:accessibility` | `ecc-common:accessibility` | `accessibility` | Consult SKILL.md and verify current tools |
+| `ecc:api-design` | `ecc-common:api-design` | `api-design` | Consult SKILL.md and verify current tools |
+| `ecc:architecture-decision-records` | `ecc-common:architecture-decision-records` | `architecture-decision-records` | Consult SKILL.md and verify current tools |
+| `ecc:browser-qa` | `ecc-common:browser-qa` | `browser-qa` | Available browser automation; local Playwright Chromium is available |
+| `ecc:codebase-onboarding` | `ecc-common:codebase-onboarding` | `codebase-onboarding` | Consult SKILL.md and verify current tools |
+| `ecc:coding-standards` | `ecc-common:coding-standards` | `coding-standards` | Consult SKILL.md and verify current tools |
+| `ecc:database-migrations` | `ecc-common:database-migrations` | `database-migrations` | Consult SKILL.md and verify current tools |
+| `ecc:deployment-patterns` | `ecc-common:deployment-patterns` | `deployment-patterns` | Consult SKILL.md and verify current tools |
+| `ecc:docker-patterns` | `ecc-common:docker-patterns` | `docker-patterns` | Consult SKILL.md and verify current tools |
+| `ecc:error-handling` | `ecc-common:error-handling` | `error-handling` | Consult SKILL.md and verify current tools |
+| `ecc:git-workflow` | `ecc-common:git-workflow` | `git-workflow` | Consult SKILL.md and verify current tools |
+| `ecc:github-ops` | `ecc-common:github-ops` | `github-ops` | Consult SKILL.md and verify current tools |
+| `ecc:security-review` | `ecc-common:security-review` | `security-review` | Consult SKILL.md and verify current tools |
+| `graft` | `graft` | `graft` | Existing repository graft/ index; no init without request |
+| `herdr` | `herdr` | `herdr` | HERDR_ENV=1 |
+| `herdr-orchestrate` | `herdr-orchestrate` | `herdr-orchestrate` | HERDR_ENV=1, explicit orchestration request |
+| `humanize-korean` | `humanize-korean:humanize-korean` | `humanize-korean` | Consult SKILL.md and verify current tools |
+| `imagegen` | `imagegen` | `imagegen` | Native image generation tool; paid API fallback only on explicit request |
+| `openai-docs` | `openai-docs` | `openai-docs` | Consult SKILL.md and verify current tools |
+| `pdf` | `anthropic-skills:pdf` | `pdf` | Consult SKILL.md and verify current tools |
+| `ponytail:ponytail` | `ponytail:ponytail` | `ponytail` | Consult SKILL.md and verify current tools |
+| `ponytail:ponytail-audit` | `ponytail:ponytail-audit` | `ponytail-audit` | Consult SKILL.md and verify current tools |
+| `ponytail:ponytail-debt` | `ponytail:ponytail-debt` | `ponytail-debt` | Consult SKILL.md and verify current tools |
+| `ponytail:ponytail-gain` | `ponytail:ponytail-gain` | `ponytail-gain` | Consult SKILL.md and verify current tools |
+| `ponytail:ponytail-help` | `ponytail:ponytail-help` | `ponytail-help` | Consult SKILL.md and verify current tools |
+| `ponytail:ponytail-review` | `ponytail:ponytail-review` | `ponytail-review` | Consult SKILL.md and verify current tools |
+| `prefer-gh-for-github` | `prefer-gh-for-github:prefer-gh-for-github` | `prefer-gh-for-github` | Consult SKILL.md and verify current tools |
+| `review-agent` | `review-agent` | `review-agent` | Consult SKILL.md and verify current tools |
+| `skill-creator` | `skill-creator:skill-creator` | `skill-creator` | Consult SKILL.md and verify current tools |
+| `skill-installer` | `skill-installer` | `skill-installer` | Always pass --dest for the current agent; never default to another agent home |
+| `superpowers:systematic-debugging` | `systematic-debugging` | `systematic-debugging` | Consult SKILL.md and verify current tools |
+| `superpowers:test-driven-development` | `test-driven-development` | `test-driven-development` | Consult SKILL.md and verify current tools |
+| `superpowers:verification-before-completion` | `verification-before-completion` | `verification-before-completion` | Consult SKILL.md and verify current tools |
+| `visualize:visualize` | `visualize` | `visualize` | Codex inline visualization surface; other agents use a standalone HTML artifact only when requested |
 
 ## 필수 — 네 에이전트 모두 보존/설치 (8개)
 
@@ -21,9 +64,9 @@ Codex 설치 364개: 활성 35개, 비활성 329개. 개수는 목표가 아니�
 - `ponytail:ponytail-help`
 - `ponytail:ponytail-review`
 
-## 기본 유지 — 현재 Codex 기준 (27개)
+## 기본 유지 — 공통 선택 목록 (28개)
 
-일부 본문/설명 기반 유지. 플랫폼 전용 기본 스킬은 다른 에이전트에 강제 복제하지 않음.
+도구 전제조건과 호스트별 별칭은 공통 프로필에 기록. 전체 워크플로 호환성 인증은 아님.
 
 - `docx`
 - `ecc:accessibility`
@@ -40,6 +83,7 @@ Codex 설치 364개: 활성 35개, 비활성 329개. 개수는 목표가 아니�
 - `ecc:github-ops`
 - `ecc:security-review`
 - `herdr`
+- `herdr-orchestrate`
 - `humanize-korean`
 - `imagegen`
 - `openai-docs`
@@ -115,7 +159,7 @@ Claude 전용 하네스/명령 또는 도구 전제. 다른 에이전트는 자�
 - `superpowers:brainstorming`
 - `superpowers:using-superpowers`
 
-## 검토 보류 — 현재 Codex 전역 비활성 (282개)
+## 검토 보류 — 현재 Codex 전역 비활성 (312개)
 
 불필요 판정이 아님. 최초 일괄 제외 상태를 승계했으며 본문·사용 필요를 확인한 후 복구 가능.
 
@@ -389,7 +433,34 @@ Claude 전용 하네스/명령 또는 도구 전제. 다른 에이전트는 자�
 - `ecc:windows-desktop-e2e`
 - `ecc:workspace-surface-audit`
 - `ecc:x-api`
+- `openai-templates:artifact-template-analytics-dashboard`
+- `openai-templates:artifact-template-business-review`
+- `openai-templates:artifact-template-design-report`
+- `openai-templates:artifact-template-experiment-analysis`
+- `openai-templates:artifact-template-financial-budget`
+- `openai-templates:artifact-template-investment-committee-memo`
+- `openai-templates:artifact-template-legal-memorandum`
+- `openai-templates:artifact-template-market-trends-report`
+- `openai-templates:artifact-template-minimal-letterhead`
+- `openai-templates:artifact-template-operating-calendar`
+- `openai-templates:artifact-template-operating-review`
+- `openai-templates:artifact-template-project-kickoff`
+- `openai-templates:artifact-template-project-tracker`
+- `openai-templates:artifact-template-sales-pipeline`
+- `openai-templates:artifact-template-simple-dark-mode`
+- `openai-templates:artifact-template-simple-light-mode`
+- `openai-templates:artifact-template-strategy-memorandum`
+- `openai-templates:artifact-template-system-design`
+- `openai-templates:artifact-template-team-alignment`
+- `openai-templates:artifact-template-three-statement-forecast`
+- `pages:maintain-space`
+- `pages:manage-schedules`
+- `pages:organize-space`
+- `pages:write-page`
+- `plugin-management:plugin-management`
 - `pptx`
+- `sites:sites`
+- `sites:sites-remix`
 - `superpowers:dispatching-parallel-agents`
 - `superpowers:executing-plans`
 - `superpowers:finishing-a-development-branch`
@@ -400,4 +471,7 @@ Claude 전용 하네스/명령 또는 도구 전제. 다른 에이전트는 자�
 - `superpowers:writing-plans`
 - `superpowers:writing-skills`
 - `web-slides`
+- `work-pets:create-pet`
+- `work-pets:pets`
+- `work-pets:update-pet`
 - `xlsx`

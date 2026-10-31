@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Observatory</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <div class="app-container">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-badge"></div>
+        <h1 class="brand-title">Agent Observatory</h1>
+      </div>
+      <nav class="nav-menu" aria-label="주 메뉴" data-i18n-aria="navMenuAria">
+        <a href="#agents" class="nav-item" id="nav-agents" aria-current="page">
+          <span class="nav-icon" aria-hidden="true">🤖</span>
+          <span class="nav-label" data-i18n="navAgents">에이전트 사용량</span>
+        </a>
+        <a href="#hardware" class="nav-item" id="nav-hardware">
+          <span class="nav-icon" aria-hidden="true">⚡</span>
+          <span class="nav-label" data-i18n="navHardware">하드웨어·추론</span>
+        </a>
+        <a href="#skills" class="nav-item" id="nav-skills">
+          <span class="nav-icon" aria-hidden="true">🛠️</span>
+          <span class="nav-label" data-i18n="navSkills">스킬 현황</span>
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="status-summary" id="sidebar-status-summary">
+          <span class="status-dot good" id="sidebar-status-dot"></span>
+          <span class="status-text" id="sidebar-status-text" data-i18n="sidebarChecking">상태 확인 중...</span>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="top-header">
+        <div class="header-left">
+          <div class="page-title-area">
+            <h2 class="view-title" id="current-view-title" data-i18n="navAgents">에이전트 사용량</h2>
+            <div class="header-badges" id="header-badges">
+              <span class="badge" id="status-badge" data-i18n="statusChecking">수집 확인 중</span>
+              <span class="badge badge-history hidden" id="source-badge" data-i18n="statusRestored">이력 복원</span>
+            </div>
+          </div>
+        </div>
+        <div class="header-right">
+          <div class="timestamp-box">
+            <span class="timestamp-label" id="lbl-snapshot-time" data-i18n="snapshotTime">스냅샷 시각:</span>
+            <span class="timestamp-value" id="collected-at-val">-</span>
+            <span class="timestamp-rel" id="collected-age-val"></span>
+          </div>
+          <div class="header-controls">
+            <button type="button" class="btn btn-refresh" id="btn-manual-refresh" title="스냅샷 즉시 새로고침" data-i18n="btnRefresh" data-i18n-title="btnRefreshTitle">새로고침</button>
+            <button type="button" class="btn-header-toggle" id="btn-toggle-lang" aria-label="언어 전환" data-i18n="btnLangToggle" data-i18n-aria="btnLangAria">English</button>
+            <button type="button" class="btn-header-toggle" id="btn-toggle-theme" aria-label="테마 전환" data-i18n-aria="btnThemeAria">☀️ 주간</button>
+          </div>
+        </div>
+      </header>
+
+      <div class="banner-area">
+        <div class="alert-banner alert-warning hidden" id="stale-banner" role="alert">
+          <span class="alert-icon">⚠️</span>
+          <span class="alert-msg" id="stale-msg" data-i18n="staleMsgDefault">수집 지연: 스냅샷이 최신 상태가 아닙니다.</span>
+        </div>
+        <div class="alert-banner alert-critical hidden" id="error-banner" role="alert">
+          <span class="alert-icon">❌</span>
+          <span class="alert-msg" id="error-msg" data-i18n="errorMsgDefault">수집 오류가 발생했습니다.</span>
+        </div>
+        <div class="alert-banner alert-info hidden" id="compacted-banner" role="status">
+          <span class="alert-icon">ℹ️</span>
+          <span class="alert-msg" data-i18n="compactedBanner">목록 로딩 중(이력 복원본) - 다음 수집 주기에 전체 스킬 목록이 복원됩니다.</span>
+        </div>
+      </div>
+
+      <main class="content-container">
+        <!-- Waiting View -->
+        <section class="view-section hidden" id="view-waiting">
+          <div class="empty-state-card">
+            <div class="empty-icon">⏳</div>
+            <h3 class="empty-title" data-i18n="emptyTitle">스냅샷 수집 대기 중</h3>
+            <p class="empty-desc" data-i18n="emptyDesc">호스트 프로브로부터 첫 번째 모니터링 스냅샷을 수집하고 있습니다. 잠시만 기다려 주세요.</p>
+            <div class="empty-meta">
+              <span data-i18n="emptyInterval">수집 주기: 15초</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Agents View -->
+        <section class="view-section" id="view-agents">
+          <div class="section-block" id="agent-kpi-block">
+            <h3 class="block-title" id="title-agent-kpi" data-i18n="titleAgentKpi">에이전트 KPI 요약</h3>
+            <div class="kpi-grid" id="agent-kpi-container">
+              <!-- KPI tiles dynamically rendered -->
+            </div>
+          </div>
+
+          <div class="section-block">
+            <h3 class="block-title" data-i18n="sectionAgentProfiles">에이전트 프로필 및 구독 한도</h3>
+            <div class="agent-cards-grid" id="agent-cards-container">
+              <!-- Agent cards dynamically rendered -->
+            </div>
+          </div>
+
+          <div class="section-block">
+            <h3 class="block-title" data-i18n="sectionAgentTokens">에이전트별 토큰 사용량</h3>
+            <p class="block-desc" data-i18n="descAgentTokens">입력 토큰은 캐시 읽기/쓰기를 포함하며, 추론 토큰은 출력 토큰의 일부입니다. (중복 합산 금지)</p>
+            <div class="table-scroll">
+              <table class="data-table" id="agent-tokens-table">
+                <thead>
+                  <tr>
+                    <th data-i18n="thAgent">에이전트</th>
+                    <th data-i18n="thInputTokens">입력 (캐시 포함)</th>
+                    <th data-i18n="thCachedInput">캐시 읽기</th>
+                    <th data-i18n="thCacheWrite">캐시 쓰기</th>
+                    <th data-i18n="thOutputTokens">출력</th>
+                    <th data-i18n="thReasoningTokens">추론 (출력 포함)</th>
+                    <th data-i18n="thTotalTokens">합계</th>
+                    <th data-i18n="thSessions">세션</th>
+                  </tr>
+                </thead>
+                <tbody id="agent-tokens-tbody">
+                  <!-- Dynamic rows -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="section-block">
+            <h3 class="block-title" data-i18n="sectionModelUsage">모델별 세부 사용량</h3>
+            <p class="block-desc" data-i18n="descModelUsage">에이전트 내 모델별 토큰 사용 현황입니다. 모델 행을 더한 합계 행은 제공하지 않습니다.</p>
+            <div class="table-scroll">
+              <table class="data-table" id="model-usage-table">
+                <thead>
+                  <tr>
+                    <th data-i18n="thAgent">에이전트</th>
+                    <th data-i18n="thModel">모델</th>
+                    <th data-i18n="thInputTokens">입력 (캐시 포함)</th>
+                    <th data-i18n="thCachedInput">캐시 읽기</th>
+                    <th data-i18n="thCacheWrite">캐시 쓰기</th>
+                    <th data-i18n="thOutputTokens">출력</th>
+                    <th data-i18n="thTotalTokens">합계</th>
+                    <th data-i18n="thSessions">세션</th>
+                    <th class="col-share" data-i18n="thShare">에이전트 내 비중</th>
+                  </tr>
+                </thead>
+                <tbody id="model-usage-tbody">
+                  <!-- Dynamic rows -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Hardware View -->
+        <section class="view-section hidden" id="view-hardware">
+          <div class="hardware-overview-grid">
+            <div class="info-card" id="card-host">
+              <div class="card-header">
+                <h4 class="card-title" data-i18n="cardHost">호스트 머신</h4>
+                <span class="card-tag" id="host-tag">Host</span>
+              </div>
+              <div class="card-body" id="host-details">
+                <!-- Dynamic host details -->
+              </div>
+            </div>
+
+            <div class="info-card" id="card-gpu">
+              <div class="card-header">
+                <h4 class="card-title" data-i18n="cardGpu">NVIDIA GPU</h4>
+                <span class="card-tag" id="gpu-tag">GPU</span>
+              </div>
+              <div class="card-body" id="gpu-details">
+                <!-- Dynamic GPU details -->
+              </div>
+            </div>
+
+            <div class="info-card" id="card-inference">
+              <div class="card-header">
+                <h4 class="card-title" data-i18n="cardInference">추론 서버 (Inference)</h4>
+                <span class="card-tag" id="inference-status-tag" data-i18n="statusChecking">상태 확인 중</span>
+              </div>
+              <div class="card-body" id="inference-details">
+                <!-- Dynamic inference details -->
+              </div>
+            </div>
+          </div>
+
+          <div class="section-block">
+            <div class="block-header-with-actions">
+              <div>
+                <h3 class="block-title" data-i18n="sectionCharts">시계열 추이 (Small Multiples)</h3>
+                <p class="block-desc" data-i18n="descCharts">호스트 및 GPU 주요 성능 지표의 과거 추이입니다. 데이터 미수집 구간은 선이 연결되지 않습니다.</p>
+              </div>
+              <div class="range-selector" role="group" aria-label="조회 시간 범위" data-i18n-aria="rangeSelectorAria">
+                <button type="button" class="btn btn-range" data-hours="1" data-i18n="range1h">1시간</button>
+                <button type="button" class="btn btn-range" data-hours="6" data-i18n="range6h">6시간</button>
+                <button type="button" class="btn btn-range active" data-hours="24" data-i18n="range24h">24시간</button>
+                <button type="button" class="btn btn-range" data-hours="168" data-i18n="range7d">7일</button>
+                <button type="button" class="btn btn-range" data-hours="720" data-i18n="range30d">30일</button>
+                <span class="badge badge-resolution" id="history-resolution-badge" data-i18n="resRaw">원본 스냅샷(약 15초)</span>
+              </div>
+            </div>
+
+            <div class="charts-grid" id="history-charts-container">
+              <div class="chart-card">
+                <div class="chart-header">
+                  <span class="chart-title" data-i18n="chartGpuUtil">GPU 사용률</span>
+                  <span class="chart-curr-val" id="chart-val-gpu-util">-</span>
+                </div>
+                <div class="chart-svg-wrap" id="chart-svg-gpu-util"></div>
+              </div>
+
+              <div class="chart-card">
+                <div class="chart-header">
+                  <span class="chart-title" data-i18n="chartGpuTemp">GPU 온도</span>
+                  <span class="chart-curr-val" id="chart-val-gpu-temp">-</span>
+                </div>
+                <div class="chart-svg-wrap" id="chart-svg-gpu-temp"></div>
+              </div>
+
+              <div class="chart-card">
+                <div class="chart-header">
+                  <span class="chart-title" data-i18n="chartGpuPower">GPU 전력</span>
+                  <span class="chart-curr-val" id="chart-val-gpu-power">-</span>
+                </div>
+                <div class="chart-svg-wrap" id="chart-svg-gpu-power"></div>
+              </div>
+
+              <div class="chart-card">
+                <div class="chart-header">
+                  <span class="chart-title" data-i18n="chartHostMem">호스트 메모리 사용률</span>
+                  <span class="chart-curr-val" id="chart-val-host-mem">-</span>
+                </div>
+                <div class="chart-svg-wrap" id="chart-svg-host-mem"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-block">
+            <div class="block-header-with-actions">
+              <h3 class="block-title" data-i18n="sectionHistoryTable">스냅샷 수집 이력 (최근 50건)</h3>
+              <div class="retention-meta" id="history-retention-meta" data-i18n="retentionPrefix">
+                보존 설정: -
+              </div>
+            </div>
+            <div class="table-scroll">
+              <table class="data-table" id="snapshot-history-table">
+                <thead>
+                  <tr>
+                    <th data-i18n="thCollectedAt">수집 시각</th>
+                    <th data-i18n="thCpuPercent">CPU 사용률</th>
+                    <th data-i18n="thMemPercent">호스트 메모리</th>
+                    <th data-i18n="thGpuUtil">GPU 사용률</th>
+                    <th data-i18n="thGpuTemp">GPU 온도</th>
+                    <th data-i18n="thGpuPower">GPU 전력</th>
+                    <th data-i18n="thInference">추론 서버</th>
+                    <th data-i18n="thErrors">오류 수</th>
+                  </tr>
+                </thead>
+                <tbody id="snapshot-history-tbody">
+                  <!-- Dynamic rows -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- Skills View -->
+        <section class="view-section hidden" id="view-skills">
+          <div class="section-block">
+            <h3 class="block-title" id="title-skills-summary" data-i18n="sectionSkillsSummary">에이전트별 스킬 개요</h3>
+            <div class="skills-summary-grid" id="skills-summary-cards">
+              <!-- Summary cards dynamically rendered -->
+            </div>
+          </div>
+
+          <div class="section-block" id="skills-category-table-block">
+            <h3 class="block-title" id="title-skills-category-table" data-i18n="titleSkillsCategoryTable">에이전트별 스킬 분류 현황</h3>
+            <div class="table-scroll">
+              <table class="data-table" id="skills-category-table">
+                <thead>
+                  <tr id="skills-category-thead-tr">
+                    <!-- Sortable header dynamically generated -->
+                  </tr>
+                </thead>
+                <tbody id="skills-category-tbody">
+                  <!-- Dynamic rows -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="section-block">
+            <div class="block-header-with-actions">
+              <div>
+                <h3 class="block-title" data-i18n="sectionSkillsList">설치된 스킬 목록</h3>
+                <p class="block-desc" data-i18n="descSkillsList">호출 수는 요청 증거이며 성공 여부가 아닙니다. 미계측은 미사용과 구분됩니다.</p>
+              </div>
+              <div class="filters-toolbar">
+                <div class="filter-item">
+                  <label for="filter-skill-agent" class="filter-label" data-i18n="filterAgentLabel">에이전트:</label>
+                  <select id="filter-skill-agent" class="form-select">
+                    <option value="ALL" data-i18n="filterAgentAll">전체 에이전트</option>
+                  </select>
+                </div>
+                <div class="filter-item">
+                  <label for="input-skill-search" class="filter-label" data-i18n="filterSearchLabel">검색:</label>
+                  <input type="text" id="input-skill-search" class="form-input" placeholder="이름, 설명, 경로 검색..." data-i18n-placeholder="filterSearchPlaceholder">
+                </div>
+              </div>
+            </div>
+
+            <div class="table-scroll">
+              <table class="data-table" id="skills-table">
+                <thead>
+                  <tr>
+                    <th data-i18n="thSkillName">스킬 이름</th>
+                    <th data-i18n="thSkillAgent">에이전트</th>
+                    <th data-i18n="thSkillStatus">활성 상태</th>
+                    <th data-i18n="thSkillInvocations">호출 요청 증거</th>
+                    <th data-i18n="thSkillLastUsed">마지막 사용</th>
+                    <th data-i18n="thSkillPath">스킬 경로</th>
+                    <th data-i18n="thSkillOrigin">출처</th>
+                  </tr>
+                </thead>
+                <tbody id="skills-tbody">
+                  <!-- Dynamic rows -->
+                </tbody>
+              </table>
+            </div>
+
+            <div class="skills-notes-block hidden" id="skills-notes-container">
+              <h4 class="notes-title" data-i18n="skillsNotesTitle">스킬 참고 사항</h4>
+              <ul class="notes-list" id="skills-notes-list"></ul>
+            </div>
+          </div>
+
+          <div class="section-block" id="mcp-section-block">
+            <h3 class="block-title" id="title-mcp-section" data-i18n="titleMcpSection">MCP 서버 현황</h3>
+            <div id="mcp-container">
+              <!-- MCP status & table dynamically rendered -->
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+</body>
+</html>

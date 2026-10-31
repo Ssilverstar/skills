@@ -1,6 +1,8 @@
 # herdr 워크플로
 
-작업 유형별 절차를 `<workflow-name>.md`로 추가합니다. 아직 등록된 워크플로는 없습니다.
+작업 유형별 절차를 `<workflow-name>.md`로 추가합니다.
+
+- [Claude 총괄 + Gemini/OpenCode 작업자](claude-workers.md): 3열 배치, 파일 소유권 계약, 작업자 결과 회수와 검증.
 
 각 문서는 다음 내용을 포함합니다.
 

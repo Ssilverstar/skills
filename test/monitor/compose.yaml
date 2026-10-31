@@ -1,0 +1,86 @@
+name: agent-observatory
+
+# 모든 컨테이너 로그 회전(서비스당 최대 10MB × 3개)
+x-logging: &logging
+  driver: json-file
+  options: { max-size: "10m", max-file: "3" }
+
+services:
+  app:
+    build:
+      context: .
+      args: { UID: "${MONITOR_UID:-1000}", GID: "${MONITOR_GID:-1000}" }
+    image: agent-observatory-app:local
+    restart: unless-stopped
+    environment:
+      HOST: 0.0.0.0
+      PORT: "8787"
+      SNAPSHOT_PATH: /data/host/snapshot.json
+      DB_PATH: /data/db/monitor.sqlite3
+      POLL_SECONDS: "15"
+      STALE_SECONDS: "180"
+      # 정제 스냅샷 원본 24시간, 5분 집계 30일, 각 건수 상한
+      RAW_RETENTION_HOURS: "24"
+      AGG_RETENTION_DAYS: "30"
+      RAW_MAX_ROWS: "10000"
+      AGG_MAX_ROWS: "10000"
+      OTEL_SERVICE_NAME: agent-observatory
+      OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4318
+      OTEL_METRIC_EXPORT_INTERVAL: "15000"
+      COLLECTOR_HEALTH_URL: http://otel-collector:13133/
+      PROMETHEUS_HEALTH_URL: http://prometheus:9090/-/healthy
+      PROMETHEUS_URL: http://prometheus:9090  # native OTel 최근 관측 조회
+    volumes:
+      # 호스트 프로브 출력 디렉터리만 읽기 전용으로. 홈·공급자 로그·Docker 소켓·자격증명은 마운트하지 않는다.
+      - type: bind
+        source: ../.local/monitor
+        target: /data/host
+        read_only: true
+        bind: { create_host_path: false }
+      - monitor-db:/data/db
+    ports:
+      - "${MONITOR_BIND:-127.0.0.1}:${MONITOR_PORT:-8787}:8787"
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    depends_on: [otel-collector]
+    logging: *logging
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.164.0
+    restart: unless-stopped
+    command: ["--config=/etc/otelcol/config.yaml"]
+    volumes:
+      - ./otel-collector.yaml:/etc/otelcol/config.yaml:ro
+    ports:
+      # 에이전트 native OTLP/HTTP 수신: 호스트 loopback 전용(LAN override에도 추가하지 않음)
+      - "127.0.0.1:${NATIVE_OTLP_PORT:-4318}:4320"
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    logging: *logging
+
+  prometheus:
+    image: prom/prometheus:v3.15.1
+    restart: unless-stopped
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --storage.tsdb.retention.time=15d
+      - --storage.tsdb.retention.size=2GB
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    ports:
+      - "127.0.0.1:${PROMETHEUS_PORT:-9090}:9090"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:9090/-/healthy"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    depends_on: [otel-collector]
+    logging: *logging
+
+volumes:
+  monitor-db:
+  prometheus-data:

@@ -1,0 +1,43 @@
+schema_version: 1
+task_id: FE-006
+status: completed
+model: "Antigravity Gemini 3.8 Flash (herdr agent gemini-monitor, w3:pB)"
+commit: none
+changed_files:
+  - "test/monitor/app/static/style.css"
+  - "test/monitor/app/static/app.js"
+  - "test/monitor/tests/ui/index.js"
+  - "test/monitor/tests/ui/fe006_features.test.js"
+  - "test/monitor/contracts/results/FE-006.yaml"
+contracts_changed: false
+proposals: []
+checks:
+  - name: "syntax"
+    command: "node --check test/monitor/app/static/app.js"
+    exit_code: 0
+    passed: 1
+    failed: 0
+  - name: "unit_tests"
+    command: "node --test test/monitor/tests/ui/*.test.js"
+    exit_code: 0
+    passed: 25
+    failed: 0
+acceptance:
+  AC1: pass
+  AC2: pass
+  AC3: pass
+  AC4: pass
+  AC5: pass
+  AC6: pass
+  AC7: pass
+notes:
+  - "AC1: 데스크톱(≥1100px) 에이전트 카드를 repeat(2, 1fr) 2×2 균형 배치로 변경. 카드 상단에 우선순위 높은 정보(모델 태그, 관측 나이, 구독 플랜 및 한도 막대)를 배치하고, source/notes/수집원/세부 타임스탬프/OTel 배지는 기본 닫힘 상태의 <details class='agent-details-toggle'>('세부 정보') 내로 접어 카드 높이 균형 유지"
+  - "AC2: 한도 라벨 순수 변환 함수 formatLimitLabel 구현. '10080분'·'10080 min'·weekly·seven_day·7d는 '주간(7일)'/'Weekly (7d)', five_hour·5h·300분은 '5시간'/'5-hour'로 변환하며 복합 버킷명('Gemini Models · weekly' 등)은 모델 그룹명을 보존하고 기간만 변환. 원문은 span title 툴팁으로 보존"
+  - "AC3: formatInferenceKey 및 시각 포맷 적용. 추론 서버 세부 속성의 observed_at을 '관측 시각'/'Observed at' 및 formatDateTime으로 포맷팅하고, container_image, runtime_executable, installed_vllm_version, engine, version 등 사전 정의된 고정 라벨을 적용하며 미등록 키는 원문 키로 폴백"
+  - "AC4: 상태 문구(수집 대기, 정상, 지연(stale), 오류, 미확인, 미계측, 미지원, 부분 관측, 과거 관측)를 I18N ko/en에 전면 정의 및 매핑. 모델·런타임·스킬 고유 명칭은 원문 유지"
+  - "AC5: calculateChartAxes 순수 함수 구현 및 SVG 차트 축 렌더링 갱신. Y축 최소/최대 눈금 및 단위(%·°C·W), X축 시간 눈금(시작·중간·끝 최소 3개, ≤24h HH:mm, >24h MM-DD HH:mm)을 SVG에 직접 렌더링. 빈 데이터, 단일 점, 전체 null 데이터셋에서도 안전하게 동작하며 호버 크로스헤어와 툴팁 유지"
+  - "AC6: 4개 모든 데이터 테이블의 thead th에 position: sticky, top: 0, z-index: 5 적용 및 .table-scroll에 max-height: 540px, overflow: auto 설정. FE-005의 컬럼 정렬 기능 완전 유지"
+  - "AC7: 모바일(<=420px 및 390px) 뷰포트에서 헤더 컨트롤 버튼을 grid 3열 배치 및 패딩 최적화로 겹침 현상을 해소하고, 가로 스크롤(overflow-x: hidden) 방지"
+blockers: []
+known_risks: []
+log_paths: []

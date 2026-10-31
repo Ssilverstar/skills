@@ -1,0 +1,37 @@
+schema_version: 1
+task_id: FE-007
+status: completed
+model: "Antigravity Gemini 3.8 Flash (herdr agent gemini-monitor, w3:pB)"
+commit: none
+changed_files:
+  - "test/monitor/app/static/style.css"
+  - "test/monitor/app/static/app.js"
+  - "test/monitor/tests/ui/index.js"
+  - "test/monitor/tests/ui/fe007_features.test.js"
+  - "test/monitor/contracts/results/FE-007.yaml"
+contracts_changed: false
+proposals: []
+checks:
+  - name: "syntax"
+    command: "node --check test/monitor/app/static/app.js"
+    exit_code: 0
+    passed: 1
+    failed: 0
+  - name: "unit_tests"
+    command: "node --test test/monitor/tests/ui/*.test.js"
+    exit_code: 0
+    passed: 30
+    failed: 0
+acceptance:
+  AC1: pass
+  AC2: pass
+  AC3: pass
+  AC4: pass
+notes:
+  - "AC1: 에이전트 카드 내 telemetry[agent].native_usage가 존재할 때 수집 방식 배지 영역에 '네이티브 OTel 최근 24시간 수신'(en: 'Native OTel · last 24h') 소블록을 표시하도록 구현. formatNativeUsage 순수 함수를 통해 모델별 type/token_type 증가량을 formatTokens(만/K 축약+툴팁 정확값)로 포맷팅하고, 마지막 수신 상대 시각을 표시. 증가분이 0인 시계열은 제외하며 native_usage가 없거나 증가분이 0뿐인 경우 블록 숨김"
+  - "AC2: 토큰 표 및 모델 표는 계속 기존 bridge 세션 누적 데이터(agent.usage, model.usage)만 사용하도록 유지하고, 표 상단 설명 문구(descAgentTokens, descModelUsage)에 '세션 누적(브리지)' 및 'Session accumulated (bridge)'임을 명시하여 native 값과 혼동·합산·대체되지 않도록 보장"
+  - "AC3: formatNativeTokenType 순수 함수를 구현하여 Claude 에이전트의 input/output/cacheRead/cacheCreation은 ko에서 '입력'/'출력'/'캐시 읽기'/'캐시 쓰기'(en은 원문)로 표시하고, Codex 및 기타 에이전트의 token_type은 공급자 원문 라벨을 그대로 유지(번역·합산 금지)"
+  - "AC4: I18N 한국어/영어 사전 키 100% 동기화 유지, 주간/야간 테마 토큰 연동, 4개 테이블 헤더 sticky 및 정렬 기능, 반응형 레이아웃 등 기존 AC 기능 회귀 없음"
+blockers: []
+known_risks: []
+log_paths: []

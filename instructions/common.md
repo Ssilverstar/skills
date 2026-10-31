@@ -19,4 +19,7 @@ Codex, Opus, Gemini, OpenCode에 공유하는 기본 규칙입니다.
 
 <!-- BEGIN skill-runtime -->
 - `graft` 원본의 “이미 색인된 저장소” 설명은 `graft/`가 실제 있는 작업 저장소에만 적용합니다. 색인이 없으면 일반 탐색 도구를 사용합니다. `graft build`/`graft init`은 사용자가 색인 생성을 요청했을 때만 실행합니다.
+- 공통 선택 스킬은 `distribution/profiles/common-general-sw.json`의 36개 목록을 기준으로 합니다. 플랫폼 내장 명령·앱 스킬은 별도이며 선택 목록과 합쳐 활성 개수를 보고하지 않습니다.
+- 스킬 등록은 실행 전제조건 충족을 의미하지 않습니다. `imagegen`은 실제 이미지 생성 도구, `visualize`의 인라인 출력은 Codex 시각화 표면이 있어야 합니다. 없는 도구를 흉내 내거나 실행 성공을 주장하지 않습니다. 다른 환경의 HTML 산출물은 사용자 요청 범위에서 별도 파일로 제공합니다.
+- `skill-installer`를 Codex 외 에이전트에서 사용할 때는 해당 에이전트의 검증된 스킬 디렉터리를 `--dest`로 반드시 지정합니다. 기본 Codex 경로에 쓰지 않습니다. `openai-docs`는 전용 도구가 없으면 공식 문서를 웹으로 조회합니다. `review-agent`는 읽기 전용 리뷰 절차로 사용하며 서브에이전트가 필수는 아닙니다.
 <!-- END skill-runtime -->

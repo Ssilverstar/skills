@@ -1,0 +1,27 @@
+schema_version: 1
+task_id: FE-005
+objective: "언어(한/영)·테마(야간/주간) 전환, 모든 표 정렬, 수집 방식·해상도 표시"
+worker_role: frontend-builder
+preferred_model: "Antigravity Gemini 3.8 Flash (herdr agent gemini-monitor, w3:pB)"
+pre_handoff_state: "app/static/*, tests/ui/* 는 FE-004 + Claude 통합 수정(style.css 진행 막대 트랙 색 1줄) 상태. 그 외 변경 없음"
+inputs:
+  api_contracts: ["test/monitor/contracts/api.md  # v2 절: telemetry, history resolution"]
+file_ownership:
+  allowed: ["test/monitor/app/static/**", "test/monitor/tests/ui/**", "test/monitor/contracts/results/FE-005.yaml"]
+  prohibited: ["test/monitor/app/server.py", "test/monitor/*.py", "test/monitor/compose*.yaml", "test/monitor/contracts/api.md", "test/monitor/tests/test_*.py", "설정·전역 파일", "git commit/push"]
+acceptance_criteria:
+  - "AC1 언어: 헤더 토글 한국어/English. 모든 UI 고정 문자열(메뉴·제목·표 헤더·배지·빈 상태·툴팁·상대 시간·숫자 단위 '만/억' ↔ K/M/B)을 사전으로 전환. 스냅샷 데이터 문자열(모델명·notes·source 등)은 번역하지 않음. <html lang> 갱신. 기본 ko"
+  - "AC2 테마: 헤더 토글 야간(기본)/주간. <html data-theme='dark|light'>, CSS 토큰만 교체. 주간 토큰: bg #f4f4f2, surface #fcfcfb, surface-2 #f0efec, border #dcdbd6, text #0b0b0b/#52514e/#73726c, series #2a78d6, 상태색 동일(아이콘·라벨 동반). 차트·진행 막대·배지 모두 두 테마에서 대비 확인"
+  - "AC3 언어·테마 선택은 localStorage에 저장(try/catch, 실패해도 기본값으로 정상 동작)하고 재방문 시 복원"
+  - "AC4 정렬: 모든 표(토큰, 모델별, 스냅샷 이력, 스킬)의 헤더 클릭/Enter/Space로 asc↔desc 전환. 열 타입별 비교: 문자열은 Intl.Collator(현재 언어, numeric:true), 숫자는 수치, 날짜는 시각. null/미확인/미계측은 방향과 관계없이 항상 맨 아래. 헤더는 <button> 포함·aria-sort(ascending/descending/none)·시각 화살표 표시"
+  - "AC5 정렬 상태는 15초 자동 갱신·언어 전환·테마 전환·검색/필터 변경 뒤에도 유지(표별로 기억, localStorage 저장 선택)"
+  - "AC6 수집 방식 배지: 에이전트 카드에 telemetry.usage/quota를 '네이티브 OTel / 브리지 / 미지원'(en: Native OTel / Bridge / Unsupported)으로 표시. 출처는 툴팁"
+  - "AC7 이력 해상도: 범위 버튼 1h/6h/24h/7d/30d. resolution이 '5m'이면 차트·표 위에 '5분 집계 · 평균(최소~최대)'를, 'raw'면 '원본 스냅샷(약 15초)'을 표시. 5m일 때 차트 툴팁에 min/max, 표에 샘플 수"
+  - "AC8 기존 AC(FE-001~004)와 api.md 의미 규칙 1~9 회귀 없음. 외부 요청·inline style·innerHTML 금지 유지"
+mandatory_checks:
+  - "node --check test/monitor/app/static/app.js"
+  - "node --test test/monitor/tests/ui/*.test.js   # 정렬 비교기(타입별·null 맨 아래·안정 정렬), 사전 키 누락 검사(ko/en 키 집합 동일), 단위 축약 en/ko, 해상도 라벨"
+rules:
+  - "셸 명령은 한 줄짜리만. 같은 검사 반복 실행 금지(수정 후 1회)"
+  - "결과 작성 후 추가 탐색·검증 없이 마지막 줄을 'RESULT: <status> results/FE-005.yaml'로 끝냄"
+deliverables: ["test/monitor/contracts/results/FE-005.yaml (FE-001과 같은 result_format, 미실행 검사는 status: not_run)"]

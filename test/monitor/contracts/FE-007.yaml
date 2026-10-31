@@ -1,0 +1,20 @@
+schema_version: 1
+task_id: FE-007
+objective: "native OTel 최근 관측(telemetry.native_usage)을 bridge 누적과 분리해 표시"
+worker_role: frontend-builder
+preferred_model: "Antigravity Gemini 3.8 Flash (herdr agent gemini-monitor, w3:pB)"
+depends_on: [FE-006]
+pre_handoff_state: "FE-006 + Claude 통합 수정(formatLimitLabel 접미사, 보존 문구, tests/ui/integration.test.js) 상태. 다른 작업자는 static 미편집"
+inputs: {api_contracts: ["test/monitor/contracts/api.md  # v2.1 native_usage 절"]}
+file_ownership:
+  allowed: ["test/monitor/app/static/**", "test/monitor/tests/ui/**", "test/monitor/contracts/results/FE-007.yaml"]
+  prohibited: ["test/monitor/tests/ui/integration.test.js", "test/monitor/app/server.py", "test/monitor/*.yaml", "test/monitor/contracts/api.md", "설정·전역 파일", "git commit/push"]
+acceptance_criteria:
+  - "AC1 에이전트 카드: native_usage가 있으면 배지 옆에 '네이티브 OTel 최근 24시간 수신'(en: 'Native OTel · last 24h') 소블록 — 모델별 type/token_type 증가량(만/K 축약+툴팁 정확값), 마지막 수신 상대 시각. 없으면 블록 숨김"
+  - "AC2 토큰 표·모델 표의 값은 계속 bridge 세션 누적만 사용. 표 위 설명 문구에 '세션 누적(브리지)'임을 명시하고 native 값과 더하거나 대체하지 않음"
+  - "AC3 Codex token_type 라벨은 원문 그대로 표시(번역·합산 금지). Claude type은 input/output/cacheRead/cacheCreation을 입력/출력/캐시 읽기/캐시 쓰기(en 원문)로 표시"
+  - "AC4 ko/en·주간/야간·정렬·기존 AC 회귀 없음"
+mandatory_checks:
+  - "node --check test/monitor/app/static/app.js"
+  - "node --test test/monitor/tests/ui/*.test.js   # native 블록 포맷 순수 함수(빈 값·0 제외·라벨 매핑)"
+rules: ["셸 명령은 한 줄만, 같은 검사 반복 금지", "결과 작성 후 추가 탐색 없이 'RESULT: <status> results/FE-007.yaml'"]

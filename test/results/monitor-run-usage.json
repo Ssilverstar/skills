@@ -1,0 +1,120 @@
+{
+  "since": "2026-10-31T03:13:52.966000+00:00",
+  "measured_at": "2026-10-31T03:57:59.373744+00:00",
+  "elapsed_minutes": 44.11,
+  "scope": "Selected Codex and Claude sessions; OpenCode sessions created in this repository during the window",
+  "complete": false,
+  "agents": {
+    "codex": {
+      "models": [
+        {
+          "model": "gpt-6-astra",
+          "input_tokens": 11892039,
+          "output_tokens": 72996,
+          "cached_input_tokens": 11687424,
+          "cache_write_input_tokens": 0,
+          "total_tokens": 11965035,
+          "sessions": 1
+        }
+      ],
+      "usage": {
+        "input_tokens": 11892039,
+        "output_tokens": 72996,
+        "cached_input_tokens": 11687424,
+        "cache_write_input_tokens": 0,
+        "total_tokens": 11965035,
+        "sessions": 1,
+        "cost_usd": null,
+        "reasoning_tokens": null,
+        "window": "선택한 시험 세션과 시간 구간 · 계정 청구량 아님"
+      },
+      "record_count": 88
+    },
+    "claude": {
+      "models": [
+        {
+          "model": "claude-opus-5-5",
+          "input_tokens": 36749732,
+          "output_tokens": 124882,
+          "cached_input_tokens": 36504112,
+          "cache_write_input_tokens": 245184,
+          "total_tokens": 36874614,
+          "sessions": 1
+        }
+      ],
+      "usage": {
+        "input_tokens": 36749732,
+        "output_tokens": 124882,
+        "cached_input_tokens": 36504112,
+        "cache_write_input_tokens": 245184,
+        "total_tokens": 36874614,
+        "sessions": 1,
+        "cost_usd": null,
+        "reasoning_tokens": null,
+        "window": "선택한 시험 세션과 시간 구간 · 계정 청구량 아님"
+      },
+      "record_count": 183
+    },
+    "opencode": {
+      "models": [
+        {
+          "model": "Qwen3.8-Flash-Next-IQ3_S",
+          "input_tokens": 1042913,
+          "output_tokens": 38872,
+          "cached_input_tokens": 1014855,
+          "cache_write_input_tokens": 0,
+          "total_tokens": 1081785,
+          "sessions": 1
+        }
+      ],
+      "usage": {
+        "input_tokens": 1042913,
+        "output_tokens": 38872,
+        "cached_input_tokens": 1014855,
+        "cache_write_input_tokens": 0,
+        "total_tokens": 1081785,
+        "sessions": 1,
+        "cost_usd": null,
+        "reasoning_tokens": null,
+        "window": "선택한 시험 세션과 시간 구간 · 계정 청구량 아님"
+      },
+      "record_count": 24
+    },
+    "antigravity": {
+      "usage": {
+        "input_tokens": 137203,
+        "output_tokens": 75628,
+        "cached_input_tokens": null,
+        "cache_write_input_tokens": null,
+        "total_tokens": 212831,
+        "sessions": 1,
+        "cost_usd": null,
+        "reasoning_tokens": null,
+        "window": "시험 중 관측된 세션 누적 · 시작 이전 사용량을 차감할 수 없음"
+      },
+      "models": [
+        {
+          "model": "세션 누적 · 모델별 분해 미지원",
+          "input_tokens": 137203,
+          "output_tokens": 75628,
+          "cached_input_tokens": null,
+          "cache_write_input_tokens": null,
+          "total_tokens": 212831,
+          "sessions": 1
+        }
+      ],
+      "observed_at": [
+        "2026-10-31T03:51:45.470165+00:00",
+        "세션 누적 · 모델별 분해 미지원"
+      ],
+      "record_count": 1,
+      "exact_window": false
+    }
+  },
+  "limitations": [
+    "Ongoing responses may not yet be logged.",
+    "Antigravity samples are cumulative observed sessions, not a precise trial-window delta.",
+    "Token totals include cache; they are not billed subscription usage or API dollar cost.",
+    "No equivalent single-agent baseline was executed."
+  ]
+}

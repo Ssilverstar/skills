@@ -1,0 +1,23 @@
+schema_version: 1
+task_id: FE-006
+objective: "실제 UI 피드백 일괄 반영(레이아웃·번역·차트 축·표 헤더·모바일 컨트롤)"
+worker_role: frontend-builder
+preferred_model: "Antigravity Gemini 3.8 Flash (herdr agent gemini-monitor, w3:pB)"
+depends_on: [FE-005]
+pre_handoff_state: "FE-005 완료본 위에서 진행. baseline 스크린샷: test/.local/monitor-before-polish/ (읽기만)"
+file_ownership:
+  allowed: ["test/monitor/app/static/**", "test/monitor/tests/ui/**", "test/monitor/contracts/results/FE-006.yaml"]
+  prohibited: ["test/monitor/app/server.py", "test/monitor/*.py", "test/monitor/compose*.yaml", "test/monitor/contracts/api.md", "test/monitor/tests/test_*.py", "test/.local/** 쓰기", "설정·전역 파일", "git commit/push"]
+acceptance_criteria:
+  - "AC1 데스크톱(≥1100px) 에이전트 카드 4개를 2×2 균형 배치(한 카드만 아래로 길게 늘어나 표를 밀지 않게). 카드 우선순위: 모델·한도 막대·관측 나이. source/notes/수집원은 <details> 접힘 '세부 정보'(기본 닫힘)"
+  - "AC2 한도 라벨 사용자용 번역(데이터 원문은 title 툴팁 보존): '10080분'·'10080 min'·weekly·seven_day·7d → 주간(7일)/Weekly (7d); five_hour·5h·300분 → 5시간/5-hour; 그 외는 원문. Antigravity 버킷명('Gemini Models · weekly' 등)은 모델 그룹명 원문 + 기간만 번역"
+  - "AC3 내부 키 노출 금지: 추론 서버 추가 행의 observed_at → '관측 시각/Observed at'(시각 포맷 적용). 알려진 키만 사전 라벨, 모르는 키는 원문 키"
+  - "AC4 상태 문구 양 언어: 수집 대기/정상/지연(stale)/오류/미확인/미계측/미지원/부분 관측/과거 관측. 런타임·모델·스킬 고유 이름은 번역하지 않음"
+  - "AC5 차트: 시간축(시작·중간·끝 최소 3눈금, 범위에 맞는 HH:mm 또는 MM-DD HH:mm), y축 단위(%·°C·W)와 최소·최대 눈금, 범위 버튼에 맞는 실제 데이터 구간 표시. 호버 툴팁 값·시각 확인 가능"
+  - "AC6 모든 표 헤더 sticky(표 스크롤 컨테이너 기준) + FE-005 정렬 유지"
+  - "AC7 모바일 390px: 헤더의 언어·테마 토글과 새로고침·상태가 겹치지 않음(줄바꿈 허용), 가로 페이지 스크롤 없음"
+mandatory_checks:
+  - "node --check test/monitor/app/static/app.js"
+  - "node --test test/monitor/tests/ui/*.test.js   # 한도 라벨 번역 매핑, 축 눈금 계산(빈/1점/전부 null 포함), 키 라벨 매핑"
+rules:
+  - "셸 명령은 한 줄만, 같은 검사 반복 금지. 결과 작성 후 추가 탐색 없이 'RESULT: <status> results/FE-006.yaml'로 끝냄"

@@ -2,9 +2,13 @@
 
 에이전트가 herdr를 사용하는 공통 방식과 작업별 절차를 관리합니다.
 
-현재는 문서 구조만 준비되어 있습니다. 아래 항목은 실제 사용 환경과 공식 자료를 확인한 후 작성합니다.
+Herdr 0.9.5 / Linux ARM64에서 패널 생성, 에이전트 실행·위임·상태 조회·종료를 확인했습니다(2026-10-31). 명령 의미는 설치된 Herdr 스킬과 CLI 도움말을 우선합니다.
 
-## 작성할 내용
+- [Claude 총괄 + Gemini/OpenCode 작업자](workflows/claude-workers.md): 사용자 요청 `Codex | Claude | Agents`에 대한 실제 운영 절차.
+- [herdr-orchestrate](../skills/herdr-orchestrate/SKILL.md): 역할·계약·검증에 집중한 보완 스킬. 설치된 원본 Herdr 스킬을 대체하거나 수정하지 않습니다.
+- [구현 시험과 비교](../test/monitor-study.md): 모니터링 서버 구현에서 얻은 관측·한계.
+
+## 추가 확인할 내용
 
 - herdr의 역할과 사용할 상황
 - 배포처, 지원 버전, 설치 및 초기 설정

@@ -1,0 +1,195 @@
+{
+  "common_servers": [
+    "git",
+    "github",
+    "chrome-devtools"
+  ],
+  "agents": [
+    {
+      "agent": "codex",
+      "common_configured_count": 3,
+      "servers": [
+        {
+          "name": "git",
+          "scope": "common",
+          "configured": true,
+          "enabled": true,
+          "status": "connected",
+          "tool_count": 12,
+          "checked_at": "2026-10-31T08:35:30.913153+00:00",
+          "note": "Direct handshake and read-only call using this agent configuration; session reload is separate.",
+          "config_fingerprint": "277282259c7d653563741222e9ec9818445bfd35d4401f98ba9fa382eba13a09",
+          "server_version": "2026.10.28",
+          "read_only_tool": "git_status"
+        },
+        {
+          "name": "github",
+          "scope": "common",
+          "configured": true,
+          "enabled": true,
+          "status": "connected",
+          "tool_count": 44,
+          "checked_at": "2026-10-31T08:35:31.402474+00:00",
+          "note": "Direct handshake and read-only call using this agent configuration; session reload is separate.",
+          "config_fingerprint": "2774bebccbd63e68c63830fdbe657cebdd0158cd61d6a990b0801f99cb9a357e",
+          "server_version": "v2.0.3",
+          "read_only_tool": "get_me"
+        },
+        {
+          "name": "chrome-devtools",
+          "scope": "common",
+          "configured": true,
+          "enabled": true,
+          "status": "connected",
+          "tool_count": 30,
+          "checked_at": "2026-10-31T08:35:31.552983+00:00",
+          "note": "Direct handshake and read-only call using this agent configuration; session reload is separate.",
+          "config_fingerprint": "e037f03632536ccf11d97a904410a1a2b692d522e2b0fd4d0595b793848cf774",
+          "server_version": "1.10.1",
+          "read_only_tool": "list_pages"
+        }
+      ],
+      "commands_match": true
+    },
+    {
+      "agent": "claude",
+      "common_configured_count": 3,
+      "servers": [
+        {
+          "name": "git",
+          "scope": "common",
+          "configured": true,
+          "enabled": true,
+          "status": "connected",
+          "tool_count": 12,
+          "checked_at": "2026-10-31T08:35:32.019912+00:00",
+          "note": "Direct handshake and read-only call using this agent configuration; session reload is separate.",
+          "config_fingerprint": "277282259c7d653563741222e9ec9818445bfd35d4401f98ba9fa382eba13a09",
+          "server_version": "2026.10.28",
+          "read_only_tool": "git_status"
+        },
+        {
+          "name": "github",
+          "scope": "common",
+          "configured": true,
+          "enabled": true,
+          "status": "connected",
+          "tool_count": 44,
+          "checked_at": "2026-10-31T08:35:32.462561+00:00",
+          "note": "Direct handshake and read-only call using this agent configuration; session reload is separate.",
+          "config_fingerprint": "2774bebccbd63e68c63830fdbe657cebdd0158cd61d6a990b0801f99cb9a357e",
+          "server_version": "v2.0.3",
+          "read_only_tool": "get_me"
+        },
+        {
+          "name": "chrome-devtools",
+          "scope": "common",
+          "configured": true,
+          "enabled": true,
+          "status": "connected",
+          "tool_count": 30,
+          "checked_at": "2026-10-31T08:35:32.659164+00:00",
+          "note": "Direct handshake and read-only call using this agent configuration; session reload is separate.",
+          "config_fingerprint": "e037f03632536ccf11d97a904410a1a2b692d522e2b0fd4d0595b793848cf774",
+          "server_version": "1.10.1",
+          "read_only_tool": "list_pages"
+        }
+      ],
+      "commands_match": true
+    },
+    {
+      "agent": "opencode",
+      "common_configured_count": 3,
+      "servers": [
+        {
+          "name": "git",
+          "scope": "common",
+          "configured": true,
+          "enabled": true,
+          "status": "connected",
+          "tool_count": 12,
+          "checked_at": "2026-10-31T08:35:33.108519+00:00",
+          "note": "Direct handshake and read-only call using this agent configuration; session reload is separate.",
+          "config_fingerprint": "277282259c7d653563741222e9ec9818445bfd35d4401f98ba9fa382eba13a09",
+          "server_version": "2026.10.28",
+          "read_only_tool": "git_status"
+        },
+        {
+          "name": "github",
+          "scope": "common",
+          "configured": true,
+          "enabled": true,
+          "status": "connected",
+          "tool_count": 44,
+          "checked_at": "2026-10-31T08:35:33.536931+00:00",
+          "note": "Direct handshake and read-only call using this agent configuration; session reload is separate.",
+          "config_fingerprint": "2774bebccbd63e68c63830fdbe657cebdd0158cd61d6a990b0801f99cb9a357e",
+          "server_version": "v2.0.3",
+          "read_only_tool": "get_me"
+        },
+        {
+          "name": "chrome-devtools",
+          "scope": "common",
+          "configured": true,
+          "enabled": true,
+          "status": "connected",
+          "tool_count": 30,
+          "checked_at": "2026-10-31T08:35:33.715007+00:00",
+          "note": "Direct handshake and read-only call using this agent configuration; session reload is separate.",
+          "config_fingerprint": "e037f03632536ccf11d97a904410a1a2b692d522e2b0fd4d0595b793848cf774",
+          "server_version": "1.10.1",
+          "read_only_tool": "list_pages"
+        }
+      ],
+      "commands_match": true
+    },
+    {
+      "agent": "antigravity",
+      "common_configured_count": 3,
+      "servers": [
+        {
+          "name": "git",
+          "scope": "common",
+          "configured": true,
+          "enabled": true,
+          "status": "connected",
+          "tool_count": 12,
+          "checked_at": "2026-10-31T08:35:34.134090+00:00",
+          "note": "Direct handshake and read-only call using this agent configuration; session reload is separate.",
+          "config_fingerprint": "277282259c7d653563741222e9ec9818445bfd35d4401f98ba9fa382eba13a09",
+          "server_version": "2026.10.28",
+          "read_only_tool": "git_status"
+        },
+        {
+          "name": "github",
+          "scope": "common",
+          "configured": true,
+          "enabled": true,
+          "status": "connected",
+          "tool_count": 44,
+          "checked_at": "2026-10-31T08:35:34.584556+00:00",
+          "note": "Direct handshake and read-only call using this agent configuration; session reload is separate.",
+          "config_fingerprint": "2774bebccbd63e68c63830fdbe657cebdd0158cd61d6a990b0801f99cb9a357e",
+          "server_version": "v2.0.3",
+          "read_only_tool": "get_me"
+        },
+        {
+          "name": "chrome-devtools",
+          "scope": "common",
+          "configured": true,
+          "enabled": true,
+          "status": "connected",
+          "tool_count": 30,
+          "checked_at": "2026-10-31T08:35:34.824152+00:00",
+          "note": "Direct handshake and read-only call using this agent configuration; session reload is separate.",
+          "config_fingerprint": "e037f03632536ccf11d97a904410a1a2b692d522e2b0fd4d0595b793848cf774",
+          "server_version": "1.10.1",
+          "read_only_tool": "list_pages"
+        }
+      ],
+      "commands_match": true
+    }
+  ],
+  "observed_at": "2026-10-31T08:35:34.824266+00:00",
+  "verification": "Configured commands tested directly; not a claim about already-open agent processes."
+}
