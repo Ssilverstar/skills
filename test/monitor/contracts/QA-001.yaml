@@ -1,0 +1,62 @@
+schema_version: 1
+project: agent-observatory
+task_id: QA-001
+objective: "server.py API·DB·OTel 계약 테스트(TC) 작성·실행과 결함 보고"
+worker_role: test-engineer
+preferred_model: "OpenCode Qwen3.8-Flash-Next-IQ3_S (herdr agent monitor-agents, w3:pA)"
+base_commit: "f72a37d (test/는 미추적, 커밋 금지)"
+worktree: "/home/hori/AI/skills (공유 트리, 파일 소유권으로 분리)"
+pre_handoff_state: "test/monitor/tests/ 없음(신규). 테스트 대상 server.py는 Claude 소유로 완성 상태"
+inputs:
+  api_contracts: ["test/monitor/contracts/api.md"]
+  target: ["test/monitor/app/server.py  # 읽기만"]
+  requirements: ["test/monitor-brief.md (품질 요구사항 절)"]
+dependencies: [CONTRACT-001]
+file_ownership:
+  allowed:
+    - "test/monitor/tests/test_server.py"
+    - "test/monitor/tests/fixtures/**"
+    - "test/monitor/contracts/results/QA-001.yaml"
+  prohibited:
+    - "test/monitor/app/**  # 결함은 고치지 말고 보고"
+    - "test/monitor/host_probe.py"
+    - "test/monitor/contracts/api.md"
+    - "test/monitor/tests/ui/**"
+    - "test/.local/monitor/**  # 실제 스냅샷 복사 금지, 합성 픽스처 사용"
+    - "그 외 모든 파일, git commit/push, 전역 설정"
+rules:
+  - "표준 unittest만. 새 의존성 금지. 임시 디렉터리(tempfile)에 스냅샷·DB 생성. 네트워크는 127.0.0.1 임시 포트만"
+  - "sys.path에 test/monitor/app 추가 후 import server. Monitor(snapshot_path, db_path, stale_seconds, retention_days, max_rows)를 직접 생성. HTTP는 ThreadingHTTPServer(('127.0.0.1',0), server.Handler)에 .monitor 주입 후 스레드로 serve"
+  - "mtime 기반 변경 감지이므로 파일 재작성 후 os.utime(path, ns=(...))로 mtime을 바꿔 결정적으로 테스트"
+  - "실패하는 테스트를 지우거나 완화하지 말 것. server.py 결함이면 테스트는 유지하고 결과의 defects에 재현법 기록"
+acceptance_criteria:
+  - "TC1 스냅샷 없음: state().status=waiting, snapshot=None; /api/snapshot 200 같은 내용; /health status ok, snapshot waiting, db_rows 0"
+  - "TC2 정상 수집: poll()=True, status ok, source file, DB 1행. 같은 파일 재폴링·같은 collected_at 재작성(mtime 변경) 모두 행 추가 없음(중복 금지)"
+  - "TC3 collected_at 변경 시 행 추가. DB body는 압축본(skills.agents[].skills 없음, compacted true), 메모리 latest는 전체본"
+  - "TC4 재시작(Monitor 재생성) 시 source=history, 압축본 latest"
+  - "TC5 stale: collected_at이 stale_seconds보다 오래되면 status stale"
+  - "TC6 손상 JSON/collected_at 누락/최상위 배열: poll False, error 메시지 설정, 이전 latest 유지"
+  - "TC7 보존: max_rows 초과 시 오래된 행 삭제, retention_days 초과 collected_at 삭제"
+  - "TC8 history: hours 필터, limit 이하로 다운샘플, 마지막 점=최신, null 값은 null 유지(0 아님), gpu memory_used_bytes null 유지"
+  - "TC9 HTTP: /, /static/app.js(FE 병행 중이므로 파일이 있을 때만 200 검사), /static/../server.py·/static/server.py 404, /api/history?hours=x 400, 모든 응답 CSP·nosniff·no-store 헤더"
+  - "TC10 metric_points: None·bool·문자열 값 미출력, inference reachable bool→1/0, cache_write_input 포함 TOKEN_TYPES 각 type 개별 시계열, usage와 models 값을 더하지 않음(같은 값이 그대로 나옴)"
+  - "TC11 OTel: opentelemetry.sdk.metrics.export.InMemoryMetricReader로 MeterProvider 구성 후 server.register_gauges(meter, monitor, Observation) → observatory.gpu.utilization 값 일치, null 지표 없음"
+mandatory_checks:
+  - "cd /home/hori/AI/skills/test && .local/monitor-venv/bin/python -m unittest discover -s monitor/tests -p 'test_*.py' -v"
+max_repair_attempts: 2
+deliverables:
+  - "test/monitor/contracts/results/QA-001.yaml"
+result_format: |
+  schema_version: 1
+  task_id: QA-001
+  status: completed|blocked|failed
+  model: "<정확한 모델 id>"
+  commit: none
+  changed_files: []
+  contracts_changed: false
+  checks: [{name, command, exit_code, passed, failed}]
+  acceptance: {TC1: pass|fail, ...}
+  defects: [{id, tc, expected, actual, repro}]
+  blockers: []
+  known_risks: []
+  log_paths: []

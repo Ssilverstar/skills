@@ -1,0 +1,296 @@
+{
+  "profile": "common-general-sw",
+  "version": 1,
+  "reviewed_on": "2026-10-31",
+  "review": "test/monitor/common-skill-review.md",
+  "skills": [
+    {
+      "id": "archify",
+      "directory": "archify",
+      "source": "~/.codex/skills/archify",
+      "sha256": "66dfe99b35d7ceff95bcbdb00f138b8b3ec8094629acf69efba1eeda1013aaf3",
+      "required": true,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "docx",
+      "directory": "docx",
+      "source": "~/.codex/skills/docx",
+      "sha256": "912cb15683a476a285033f9a40c5099248f9c6a06d581b106b95796f9d33d118",
+      "required": false,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "ecc:accessibility",
+      "directory": "accessibility",
+      "source": "~/.codex/plugins/cache/claude-import/ecc/2.2.3/skills/accessibility",
+      "sha256": "2762f21d09d199009ed4f95b28c911436b367c30963dc5ddb48b8e1ad7fc1585",
+      "required": false,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "ecc:api-design",
+      "directory": "api-design",
+      "source": "~/.codex/plugins/cache/claude-import/ecc/2.2.3/skills/api-design",
+      "sha256": "250e464413a13c0eb93cc73447b423df1f9aa8e4f80e5e68c41f895b2c33e352",
+      "required": false,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "ecc:architecture-decision-records",
+      "directory": "architecture-decision-records",
+      "source": "~/.codex/plugins/cache/claude-import/ecc/2.2.3/skills/architecture-decision-records",
+      "sha256": "263b20e81801aa5fa7e75eaec6c38345c0ac028ca0edbd67b1b9071c5fcbe11f",
+      "required": false,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "ecc:browser-qa",
+      "directory": "browser-qa",
+      "source": "~/.codex/plugins/cache/claude-import/ecc/2.2.3/skills/browser-qa",
+      "sha256": "6eb78a2460adcde116e6b44fcdff7ae37aeec6208241a24417cb2db4b3b254cd",
+      "required": false,
+      "prerequisites": "Available browser automation; local Playwright Chromium is available"
+    },
+    {
+      "id": "ecc:codebase-onboarding",
+      "directory": "codebase-onboarding",
+      "source": "~/.codex/plugins/cache/claude-import/ecc/2.2.3/skills/codebase-onboarding",
+      "sha256": "ef88873a4b0d0fe155c0a196ffecd5c7b5e28edd00fbbdb5c1fd2ca8fd0eb6f0",
+      "required": false,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "ecc:coding-standards",
+      "directory": "coding-standards",
+      "source": "~/.codex/plugins/cache/claude-import/ecc/2.2.3/skills/coding-standards",
+      "sha256": "e80544c3d1eac5b14f22022146bd91a6b0ecc30e099cf5181894853aeb81dee1",
+      "required": false,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "ecc:database-migrations",
+      "directory": "database-migrations",
+      "source": "~/.codex/plugins/cache/claude-import/ecc/2.2.3/skills/database-migrations",
+      "sha256": "dad2f1964295eee14a96e06213ce3f60992bbcdc1f37a50c828bbc2e1abd79dd",
+      "required": false,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "ecc:deployment-patterns",
+      "directory": "deployment-patterns",
+      "source": "~/.codex/plugins/cache/claude-import/ecc/2.2.3/skills/deployment-patterns",
+      "sha256": "b864abd1954570c4a469b7e1deb897e57858d25db2fd98d035ff7bca4a15b9b6",
+      "required": false,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "ecc:docker-patterns",
+      "directory": "docker-patterns",
+      "source": "~/.codex/plugins/cache/claude-import/ecc/2.2.3/skills/docker-patterns",
+      "sha256": "2a880cf2f6401874151daa9bcc0eacd10cf79f5f48b97f98e93a877a8f3fd12b",
+      "required": false,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "ecc:error-handling",
+      "directory": "error-handling",
+      "source": "~/.codex/plugins/cache/claude-import/ecc/2.2.3/skills/error-handling",
+      "sha256": "e8eec6756c950b570486493e64e3bf14c12baf6bf0858bf3928097fe2bfeaf79",
+      "required": false,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "ecc:git-workflow",
+      "directory": "git-workflow",
+      "source": "~/.codex/plugins/cache/claude-import/ecc/2.2.3/skills/git-workflow",
+      "sha256": "7094ab94802d7e839dc33c6ea230020327260518b1b1ce62b42d56d051c1d7c5",
+      "required": false,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "ecc:github-ops",
+      "directory": "github-ops",
+      "source": "~/.codex/plugins/cache/claude-import/ecc/2.2.3/skills/github-ops",
+      "sha256": "281e19fbf138c8d7ac7379864825721aa6f6efcf4008e976a6ea34b3c96e2b54",
+      "required": false,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "ecc:security-review",
+      "directory": "security-review",
+      "source": "~/.codex/plugins/cache/claude-import/ecc/2.2.3/skills/security-review",
+      "sha256": "b9eb6416eebc8dda046674f0a2dbb3be88aff526d182b60a0f55998d3d6d0d8d",
+      "required": false,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "graft",
+      "directory": "graft",
+      "source": "~/.local/share/agent-skills/graft-0.21.1",
+      "sha256": "bc338fab9fd85c2531f8e06a7f72d835b67428f29b4a5afe8b26f2814e877cf4",
+      "required": true,
+      "prerequisites": "Existing repository graft/ index; no init without request"
+    },
+    {
+      "id": "herdr",
+      "directory": "herdr",
+      "source": "~/.codex/skills/herdr",
+      "sha256": "fbd9d502767f7dff29c211505a0bd9ba34e980ed4cc456247e2adc1642883984",
+      "required": false,
+      "prerequisites": "HERDR_ENV=1"
+    },
+    {
+      "id": "herdr-orchestrate",
+      "directory": "herdr-orchestrate",
+      "source": "$REPO/skills/herdr-orchestrate",
+      "sha256": "5e3225848789810a9f1b696292bd16c4eced22371b121cc3c07381b531ba8940",
+      "required": false,
+      "prerequisites": "HERDR_ENV=1, explicit orchestration request"
+    },
+    {
+      "id": "humanize-korean",
+      "directory": "humanize-korean",
+      "source": "~/.codex/skills/humanize-korean",
+      "sha256": "bd3494baca18a1a911372a257a6c993b169b4b0bc51ec589f3a24912770caeab",
+      "required": false,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "imagegen",
+      "directory": "imagegen",
+      "source": "~/.codex/skills/.system/imagegen",
+      "sha256": "681ddb4ad6d06a2acc78a3535b583f8d0c1ea800ecda3d56370d3310fd2cd4ba",
+      "required": false,
+      "prerequisites": "Native image generation tool; paid API fallback only on explicit request"
+    },
+    {
+      "id": "openai-docs",
+      "directory": "openai-docs",
+      "source": "~/.codex/skills/.system/openai-docs",
+      "sha256": "aa6829e21df2223167c85d2e49b6337a7345c84c1033f1ec10182c7882b36d45",
+      "required": false,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "pdf",
+      "directory": "pdf",
+      "source": "~/.codex/skills/pdf",
+      "sha256": "9f78b8359fbd4943ad260a7a1e436e5a96503406d6c34e99f69223d647d85b9c",
+      "required": false,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "ponytail:ponytail",
+      "directory": "ponytail",
+      "source": "~/.codex/plugins/cache/claude-import/ponytail/1.0.0/skills/ponytail",
+      "sha256": "1316a2f3f95741d2300b116fe0c2d81ce4a9568656ed0a62643f54aaf09957f2",
+      "required": true,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "ponytail:ponytail-audit",
+      "directory": "ponytail-audit",
+      "source": "~/.codex/plugins/cache/claude-import/ponytail/1.0.0/skills/ponytail-audit",
+      "sha256": "554b7ac9c78a6b1a5e6b2bf0ba67eedf092baf71e465d03e591d0cfeb7947774",
+      "required": true,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "ponytail:ponytail-debt",
+      "directory": "ponytail-debt",
+      "source": "~/.codex/plugins/cache/claude-import/ponytail/1.0.0/skills/ponytail-debt",
+      "sha256": "d3611761039bdb2955e31856834feeec6ed5483a3fc64576e9a166f949a131d1",
+      "required": true,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "ponytail:ponytail-gain",
+      "directory": "ponytail-gain",
+      "source": "~/.codex/plugins/cache/claude-import/ponytail/1.0.0/skills/ponytail-gain",
+      "sha256": "24e01d1c9715cb136ba1c4f1e52a95940c0193558b876828e537736480d6408b",
+      "required": true,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "ponytail:ponytail-help",
+      "directory": "ponytail-help",
+      "source": "~/.codex/plugins/cache/claude-import/ponytail/1.0.0/skills/ponytail-help",
+      "sha256": "23d9baf1b9a9464b40ebe1b5b50752795210b934fc8e248e791496e4c9a39fd2",
+      "required": true,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "ponytail:ponytail-review",
+      "directory": "ponytail-review",
+      "source": "~/.codex/plugins/cache/claude-import/ponytail/1.0.0/skills/ponytail-review",
+      "sha256": "7f8bfd0da3ba7c6fe0cd0de53e6f910adfef52166c6e99d7fa4de3360650b9b6",
+      "required": true,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "prefer-gh-for-github",
+      "directory": "prefer-gh-for-github",
+      "source": "~/.codex/skills/prefer-gh-for-github",
+      "sha256": "d0258b98b9dfcda51851a814c304aaaa569414b4bc7682f89d0065f3a9848ee9",
+      "required": false,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "review-agent",
+      "directory": "review-agent",
+      "source": "~/.codex/skills/.system/review-agent",
+      "sha256": "07079efd0dc76f05fade424e5dfb048dce1de2df7626e1a4f56292a4f3f92228",
+      "required": false,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "skill-creator",
+      "directory": "skill-creator",
+      "source": "~/.codex/skills/.system/skill-creator",
+      "sha256": "6656e54755638e8efcf275a472b9672eaa8a9a1b9e59dc210e275b03b59e1e66",
+      "required": false,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "skill-installer",
+      "directory": "skill-installer",
+      "source": "~/.codex/skills/.system/skill-installer",
+      "sha256": "d68b77e5bbb34dedab89d134da52855f140fc4b4299b80104f534e3b9e98f8ee",
+      "required": false,
+      "prerequisites": "Always pass --dest for the current agent; never default to another agent home"
+    },
+    {
+      "id": "superpowers:systematic-debugging",
+      "directory": "systematic-debugging",
+      "source": "~/.codex/superpowers/skills/systematic-debugging",
+      "sha256": "4999cb851360485eca5074e727bbdd62ef20549c5d5b01216fcbf5831badb473",
+      "required": false,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "superpowers:test-driven-development",
+      "directory": "test-driven-development",
+      "source": "~/.codex/superpowers/skills/test-driven-development",
+      "sha256": "7dee67b4af6bdccc7a914ca34533184d64592d0f5b23aeae631538168db14994",
+      "required": false,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "superpowers:verification-before-completion",
+      "directory": "verification-before-completion",
+      "source": "~/.codex/superpowers/skills/verification-before-completion",
+      "sha256": "ea52d15aabaf72bc6b558efe2c126f161b53961090ddcd712000273bfe8c7b6c",
+      "required": false,
+      "prerequisites": "Consult SKILL.md and verify current tools"
+    },
+    {
+      "id": "visualize:visualize",
+      "directory": "visualize",
+      "source": "~/.codex/plugins/cache/openai-bundled/visualize/1.0.50/skills/visualize",
+      "sha256": "766f4e5ee250af9d3c68353d0b8609e40e0ce5926a625d7ca88e073525360d25",
+      "required": false,
+      "prerequisites": "Codex inline visualization surface; other agents use a standalone HTML artifact only when requested"
+    }
+  ]
+}

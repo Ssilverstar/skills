@@ -1,0 +1,124 @@
+{
+  "checked_at": "2026-10-31T03:00:23Z",
+  "account": {
+    "type": "chatgpt",
+    "planType": "prolite"
+  },
+  "rate_limits": {
+    "limitId": "codex",
+    "limitName": null,
+    "normalModelSlug": null,
+    "primary": {
+      "usedPercent": 7,
+      "windowDurationMins": 10080,
+      "resetsAt": 1794011379
+    },
+    "secondary": null,
+    "credits": {
+      "hasCredits": false,
+      "unlimited": false,
+      "balance": "0"
+    },
+    "individualLimit": null,
+    "spendControlReached": false,
+    "planType": "prolite",
+    "rateLimitReachedType": null
+  },
+  "skills": {
+    "total": 394,
+    "enabled": 65,
+    "error_count": 0,
+    "required_missing": [],
+    "extra_enabled": [
+      "openai-templates:artifact-template-analytics-dashboard",
+      "openai-templates:artifact-template-business-review",
+      "openai-templates:artifact-template-design-report",
+      "openai-templates:artifact-template-experiment-analysis",
+      "openai-templates:artifact-template-financial-budget",
+      "openai-templates:artifact-template-investment-committee-memo",
+      "openai-templates:artifact-template-legal-memorandum",
+      "openai-templates:artifact-template-market-trends-report",
+      "openai-templates:artifact-template-minimal-letterhead",
+      "openai-templates:artifact-template-operating-calendar",
+      "openai-templates:artifact-template-operating-review",
+      "openai-templates:artifact-template-project-kickoff",
+      "openai-templates:artifact-template-project-tracker",
+      "openai-templates:artifact-template-sales-pipeline",
+      "openai-templates:artifact-template-simple-dark-mode",
+      "openai-templates:artifact-template-simple-light-mode",
+      "openai-templates:artifact-template-strategy-memorandum",
+      "openai-templates:artifact-template-system-design",
+      "openai-templates:artifact-template-team-alignment",
+      "openai-templates:artifact-template-three-statement-forecast",
+      "pages:maintain-space",
+      "pages:manage-schedules",
+      "pages:organize-space",
+      "pages:write-page",
+      "plugin-management:plugin-management",
+      "sites:sites",
+      "sites:sites-remix",
+      "work-pets:create-pet",
+      "work-pets:pets",
+      "work-pets:update-pet"
+    ]
+  },
+  "mcp": [
+    {
+      "name": "chrome-devtools",
+      "authStatus": "unsupported",
+      "runtimeStatus": null,
+      "tool_count": 30,
+      "discovery_error": false
+    },
+    {
+      "name": "code-review",
+      "authStatus": "unsupported",
+      "runtimeStatus": null,
+      "tool_count": 0,
+      "discovery_error": false
+    },
+    {
+      "name": "codex_app",
+      "authStatus": "unsupported",
+      "runtimeStatus": null,
+      "tool_count": 0,
+      "discovery_error": false
+    },
+    {
+      "name": "codex_apps",
+      "authStatus": "bearerToken",
+      "runtimeStatus": null,
+      "tool_count": 125,
+      "discovery_error": false
+    },
+    {
+      "name": "cua_repl",
+      "authStatus": "unsupported",
+      "runtimeStatus": null,
+      "tool_count": 3,
+      "discovery_error": false
+    },
+    {
+      "name": "git",
+      "authStatus": "unsupported",
+      "runtimeStatus": null,
+      "tool_count": 12,
+      "discovery_error": false
+    },
+    {
+      "name": "github",
+      "authStatus": "unsupported",
+      "runtimeStatus": null,
+      "tool_count": 26,
+      "discovery_error": false
+    },
+    {
+      "name": "node_repl",
+      "authStatus": "unsupported",
+      "runtimeStatus": null,
+      "tool_count": 4,
+      "discovery_error": false
+    }
+  ],
+  "mcp_has_more": false
+}

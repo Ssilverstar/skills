@@ -1,0 +1,42 @@
+schema_version: 1
+task_id: FE-008
+status: completed
+model: "Antigravity Gemini 3.8 Flash (herdr agent gemini-monitor, w3:pB)"
+commit: none
+changed_files:
+  - "test/monitor/app/static/index.html"
+  - "test/monitor/app/static/style.css"
+  - "test/monitor/app/static/app.js"
+  - "test/monitor/tests/ui/index.js"
+  - "test/monitor/tests/ui/fe008_features.test.js"
+  - "test/monitor/contracts/results/FE-008.yaml"
+contracts_changed: false
+proposals: []
+checks:
+  - name: "syntax"
+    command: "node --check test/monitor/app/static/app.js"
+    exit_code: 0
+    passed: 1
+    failed: 0
+  - name: "unit_tests"
+    command: "node --test test/monitor/tests/ui/*.test.js"
+    exit_code: 0
+    passed: 38
+    failed: 0
+acceptance:
+  AC1: pass
+  AC2: pass
+  AC3: pass
+  AC4: pass
+  AC5: pass
+  AC6: pass
+notes:
+  - "AC1: 에이전트 사용량 뷰 상단에 4개 에이전트별 KPI 카드 대시보드(#agent-kpi-block) 구현. 수집 상태·상대 관측 시각, usage 기준 최다 토큰 대표 모델(selectPrimaryModel), 세션 누적 총 토큰(만/K 축약 및 툴팁 전체 숫자), 구독 한도(plan.limits 중 used_percent 최댓값과 해당 라벨·reset_at, 과거 관측 여부), 수집 방식 배지(telemetry usage/quota) 표시. 에이전트 간 토큰 합산 금지 유지"
+  - "AC2: 스킬 뷰 상단에 에이전트별 스킬 분류 분리 대시보드 구현. 공통 선택(common_selected_count), 공통 발견(common_installed_count), 공통 활성 확인(중복 제외 고유 common_id 활성 수), 플랫폼 추가(내장·앱·플러그인 활성분), 비활성(enabled=false 수), 미확인(enabled=null 수)을 상호 합산 없이 독립 타일로 표시. 등록 전체 및 활성은 보조 줄로 '비교 대상 아님' 툴팁과 함께 배치. 압축본(compacted: true 또는 skills 미포함)은 분류 미확인(null) 처리. 순수 함수 calculateSkillBreakdown 구현 및 export"
+  - "AC3: 스킬 대시보드 하단에 정렬 가능한 에이전트 × 분류 상태 표(#skills-category-table) 추가(기존 sticky 헤더 및 키보드 정렬 지원). MCP 영역(#mcp-section-block)에 snapshot.mcp 부재 시 'MCP 정보 미수집(스키마 대기)' / 'MCP data not collected yet' 빈 상태 카드 배치"
+  - "AC4: 영어 모드('en')에서 화면 전체 영어 전용 보장. 정적 사전(I18N.en) 키 100% 동기화, KNOWN_PROBE_TRANSLATIONS 및 translateProbeText 순수 함수를 통해 프로브 동적 문자열(notes, usage_evidence, plan name/limits, memory_note, model 등)을 영어 변환하고, 미등록 한글 문자열은 'Korean-only probe text (not translated)'로 일괄 치환하여 title 및 tooltip 포함 화면 전체 한글 노출 완전 차단"
+  - "AC5: fe008_features.test.js 단위 테스트 작성. calculateSkillBreakdown(중복 common_id, enabled=null, 압축본), selectPrimaryModel/selectMaxLimit, translateProbeText(알려진 번역, 미지 한글 치환, 영문 통과, null), snapshot.json 실데이터 기반 en 모드 렌더링 시 /[가-힣]/ 0건 검증, I18N 사전 키 집합 일치성 검증 완료"
+  - "AC6: 주간/야간 테마 토큰 연동, 390px 반응형 뷰포트 가로 스크롤 방지, 표 헤더 sticky 및 정렬 기능, Strict CSP 준수(인라인 스타일/스크립트 금지, textContent/CSSOM 사용) 등 기존 AC 기능 회귀 없음"
+blockers: []
+known_risks: []
+log_paths: []

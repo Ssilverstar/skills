@@ -1,0 +1,25 @@
+schema_version: 1
+task_id: FE-008
+objective: "에이전트·스킬 대시보드 KPI 요약 + 스킬 분류 분리 + 영어 모드 영어 전용"
+worker_role: frontend-builder
+preferred_model: "Antigravity Gemini 3.8 Flash (herdr agent gemini-monitor, w3:pB)"
+depends_on: [FE-007]
+pre_handoff_state: "FE-007 + Claude 통합 수정: native 한계 문구(nativeUsageLimit), formatSkillCounts(등록 전체/활성/공통 선택·설치), sortTitle 번역, formatGpuProcesses(프로세스 GPU 메모리 합계·이름), gpuVramNa. tests/ui/integration.test.js(Claude 소유) 포함 33/33"
+inputs:
+  api_contracts: ["test/monitor/contracts/api.md  # 규칙 1~9, v2~v2.3. 특히 v2.3 공통 스킬 수·GPU 프로세스 메모리"]
+  real_data: ["test/.local/monitor/snapshot.json  # 읽기만. skills.agents[].skills[]에 common_id·enabled·origin"]
+file_ownership:
+  allowed: ["test/monitor/app/static/**", "test/monitor/tests/ui/**  # integration.test.js 제외", "test/monitor/contracts/results/FE-008.yaml"]
+  prohibited: ["test/monitor/tests/ui/integration.test.js", "test/monitor/app/server.py", "test/monitor/host_probe.py", "test/monitor/*.yaml", "test/monitor/contracts/api.md", "설정·전역 파일", "git commit/push"]
+acceptance_criteria:
+  - "AC1 에이전트 사용량 뷰 맨 위 KPI 대시보드(에이전트당 타일 1개, 4개): 상태(수집 상태·관측 시각 상대), 대표 모델(usage 기준 최다 토큰 모델, 없으면 미확인), 세션 누적 총 토큰(usage.total_tokens, 축약+툴팁), 구독 한도(plan.limits 중 used_percent 최댓값과 해당 라벨·reset_at, 과거 관측이면 표시), 수집 방식 배지(telemetry usage/quota). 에이전트 간 토큰 합계 금지(기간·의미가 다름). 상단 수집 상태(정상/지연/대기/이력 복원)는 기존 배너와 일치"
+  - "AC2 스킬 뷰 맨 위 대시보드: 에이전트별 타일에 분류를 따로 표시하고 서로 더하지 않음 — 공통 선택(common_selected_count) / 공통 발견(common_installed_count) / 공통 활성 확인(서로 다른 common_id 중 enabled=true 행이 하나라도 있는 수) / 플랫폼 추가(common_id 없음 + enabled=true: 내장·앱·플러그인 추가분) / 비활성(enabled=false 행 수) / 미확인(enabled=null 행 수). 등록 전체(installed_count)와 활성(enabled_count)은 보조 줄로 내리고 '비교 대상 아님' 툴팁. 목록이 없는 압축본(compacted)이면 분류는 미확인. 분류 계산은 브라우저 전역 없는 순수 함수로 export"
+  - "AC3 스킬 대시보드 아래 상태 표(에이전트 × 분류 열, 정렬 가능, 기존 표 스타일·sticky 헤더). MCP 영역: snapshot.mcp가 없으면 'MCP 정보 미수집(스키마 대기)' / 'MCP data not collected yet' 빈 상태 카드만. 스키마는 루트가 추후 통보(후속 작업)하므로 필드를 추측해 그리지 않음"
+  - "AC4 영어 모드는 화면 전체 영어만: 정적 문구, aria-label/title/placeholder, 오류·빈 상태, 차트 축·툴팁, 표 헤더, 날짜·숫자 포맷. 프로브 동적 문자열(agents[].notes, skills.notes, usage_evidence, source, usage.window, plan.name, plan.limits[].label, memory_note, origin, models[].model 등)은 알려진 값은 번역 표로 영어 변환, 표에 없는데 한글이 포함된 값은 영어 대체 문구('Korean-only probe text (not translated)')로 바꾸고 원문은 영어 모드에서 노출하지 않음(title 포함). 스킬 description도 같은 규칙. 한국어 모드는 한국어+영어 용어 허용(기존 유지)"
+  - "AC5 테스트: 분류 순수 함수(공통 중복 행·enabled null·압축본), KPI 대표 모델·최대 한도 선택, 영어 번역 함수(알려진 값·미지 한글·영어 원문 통과·null). 실제 snapshot.json으로 en 모드 렌더 결과 문자열에 /[가-힣]/ 0건임을 검사하는 테스트(jsdom 없이 순수 함수 수준에서 모든 동적 경로를 통과시키는 방식)"
+  - "AC6 회귀 없음: ko/en·주간/야간·정렬(title 영어)·native 블록과 한계 문구·GPU 프로세스 메모리 행·390px 가로 스크롤 없음·CSP(인라인 금지)·textContent만"
+mandatory_checks:
+  - "node --check test/monitor/app/static/app.js"
+  - "node --test test/monitor/tests/ui/*.test.js   # stderr 비어 있어야 함"
+rules: ["셸 명령은 한 줄만, 같은 검사 반복 금지, 다른 디렉터리 탐색 금지", "결과 작성 후 추가 탐색 없이 'RESULT: <status> results/FE-008.yaml'"]
+result_format: "FE-001.yaml result_format과 동일(task_id: FE-008)"

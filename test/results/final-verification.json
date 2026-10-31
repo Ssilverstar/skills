@@ -1,0 +1,97 @@
+{
+  "checked_at": "2026-10-31T09:30:36.406926+00:00",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "repository profile tests",
+      "command": "python3 -m unittest discover -s tests",
+      "passed": 5,
+      "exit_code": 0
+    },
+    {
+      "name": "host probe accounting and MCP privacy",
+      "command": "python3 -m unittest discover -s test/monitor -p test_host_probe.py",
+      "passed": 10,
+      "exit_code": 0
+    },
+    {
+      "name": "server, integration and retention",
+      "command": "test/.local/monitor-venv/bin/python -W error -m unittest discover -s test/monitor/tests -p 'test_*.py'",
+      "passed": 41,
+      "exit_code": 0,
+      "warnings": 0
+    },
+    {
+      "name": "UI assertions",
+      "command": "node --test --test-isolation=none test/monitor/tests/ui/*.test.js",
+      "passed": 45,
+      "exit_code": 0,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "native OTel actual collector",
+      "command": "python3 test/monitor/tests/native_pipeline_check.py",
+      "exit_code": 0,
+      "verified": [
+        "multiple sessions",
+        "counter reset",
+        "sender time reversal",
+        "allowed services and metrics",
+        "identifier removal",
+        "collector receipt timestamps"
+      ]
+    },
+    {
+      "name": "skill profile source and list validation",
+      "commands": [
+        "python3 distribution/common_profile.py",
+        "python3 distribution/render_skill_list.py --check"
+      ],
+      "exit_code": 0,
+      "common_selected": 36,
+      "links_missing": 0
+    },
+    {
+      "name": "MCP real read-only calls",
+      "evidence": "common-mcp.json",
+      "passed": 12
+    },
+    {
+      "name": "real browser E2E",
+      "evidence": "monitor-v2-e2e.json",
+      "passed": 12
+    },
+    {
+      "name": "deployment",
+      "evidence": "monitor-deployment.json",
+      "result": "PASS"
+    },
+    {
+      "name": "OpenCode QA-003 and Claude independent rerun",
+      "evidence": "../monitor/contracts/results/QA-003.md",
+      "result": "PASS",
+      "viewports": [
+        1440,
+        390
+      ],
+      "views": 3,
+      "korean_matches": 0,
+      "browser_errors": 0
+    },
+    {
+      "name": "worker panel closure",
+      "evidence": "panel-closure.json",
+      "remaining_panels": 1
+    }
+  ],
+  "notes": [
+    "Node default isolated runner in the Codex sandbox reported only 8 file-level tests; no-isolation confirmed all 45 assertions.",
+    "No equivalent standalone Astra/Opus baseline or remote Windows client test was run."
+  ],
+  "tested_sources": {
+    "test/monitor/app/server.py": "d50073a8c844dd1b4a647f37165ed4180e7b2d7f2df7d5ed82d433136a8e11fa",
+    "test/monitor/app/static/app.js": "686d55c36142ac7636fb807f77aaac4f20b2a61be796dc307b726738d2b94d7c",
+    "test/monitor/host_probe.py": "73ea00ba570730589b384adc6fa1fee825986d09eff807296726821faeb0a306",
+    "test/monitor/otel-collector.yaml": "64a2224e65cbd0c0fbf2c4a63352bbe493d42d06bc7bbfef4fc15cf5baa9c2df"
+  }
+}

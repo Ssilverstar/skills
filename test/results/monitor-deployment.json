@@ -1,0 +1,78 @@
+{
+  "checked_at": "2026-10-31T09:30:35.352825+00:00",
+  "result": "PASS",
+  "health": {
+    "status": "ok",
+    "snapshot": "ok",
+    "snapshot_age_seconds": 6.281261,
+    "snapshot_error": null,
+    "db_rows": 1375,
+    "agg_rows": 73,
+    "collector": "ok",
+    "prometheus": "ok"
+  },
+  "snapshot_status": "ok",
+  "snapshot_errors": [],
+  "probe_service": "active",
+  "containers": [
+    {
+      "Service": "app",
+      "State": "running",
+      "Health": "healthy"
+    },
+    {
+      "Service": "otel-collector",
+      "State": "running",
+      "Health": ""
+    },
+    {
+      "Service": "prometheus",
+      "State": "running",
+      "Health": "healthy"
+    }
+  ],
+  "agents": [
+    {
+      "id": "codex",
+      "status": "observed",
+      "tokens_observed": true,
+      "quota_observed": true
+    },
+    {
+      "id": "claude",
+      "status": "observed",
+      "tokens_observed": true,
+      "quota_observed": true
+    },
+    {
+      "id": "opencode",
+      "status": "observed",
+      "tokens_observed": true,
+      "quota_observed": false
+    },
+    {
+      "id": "antigravity",
+      "status": "observed",
+      "tokens_observed": true,
+      "quota_observed": true
+    }
+  ],
+  "prometheus_queries": {
+    "observatory_gpu_utilization_percent": {
+      "series": 1,
+      "sample_present": true
+    },
+    "observatory_agent_tokens": {
+      "series": 18,
+      "sample_present": true
+    },
+    "observatory_skills_installed": {
+      "series": 4,
+      "sample_present": true
+    },
+    "traces_span_metrics_calls_total": {
+      "series": 32,
+      "sample_present": true
+    }
+  }
+}

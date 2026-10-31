@@ -1,0 +1,16 @@
+{
+  "checked_at": "2026-10-31T04:01:22.569093+00:00",
+  "result": "PASS",
+  "checks": [
+    "live: three navigation entries, four agents, missing usage remains unknown",
+    "live: GB10, real runtime/package distinction, unknown VRAM, rendered history charts",
+    "live: skill name search and agent filtering",
+    "live: three views at 390px without page-level horizontal overflow",
+    "fixture: stale warning and literal rendering of HTML-like agent name",
+    "fixture: first-snapshot waiting state"
+  ],
+  "browser_errors": [],
+  "fixtures": "Client-side route interceptions only; no production data modified",
+  "tested_url": "http://192.168.0.65:8787",
+  "execution_location": "Browser on DGX host; not a remote Windows client"
+}

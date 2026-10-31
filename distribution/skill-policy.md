@@ -12,26 +12,28 @@
 
 고정된 20~30개 목표는 폐기했습니다. 예산 부족은 목록 메타데이터와 실제 렌더링으로 판단합니다. TDD 기능 중복과 달리 `verification-loop`는 증거 확인 스킬의 보완 후보입니다. `pptx`, `xlsx`, `web-slides`, 벤치마크, 계획/리뷰 계열도 보류 상태이지 불필요 확정이 아닙니다.
 
-## 네 에이전트에 적용하는 차이
+## 네 에이전트 공통 적용
 
-| 대상 | 이번 적용 | 예외와 검증 범위 |
+사용자의 동일 적용 요구에 따라 **공통 36개**를 [common-general-sw.json](profiles/common-general-sw.json)에서 관리합니다. 이전의 Claude ECC 전체 노출 예외는 폐기했습니다. [Opus 재검토](../test/monitor/common-skill-review.md)에 근거해 선택 목록, 실제 호출 이름, 도구 전제조건을 구분합니다.
+
+| 대상 | 공통 선택 | 실제 적용 |
 | --- | --- | --- |
-| Codex 0.166.0 | [프로필](profiles/codex-general-sw.json): 35 활성 / 329 비활성. `graft` 추가, `ecc:skill-stocktake` 제외 | 파일·플러그인·훅 보존. 로컬 364개 기준이며 App 원격 카탈로그는 별도. 전체 본문 검토 완료 아님 |
-| Claude Code 2.1.314 | 필수 8개 유지/보완 설치. 기존 플러그인과 앱 동기화 스킬 보존 | `skillOverrides`는 플러그인 스킬에 적용되지 않음. ECC 전체를 끄면 훅도 사라지므로 **ECC 전체 노출 예외**. `skill-stocktake` 등 Claude 전용 스킬은 이 환경에서 호환 가능 |
-| Gemini CLI 0.66.0 | 기존 3개 유지 + 필수 8개 추가 = 11개 발견 | 기존 과다 목록 없음. 다른 에이전트의 모든 기본 스킬을 새로 복제하지 않음. 프로젝트 신뢰 설정은 변경하지 않음 |
-| OpenCode 2.2.5 | 필수 8개 발견. [프로필](profiles/opencode-general-sw.json)로 Superpowers 11개만 차단 | 등록 39개, `build` 권한 평가상 27개 허용. 이번 차단 11개 외에 내장 `browser`는 기존 자체 규칙으로 차단. 앱 동기화 원본은 보존 |
+| Codex | 36개 | 기존 35개 + herdr-orchestrate. 원본 캐시 보존, 비선택 목록은 비활성 |
+| Claude | 36개 | ECC 13개는 `ecc-common:*` 로컬 플러그인. 원본 ECC off, 훅·스크립트·보조 파일·에이전트 보존. docx/pdf 등은 기존 호스트 구현에 매핑 |
+| OpenCode | 36개 | 동일 디렉터리 배포 + 명시 allowlist. 내장 opencode/report는 별도. 로컬 Qwen을 기본 모델로 설정 |
+| Antigravity | 36개 | `~/.gemini/antigravity-cli/skills/`에 동일 선택 목록 배포. Gemini CLI는 제거된 이전 시험 대상 |
 
-같은 선정 기준과 필수 목록을 적용하며, 에이전트별 내장 기능·플러그인 제약 때문에 전체 개수가 같지는 않습니다. 미설치된 모든 Codex 기본 스킬을 다른 에이전트에 일괄 신규 설치하는 정책은 아닙니다.
+공통 목록과 플랫폼 내장·앱·보조 명령의 개수를 섞지 않습니다. Codex 앱이 추가하는 템플릿·페이지 스킬, Claude의 내장/플러그인 보조 명령은 공통 선택 수가 아닙니다. 대시보드는 공통 선택·발견·활성 확인·추가 항목·미확인을 분리합니다. 등록·설정·실행 성공은 각각 다른 증거입니다.
 
-OpenCode에서 차단하는 Superpowers 11개는 Codex에서 제외된 동일 항목입니다. `systematic-debugging`, `test-driven-development`, `verification-before-completion`은 유지합니다. 계획·리뷰 스킬의 차단은 보류 운영안이며, 각각이 불필요하다는 결론이 아닙니다.
+MCP도 [공통 3개 프로필](profiles/common-mcp.json)(Git, GitHub, Chrome DevTools)을 네 에이전트에 동일하게 적용합니다. 제품 내부의 앱 OAuth·렌더링·원격제어 연결은 외부 도구로 복제할 수 없으므로 플랫폼 기능으로 따로 표시합니다. 새 프로세스가 설정을 읽었는지와 실제 읽기 도구 호출을 구분해 검증합니다.
 
 ## 필수 스킬의 예외와 실행 조건
 
 Ponytail은 과잉 설계 방지·YAGNI·리뷰·감사·부채·도움말·효과 안내 기능입니다. 앞서 자동화 중복으로 분류한 것은 잘못된 판단이었습니다. `ponytail`, `ponytail-audit`, `ponytail-debt`, `ponytail-gain`, `ponytail-help`, `ponytail-review`를 모두 보존합니다.
 
-`graft`의 강한 전역 트리거는 사용자 필수 예외입니다. 외부 원본을 수정하지 않고, [공통 실행 조건](../instructions/common.md#전역-스킬-실행-조건)을 네 전역 지침에 배포합니다. CLI가 설치됐다는 사실과 각 저장소에 색인이 있다는 사실을 구분합니다. 이번 작업은 스킬 파일 설치이며 `graft init`, 색인 생성, 훅·MCP·statusline 변경을 수행하지 않습니다.
+`graft`의 강한 전역 트리거는 사용자 필수 예외입니다. 외부 원본을 수정하지 않고, [공통 실행 조건](../instructions/common.md#전역-스킬-실행-조건)을 네 전역 지침에 배포합니다. CLI가 설치됐다는 사실과 각 저장소에 색인이 있다는 사실을 구분합니다. `graft init`과 색인 생성은 수행하지 않습니다. 모니터링 시험의 MCP·statusline 변경은 별도 설치기와 백업으로 관리합니다.
 
-`browser-qa`는 실제 브라우저 도구가 있는 Codex 환경에서 유지하지만 개별 API 호환성은 미검증입니다. `imagegen`, `review-agent`, `visualize` 등 플랫폼 전용 항목을 다른 에이전트에 그대로 복사하지 않습니다. 필수 항목은 네 로더에서 발견됐지만 모든 워크플로의 실행까지 시험한 것은 아닙니다.
+`browser-qa`는 실제 브라우저 도구가 있는 Codex 환경에서 유지하지만 개별 API 호환성은 미검증입니다. `imagegen`·`visualize`는 실제 생성 도구/인라인 표면이 없으면 실행 불가로 취급합니다. `skill-installer`는 현재 호스트의 명시적 `--dest`가 필요합니다. [공통 실행 조건](../instructions/common.md)을 함께 배포합니다. 필수 항목은 네 로더에서 발견됐지만 모든 워크플로의 실행까지 시험한 것은 아닙니다.
 
 ## 목록을 바꾸는 방법
 

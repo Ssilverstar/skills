@@ -1,0 +1,173 @@
+{
+  "checked_at": "2026-10-31T03:01:23.868183+00:00",
+  "agents": {
+    "codex": [
+      {
+        "name": "archify",
+        "readable": true,
+        "sha256": "66dfe99b35d7ceff95bcbdb00f138b8b3ec8094629acf69efba1eeda1013aaf3"
+      },
+      {
+        "name": "graft",
+        "readable": true,
+        "sha256": "bc338fab9fd85c2531f8e06a7f72d835b67428f29b4a5afe8b26f2814e877cf4"
+      },
+      {
+        "name": "ponytail",
+        "readable": true,
+        "sha256": "1316a2f3f95741d2300b116fe0c2d81ce4a9568656ed0a62643f54aaf09957f2"
+      },
+      {
+        "name": "ponytail-audit",
+        "readable": true,
+        "sha256": "554b7ac9c78a6b1a5e6b2bf0ba67eedf092baf71e465d03e591d0cfeb7947774"
+      },
+      {
+        "name": "ponytail-debt",
+        "readable": true,
+        "sha256": "d3611761039bdb2955e31856834feeec6ed5483a3fc64576e9a166f949a131d1"
+      },
+      {
+        "name": "ponytail-gain",
+        "readable": true,
+        "sha256": "24e01d1c9715cb136ba1c4f1e52a95940c0193558b876828e537736480d6408b"
+      },
+      {
+        "name": "ponytail-help",
+        "readable": true,
+        "sha256": "23d9baf1b9a9464b40ebe1b5b50752795210b934fc8e248e791496e4c9a39fd2"
+      },
+      {
+        "name": "ponytail-review",
+        "readable": true,
+        "sha256": "7f8bfd0da3ba7c6fe0cd0de53e6f910adfef52166c6e99d7fa4de3360650b9b6"
+      }
+    ],
+    "claude": [
+      {
+        "name": "archify",
+        "readable": true,
+        "sha256": "66dfe99b35d7ceff95bcbdb00f138b8b3ec8094629acf69efba1eeda1013aaf3"
+      },
+      {
+        "name": "graft",
+        "readable": true,
+        "sha256": "bc338fab9fd85c2531f8e06a7f72d835b67428f29b4a5afe8b26f2814e877cf4"
+      },
+      {
+        "name": "ponytail",
+        "readable": true,
+        "sha256": "1316a2f3f95741d2300b116fe0c2d81ce4a9568656ed0a62643f54aaf09957f2"
+      },
+      {
+        "name": "ponytail-audit",
+        "readable": true,
+        "sha256": "554b7ac9c78a6b1a5e6b2bf0ba67eedf092baf71e465d03e591d0cfeb7947774"
+      },
+      {
+        "name": "ponytail-debt",
+        "readable": true,
+        "sha256": "d3611761039bdb2955e31856834feeec6ed5483a3fc64576e9a166f949a131d1"
+      },
+      {
+        "name": "ponytail-gain",
+        "readable": true,
+        "sha256": "24e01d1c9715cb136ba1c4f1e52a95940c0193558b876828e537736480d6408b"
+      },
+      {
+        "name": "ponytail-help",
+        "readable": true,
+        "sha256": "23d9baf1b9a9464b40ebe1b5b50752795210b934fc8e248e791496e4c9a39fd2"
+      },
+      {
+        "name": "ponytail-review",
+        "readable": true,
+        "sha256": "7f8bfd0da3ba7c6fe0cd0de53e6f910adfef52166c6e99d7fa4de3360650b9b6"
+      }
+    ],
+    "antigravity": [
+      {
+        "name": "archify",
+        "readable": true,
+        "sha256": "66dfe99b35d7ceff95bcbdb00f138b8b3ec8094629acf69efba1eeda1013aaf3"
+      },
+      {
+        "name": "graft",
+        "readable": true,
+        "sha256": "bc338fab9fd85c2531f8e06a7f72d835b67428f29b4a5afe8b26f2814e877cf4"
+      },
+      {
+        "name": "ponytail",
+        "readable": true,
+        "sha256": "1316a2f3f95741d2300b116fe0c2d81ce4a9568656ed0a62643f54aaf09957f2"
+      },
+      {
+        "name": "ponytail-audit",
+        "readable": true,
+        "sha256": "554b7ac9c78a6b1a5e6b2bf0ba67eedf092baf71e465d03e591d0cfeb7947774"
+      },
+      {
+        "name": "ponytail-debt",
+        "readable": true,
+        "sha256": "d3611761039bdb2955e31856834feeec6ed5483a3fc64576e9a166f949a131d1"
+      },
+      {
+        "name": "ponytail-gain",
+        "readable": true,
+        "sha256": "24e01d1c9715cb136ba1c4f1e52a95940c0193558b876828e537736480d6408b"
+      },
+      {
+        "name": "ponytail-help",
+        "readable": true,
+        "sha256": "23d9baf1b9a9464b40ebe1b5b50752795210b934fc8e248e791496e4c9a39fd2"
+      },
+      {
+        "name": "ponytail-review",
+        "readable": true,
+        "sha256": "7f8bfd0da3ba7c6fe0cd0de53e6f910adfef52166c6e99d7fa4de3360650b9b6"
+      }
+    ],
+    "opencode": [
+      {
+        "name": "archify",
+        "readable": true,
+        "sha256": "66dfe99b35d7ceff95bcbdb00f138b8b3ec8094629acf69efba1eeda1013aaf3"
+      },
+      {
+        "name": "graft",
+        "readable": true,
+        "sha256": "bc338fab9fd85c2531f8e06a7f72d835b67428f29b4a5afe8b26f2814e877cf4"
+      },
+      {
+        "name": "ponytail",
+        "readable": true,
+        "sha256": "1316a2f3f95741d2300b116fe0c2d81ce4a9568656ed0a62643f54aaf09957f2"
+      },
+      {
+        "name": "ponytail-audit",
+        "readable": true,
+        "sha256": "554b7ac9c78a6b1a5e6b2bf0ba67eedf092baf71e465d03e591d0cfeb7947774"
+      },
+      {
+        "name": "ponytail-debt",
+        "readable": true,
+        "sha256": "d3611761039bdb2955e31856834feeec6ed5483a3fc64576e9a166f949a131d1"
+      },
+      {
+        "name": "ponytail-gain",
+        "readable": true,
+        "sha256": "24e01d1c9715cb136ba1c4f1e52a95940c0193558b876828e537736480d6408b"
+      },
+      {
+        "name": "ponytail-help",
+        "readable": true,
+        "sha256": "23d9baf1b9a9464b40ebe1b5b50752795210b934fc8e248e791496e4c9a39fd2"
+      },
+      {
+        "name": "ponytail-review",
+        "readable": true,
+        "sha256": "7f8bfd0da3ba7c6fe0cd0de53e6f910adfef52166c6e99d7fa4de3360650b9b6"
+      }
+    ]
+  }
+}

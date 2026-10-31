@@ -1,0 +1,44 @@
+schema_version: 1
+task_id: QA-001
+status: completed
+model: "llm-server/Qwen3.8-Flash-Next-IQ3_S"
+commit: none
+changed_files:
+  - test/monitor/tests/test_server.py
+  - test/monitor/tests/fixtures/snapshot_full.json
+  - test/monitor/contracts/results/QA-001.yaml
+contracts_changed: false
+checks:
+  - name: mandatory-unittest-discover
+    command: "cd /home/hori/AI/skills/test && .local/monitor-venv/bin/python -m unittest discover -s monitor/tests -p 'test_*.py' -v"
+    exit_code: 0
+    passed: 28
+    failed: 0
+    note: "28개 중 24개는 QA-001 산출(test_server.py TC1~TC11), 나머지 4개는 작업 중 타워커가 추가한 tests/test_integration.py(본 작업 산출 아님, 통과)"
+acceptance:
+  TC1: pass
+  TC2: pass
+  TC3: pass
+  TC4: pass
+  TC5: pass
+  TC6: pass
+  TC7: pass
+  TC8: pass
+  TC9: pass
+  TC10: pass
+  TC11: pass
+defects: []
+blockers: []
+known_risks:
+  - "server.py는 Claude 소유로 작업 중 변경됨(최종 실행 기준 mtime 2026-10-31 12:49:53). 최초 검토 시점에 읽은 버전에는 정적 파일 누락 시 예외 미처리 우려가 있었으나(Claude가 12:49 버전에서 404 '정적 파일 없음'으로 처리), monkey-patch 재현 확인 결과 현행 버전은 결함 없음 → defects 미기재. 버전이 바뀌면 체크 재실행 필요."
+  - "test/monitor/tests/test_integration.py는 인계 계약에 없던 파일로 작업 중 생성됨(12:49). 동일 mandatory discover 명령에 포함되며 전부 통과하므로 그대로 두었음(수정·삭제 안 함)."
+  - "실행 출력의 ResourceWarning(unclosed sqlite)은 Monitor에 close()가 없어 테스트 프로세스 종료 시 GC로 연결이 회수되는 표면 경고이며 실패가 아님( contract 위반 아님)."
+  - "TC9의 /와 /static/app.js 200 검사는 FE-001 산출물(app/static/index.html 12:31, app.js 12:46)이 이미 존재해 skip 없이 실행됨."
+  - "HTTP 계층 /api/history의 limit 하한 10은 서버 구현 선택으로 계약에 명시 없음(UI는 하한 이상 값 사용)."
+log_paths: []
+notes: |
+  테스트 규칙 준수: 표준 unittest만 사용, 새 의존성 없음, 합성 픽스처(fixtures/snapshot_full.json)만 사용
+  (test/.local/monitor/** 복사하지 않음), 모든 스냅샷·DB는 tempfile, HTTP는 127.0.0.1 임시 포트만 사용.
+  mtime 기반 변경 감지는 os.utime(ns)으로 결정적으로 보장. 테스트 내부 실패 3건(TC2·TC8의 테스트 코드
+  버그, TC10 언패킹 오류)은 1차 수리로 수정했고 server.py는 수정하지 않음(app/** 읽기만).
+  repair_attempts_used: 1 (max 2)

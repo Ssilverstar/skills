@@ -1,0 +1,17 @@
+{
+  "action": "applied",
+  "count": 9,
+  "names": [
+    "archify",
+    "graft",
+    "herdr",
+    "ponytail",
+    "ponytail-audit",
+    "ponytail-debt",
+    "ponytail-gain",
+    "ponytail-help",
+    "ponytail-review"
+  ],
+  "source_preserved": true,
+  "target": "~/.gemini/antigravity-cli/skills"
+}

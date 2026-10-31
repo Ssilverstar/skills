@@ -1,0 +1,40 @@
+{
+  "recorded_at": "2026-10-31T03:57:50.006104+00:00",
+  "result": "PASS",
+  "evidence_source": "Independently executed commands and inspected stdout/stderr in Codex session; recorded after execution",
+  "checks": [
+    {
+      "command": "python3 -m unittest discover -s test/monitor -p test_host_probe.py -q",
+      "passed": 9,
+      "exit_code": 0
+    },
+    {
+      "command": "test/.local/monitor-venv/bin/python -W error::ResourceWarning -m unittest discover -s test/monitor/tests -p 'test_*.py' -q",
+      "passed": 28,
+      "exit_code": 0,
+      "resource_warnings": 0
+    },
+    {
+      "command": "node test/monitor/tests/ui/index.js",
+      "passed": 14,
+      "suites": 2,
+      "exit_code": 0
+    },
+    {
+      "command": "python3 -m unittest discover -s tests -p 'test_*.py' -q",
+      "passed": 3,
+      "exit_code": 0
+    },
+    {
+      "command": "python3 /home/hori/.codex/skills/.system/skill-creator/scripts/quick_validate.py skills/herdr-orchestrate",
+      "result": "Skill is valid!",
+      "exit_code": 0
+    },
+    {
+      "command": "/home/hori/AI/hori-app/output/dev/venv/bin/python test/monitor/e2e_check.py",
+      "passed_scenarios": 6,
+      "exit_code": 0,
+      "evidence": "monitor-e2e.json"
+    }
+  ]
+}

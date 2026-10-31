@@ -1,0 +1,51 @@
+schema_version: 1
+task_id: FE-001
+status: completed
+model: "Antigravity Gemini 3.8 Flash (herdr agent gemini-monitor, w3:pB)"
+commit: none
+changed_files:
+  - "test/monitor/app/static/index.html"
+  - "test/monitor/app/static/style.css"
+  - "test/monitor/app/static/app.js"
+  - "test/monitor/tests/ui/index.js"
+  - "test/monitor/tests/ui/ui_helpers.test.js"
+  - "test/monitor/tests/ui/security.test.js"
+  - "test/monitor/contracts/results/FE-001.yaml"
+contracts_changed: false
+proposals: []
+checks:
+  - name: "syntax"
+    command: "node --check test/monitor/app/static/app.js"
+    exit_code: 0
+    passed: 1
+    failed: 0
+  - name: "unit_tests"
+    command: "node --test test/monitor/tests/ui/"
+    exit_code: 0
+    passed: 14
+    failed: 0
+  - name: "smoke"
+    command: "delegated_to_integrator"
+    exit_code: null
+    passed: 0
+    failed: 0
+    status: not_run
+acceptance:
+  AC1: pass
+  AC2: pass
+  AC3: pass
+  AC4: pass
+  AC5: pass
+  AC6: pass
+  AC7: pass
+  AC8: pass
+notes:
+  - "FE-002 피드백 반영: formatBytes 단위를 IEC 1024 기준(B, KiB, MiB, GiB, TiB, PiB)으로 변경하고 단위 테스트 기대값 동기화 (api.md 규칙 8)"
+  - "FE-002 피드백 반영: 추론 서버 행 라벨 수정 (engine='실행 런타임', version='런타임 버전', runtime_executable='실행 파일', container_image='컨테이너 이미지', installed_vllm_version='이미지 내 vLLM 패키지(미실행)') 및 5개 키 null 시 '미확인' 표시 (api.md 규칙 7)"
+  - "FE-002 피드백 반영: checks 내 smoke 항목을 exit_code: null, passed: 0, status: not_run으로 정정"
+  - "FE-003 피드백 반영: 플랜 한도 막대를 전체 폭 surface-2 트랙(8px, radius 4px) 및 CSSOM el.style.width 비율 채움(왼쪽 정렬)으로 변경 (0% 빈 트랙, null 시 '미확인')"
+  - "FE-003 피드백 반영: 상대 시간 함수(formatRelativeTime) 미래 시각 처리 추가 (N초 후/N분 후/N시간 후/N일 후) 및 tests/ui 미래 시각 단위 테스트 케이스 보강"
+  - "FE-004 피드백 반영: api.md 규칙 5 갱신에 따라 agent.status 'partial' = '부분 관측' 라벨 및 warning 상태색 매핑(formatAgentStatus) 적용 및 tests/ui 단위 테스트 추가"
+blockers: []
+known_risks: []
+log_paths: []

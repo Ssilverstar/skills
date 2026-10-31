@@ -1,0 +1,22 @@
+{
+  "profile": "common-sw-mcp",
+  "reviewed_on": "2026-10-31",
+  "servers": {
+    "git": {
+      "package": "mcp-server-git==2026.10.28",
+      "transport": "stdio"
+    },
+    "github": {
+      "image": "ghcr.io/github/github-mcp-server@sha256:250bc6ce70788207608ef74cef4397230ff2e8481218da74d6093e4bd9101132",
+      "version": "2.0.3",
+      "transport": "stdio",
+      "authentication": "Existing gh credential, resolved only at process start"
+    },
+    "chrome-devtools": {
+      "package": "chrome-devtools-mcp@1.10.1",
+      "transport": "stdio",
+      "browser": "Installed Playwright Chromium, isolated headless profile"
+    }
+  },
+  "platform_specific": "Host-owned app, OAuth, remote-control and inline rendering connections remain separate; their private transports cannot be copied to other products."
+}

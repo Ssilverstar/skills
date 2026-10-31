@@ -1,0 +1,191 @@
+{
+ "schema_version": 1,
+ "checked_at": "2026-10-31",
+ "checked_by": "Claude (claude-monitor)",
+ "claude": {
+  "command": "claude -p 'Reply with exactly OK. Do not use any tools.' --output-format stream-json --verbose --max-turns 1",
+  "exit": 0,
+  "result": "success",
+  "is_error": false,
+  "reply_ok": true,
+  "claude_code_version": "2.1.316",
+  "profile_total": 36,
+  "profile_found": 23,
+  "profile_missing": [
+   "ecc:accessibility",
+   "ecc:api-design",
+   "ecc:architecture-decision-records",
+   "ecc:browser-qa",
+   "ecc:codebase-onboarding",
+   "ecc:coding-standards",
+   "ecc:database-migrations",
+   "ecc:deployment-patterns",
+   "ecc:docker-patterns",
+   "ecc:error-handling",
+   "ecc:git-workflow",
+   "ecc:github-ops",
+   "ecc:security-review"
+  ],
+  "native_aliases_used": {
+   "docx": "anthropic-skills:docx",
+   "humanize-korean": "humanize-korean:humanize-korean",
+   "pdf": "anthropic-skills:pdf",
+   "prefer-gh-for-github": "prefer-gh-for-github:prefer-gh-for-github",
+   "skill-creator": "skill-creator:skill-creator",
+   "superpowers:systematic-debugging": "systematic-debugging",
+   "superpowers:test-driven-development": "test-driven-development",
+   "superpowers:verification-before-completion": "verification-before-completion",
+   "visualize:visualize": "visualize"
+  },
+  "ecc_selected_loaded": 0,
+  "plugin_errors": [
+   {
+    "plugin": "ecc@skills-dir",
+    "message": "Not loaded — the name \"ecc\" is already taken by an installed plugin (ecc@ecc), which takes precedence. Give the plugin at ~/.claude/skills/ecc a different \"name\" (in plugin.json or SKILL.md frontmatter) to load this copy."
+   }
+  ],
+  "disabled_confirmed": {
+   "web-slides": true
+  },
+  "session_start_hooks": [
+   "SessionStart:startup",
+   "SessionStart:startup"
+  ],
+  "security_hook_duplicates": "none observed — but only because the ECC plugin (and its hooks) did not load; recheck after the name collision is fixed",
+  "slash_commands_total": 80,
+  "skills_total": 44,
+  "root_action": "resolved by root: ecc-common@skills-dir"
+ },
+ "prometheus_native": {
+  "received": true,
+  "series_labels": [
+   "model",
+   "type"
+  ],
+  "scrape_labels": [
+   "job",
+   "instance",
+   "exported_job"
+  ],
+  "two_session_accumulation": "input 2+2=4, output 4+4=8 (after review fix)",
+  "last_received_at": "collector receive time of 2nd run (send_timestamps)",
+  "api_native_usage": "claude present, telemetry.usage stays bridge"
+ },
+ "stdout": "test/.local/ignored/common-runtime-claude*.stream.jsonl (ignored)",
+ "antigravity": {
+  "command": "agy -p <read-only prompt> --output-format stream-json --mode plan --settings '{permissions.allow:[read_file(<ponytail-help SKILL.md>)]}' (session-only, no settings file change)",
+  "exit": 0,
+  "first_attempt": "read_file of ponytail-help auto-denied in headless (outside workspace); rerun with session-only allow for that one file",
+  "skills_reported": 38,
+  "profile_missing": [],
+  "extra_builtin": [
+   "agy-customizations",
+   "antigravity-guide"
+  ],
+  "ponytail_help_heading": [
+   "# Ponytail Help"
+  ],
+  "done": true,
+  "skill_dir_entries": 36
+ },
+ "opencode": {
+  "status": "pass via TUI; fresh headless still stalls (root default model set; standalone/-m stall unresolved)",
+  "skill_dir_entries": 36,
+  "skill_md_watched_at_startup": 36,
+  "attempts": [
+   {
+    "cmd": "opencode run --format json <prompt>",
+    "exit": 124,
+    "note": "background service, no output in 420s"
+   },
+   {
+    "cmd": "opencode run --standalone --format json <prompt>",
+    "exit": 124,
+    "note": "no output in 600s"
+   },
+   {
+    "cmd": "opencode run --standalone --print-logs 'Reply with exactly OK.'",
+    "exit": 1,
+    "note": "36 SKILL.md watched; default provider HTTP 400 'Personal Access Tokens are not supported for this endpoint' (opencode.json has no model; resolves to a cloud provider)"
+   },
+   {
+    "cmd": "opencode run --standalone -m llm-server/Qwen3.8-Flash-Next-IQ3_S <prompt>",
+    "exit": 124,
+    "note": "twice; spawned serve --stdio logged nothing after 'cli starting' (180s/420s). llama-server healthy, 4 slots idle, 1s direct reply"
+   }
+  ],
+  "ponytail_help_read": "ok (TUI)",
+  "root_action": "set an explicit default model (llm-server/Qwen3.8-Flash-Next-IQ3_S) for headless OpenCode or check why standalone serve with -m stalls; then rerun",
+  "tui_check": {
+   "via": "herdr monitor-agents TUI (existing OpenCode session, local Qwen), per root instruction after repeated headless stalls",
+   "skills_reported": 38,
+   "profile_missing": [],
+   "extra": [
+    "OpenCode",
+    "report"
+   ],
+   "ponytail_help_heading": "# Ponytail Help",
+   "skill_tool_calls": 1,
+   "file_edits": 0,
+   "shell_commands": 0
+  }
+ },
+ "claude_after_root_fix": {
+  "exit": 0,
+  "reply_ok": true,
+  "profile_found": 36,
+  "profile_missing": [],
+  "ecc_common_skills": 13,
+  "plugins": [
+   "prefer-gh-for-github@hh-claude-kit",
+   "skill-creator@claude-plugins-official",
+   "ponytail@ponytail",
+   "humanize-korean@im-not-ai",
+   "ecc-common@skills-dir"
+  ],
+  "plugin_errors": [],
+  "session_start_hooks": 4,
+  "security_hooks": "ECC PreToolUse (gateguard/pre-bash dispatcher) only from ecc-common@skills-dir; ecc@ecc and ecc@skills-dir disabled; settings.json has only a SessionStart herdr hook -> no duplicate"
+ },
+ "mcp_discovery": {
+  "checked_at": "2026-10-31",
+  "common_servers": [
+   "git",
+   "github",
+   "chrome-devtools"
+  ],
+  "claude_headless": {
+   "exit": 0,
+   "common": {
+    "git": "connected",
+    "github": "connected",
+    "chrome-devtools": "connected"
+   },
+   "platform_extra": "claude.ai app connectors (Claude Docs connected; Drive/Gmail/Calendar needs-auth) - platform scope, not ported",
+   "mcp_tool_servers": [
+    "chrome-devtools",
+    "git",
+    "github",
+    "claude_ai_Claude_Docs"
+   ]
+  },
+  "opencode_cli": {
+   "cmd": "opencode mcp list",
+   "common": {
+    "git": "connected",
+    "github": "connected",
+    "chrome-devtools": "connected"
+   }
+  },
+  "antigravity_cli": {
+   "cmd": "agy mcp list",
+   "common": {
+    "git": "enabled",
+    "github": "enabled",
+    "chrome-devtools": "enabled"
+   },
+   "note": "config listing only (no handshake in this command); launcher distribution/mcp_launch.py for all three"
+  },
+  "codex": "not checked by Claude (root runs the 12-combination handshake + read-only test)"
+ }
+}

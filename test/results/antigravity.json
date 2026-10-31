@@ -1,0 +1,40 @@
+{
+  "checked_date": "2026-10-31",
+  "timezone": "Asia/Seoul",
+  "cli_version": "1.4.12",
+  "plan_observed_in_ui": "Google AI Pro",
+  "model_selected_in_ui": "Gemini 3.8 Flash (Medium)",
+  "model_id_used_for_headless_attempt": "gemini-3.8-flash-medium",
+  "headless_attempt": {
+    "result": "INCOMPLETE_PERMISSION_DENIED",
+    "process_exit_code": 0,
+    "reported_status": "SUCCESS",
+    "response_empty": true,
+    "denied_actions": ["read_file"],
+    "note": "Exit code and reported status alone did not prove successful execution."
+  },
+  "interactive_attempt": {
+    "result": "PASS",
+    "mode": "plan",
+    "marker_returned": "AGENT_PREFLIGHT_2026_10_31",
+    "arithmetic_returned": "2 + 2 = 4",
+    "representative_skill_read": "ponytail-help",
+    "skill_loading_method": "ReadFile of SKILL.md; no separate Skill tool invocation",
+    "tools_reported": ["read_file"],
+    "nonworkspace_permission": "Allowed only the requested ponytail-help/SKILL.md file; no always-allow grant",
+    "required_skills_reported_available": [
+      "archify", "graft", "ponytail", "ponytail-audit",
+      "ponytail-debt", "ponytail-gain", "ponytail-help", "ponytail-review"
+    ]
+  },
+  "mcp": {"configured_servers": 0, "source": "agy mcp list"},
+  "quota_remaining": "not_checked",
+  "data_collection_preference": "not_checked",
+  "panel_cleanup": {
+    "workspace": "w3",
+    "closed": ["w3:p5", "w3:p7", "w3:p8"],
+    "remaining": ["w3:p1"],
+    "splits": 0,
+    "verification": ["herdr pane list --workspace w3", "herdr pane layout --pane w3:p1"]
+  }
+}

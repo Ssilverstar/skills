@@ -1,0 +1,42 @@
+schema_version: 1
+task_id: FE-009
+status: completed
+model: "Antigravity Gemini 3.8 Flash (herdr agent gemini-monitor, w3:pB)"
+commit: none
+changed_files:
+  - "test/monitor/app/static/index.html"
+  - "test/monitor/app/static/style.css"
+  - "test/monitor/app/static/app.js"
+  - "test/monitor/tests/ui/index.js"
+  - "test/monitor/tests/ui/fe009_features.test.js"
+  - "test/monitor/contracts/results/FE-009.yaml"
+contracts_changed: false
+proposals: []
+checks:
+  - name: "syntax"
+    command: "node --check test/monitor/app/static/app.js"
+    exit_code: 0
+    passed: 1
+    failed: 0
+  - name: "unit_tests"
+    command: "node --test test/monitor/tests/ui/*.test.js"
+    exit_code: 0
+    passed: 41
+    failed: 0
+acceptance:
+  AC1: pass
+  AC2: pass
+  AC3: pass
+  AC4: pass
+  AC5: pass
+  AC6: pass
+notes:
+  - "AC1: 스킬 뷰 MCP 영역에 에이전트당 1개의 요약 타일(#mcp-summary-cards) 구현. 공통 설정 수(common_configured_count / common_servers.length, 예: 3/3), 공통 connected 수, 플랫폼 추가(scope: platform) 수를 독립 표시하고 상호 합산 배제. error 상태 서버가 존재할 경우 critical 배지(⚠️ N건 오류 / ⚠️ N error(s))로 강조"
+  - "AC2: MCP 상태 표(#mcp-status-table) 구현(정렬 지원 및 sticky 헤더). 에이전트, 서버 이름, 범위(공통/플랫폼), 설정(설정됨/미설정), 활성(활성/비활성), 상태(connected/configured/error/unverified 상태색 및 아이콘 동반), 도구 수(null=미확인), 확인 시각(상대시간+절대툴팁), note(영어 원문 보존) 표시"
+  - "AC3: snapshot.mcp 부재 시 'MCP 미확인' / 'MCP unknown' 빈 상태 카드 노출. 특정 에이전트 항목 누락 시 해당 타일의 각 계수 칸에 0이 아닌 '미확인'/'Unknown'(null)으로 안전하게 표시. 알 수 없는 상태 문자열은 textContent를 통해 안전하게 원문 그대로 렌더링"
+  - "AC4: 스킬 분류와 MCP 계수를 섞지 않고 독립 분리 유지. 영어 모드 전체 한글 0건 유지, 테마 전환(주간/야간), 390px 반응형 뷰포트 가로 스크롤 방지, strict CSP 준수"
+  - "AC5: calculateMcpSummary, formatMcpStatus, formatMcpScope 순수 함수 구현 및 모듈 export 완료. fe009_features.test.js 단위 테스트를 통해 공통/플랫폼 분리 계수, 에러 감지, 에이전트 누락 처리, 상태 라벨 매핑을 검증"
+  - "AC6 (FE-008 AC4 미충족 반송 수정): index.html 내 모든 정적 텍스트 및 aria-label, title, placeholder를 data-i18n 속성 체계로 전면 전환하고 updateStaticI18n()에서 일괄 적용. 언어 전환 토글 버튼 텍스트를 영어 모드에서 'Korean'(ko 모드에서 'English')으로 정정하고 모델 표의 '세션 누적 · 모델별 분해 미지원'을 영어로 번역 변환. fe009_features.test.js에 index.html 정적 분석 테스트를 추가하여 data-i18n 없는 한글 텍스트 0건 및 I18N 사전 100% 매핑을 항구적으로 보장"
+blockers: []
+known_risks: []
+log_paths: []

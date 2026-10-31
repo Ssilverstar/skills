@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "collected_at": "2026-01-01T00:00:00+00:00",
+  "agents": [
+    {
+      "id": "codex",
+      "name": "Codex (synthetic)",
+      "model": "synthetic-model-a",
+      "status": "observed",
+      "source": "synthetic fixture",
+      "observed_at": "2026-01-01T00:00:00+00:00",
+      "plan": {
+        "name": "syntheticplan",
+        "source": "synthetic account api",
+        "observed_at": "2026-01-01T00:00:00+00:00",
+        "limits": [{"label": "weekly", "used_percent": 7, "reset_at": "2026-01-07T00:00:00+00:00"}]
+      },
+      "usage": {
+        "input_tokens": 1200,
+        "output_tokens": 300,
+        "cached_input_tokens": 400,
+        "cache_write_input_tokens": 50,
+        "reasoning_tokens": null,
+        "total_tokens": 1500,
+        "cost_usd": null,
+        "sessions": 4,
+        "window": "synthetic fixture window"
+      },
+      "models": [
+        {"model": "synthetic-model-a", "input_tokens": 700, "output_tokens": 200, "cached_input_tokens": 300, "total_tokens": 900, "sessions": 2},
+        {"model": "synthetic-model-b", "input_tokens": 500, "output_tokens": 100, "cached_input_tokens": 100, "total_tokens": 600, "sessions": 2}
+      ],
+      "notes": []
+    },
+    {
+      "id": "claude",
+      "name": "Claude (synthetic)",
+      "model": null,
+      "status": "unavailable",
+      "source": "synthetic fixture",
+      "observed_at": "2026-01-01T00:00:00+00:00",
+      "plan": {"name": "syntheticpro", "source": "synthetic preflight", "observed_at": "2026-01-01T00:00:00+00:00", "limits": []},
+      "usage": {"input_tokens": 300, "output_tokens": 200, "cached_input_tokens": null, "cache_write_input_tokens": null, "reasoning_tokens": null, "total_tokens": 500, "cost_usd": null, "sessions": 1, "window": "synthetic fixture window"},
+      "models": [],
+      "notes": []
+    }
+  ],
+  "hardware": {
+    "hostname": "synthetic-host",
+    "cpu_count": 20,
+    "cpu_percent": 12.5,
+    "memory_total_bytes": 137438953472,
+    "memory_used_bytes": 17179869184,
+    "memory_used_percent": 12.5,
+    "gpu": [
+      {
+        "name": "NVIDIA GB10 (synthetic)",
+        "driver_version": "0.0.0",
+        "power_watts": 14.62,
+        "power_limit_watts": null,
+        "memory_used_bytes": null,
+        "memory_total_bytes": null,
+        "utilization_percent": 37.5,
+        "temperature_c": 54,
+        "memory_note": "synthetic unified memory fixture; not host data"
+      }
+    ],
+    "inference": {"endpoint": "127.0.0.1:9", "reachable": true, "models": ["synthetic-model-a"], "engine": null, "version": null},
+    "notes": []
+  },
+  "skills": {
+    "repository": [
+      {"name": "synthetic-repo-skill", "path": "skills/synthetic-repo-skill/SKILL.md", "description": "synthetic repository skill"}
+    ],
+    "agents": [
+      {
+        "agent": "codex",
+        "installed_count": 5,
+        "enabled_count": 3,
+        "source": "synthetic fixture",
+        "observed_at": "2026-01-01T00:00:00+00:00",
+        "skills": [
+          {"name": "synthetic-skill-1", "path": "~/.synthetic/skills/synthetic-skill-1/SKILL.md", "enabled": true, "origin": "synthetic", "invocations": null, "last_used_at": null, "usage_evidence": "not instrumented"},
+          {"name": "synthetic-skill-2", "path": "~/.synthetic/skills/synthetic-skill-2/SKILL.md", "enabled": false, "origin": "synthetic", "invocations": 2, "last_used_at": null, "usage_evidence": "synthetic"}
+        ]
+      }
+    ],
+    "notes": []
+  },
+  "errors": []
+}

@@ -1,0 +1,46 @@
+schema_version: 1
+task_id: FE-005
+status: completed
+model: "Antigravity Gemini 3.8 Flash (herdr agent gemini-monitor, w3:pB)"
+commit: none
+changed_files:
+  - "test/monitor/app/static/index.html"
+  - "test/monitor/app/static/style.css"
+  - "test/monitor/app/static/app.js"
+  - "test/monitor/tests/ui/index.js"
+  - "test/monitor/tests/ui/fe005_features.test.js"
+  - "test/monitor/contracts/results/FE-005.yaml"
+contracts_changed: false
+proposals: []
+checks:
+  - name: "syntax"
+    command: "node --check test/monitor/app/static/app.js"
+    exit_code: 0
+    passed: 1
+    failed: 0
+  - name: "unit_tests"
+    command: "node --test test/monitor/tests/ui/*.test.js"
+    exit_code: 0
+    passed: 21
+    failed: 0
+acceptance:
+  AC1: pass
+  AC2: pass
+  AC3: pass
+  AC4: pass
+  AC5: pass
+  AC6: pass
+  AC7: pass
+  AC8: pass
+notes:
+  - "AC1: 헤더에 한국어/English 전환 버튼 추가. I18N 사전을 구축하여 모든 고정 UI 문자열 및 상대 시각, 단위 축약(만/억 ↔ K/M/B) 다국어 지원. <html lang> 갱신"
+  - "AC2: 야간(기본)/주간 테마 토글 및 <html data-theme> 토큰 스위칭 구현. 주간 토큰(bg #f4f4f2, surface #fcfcfb, surface-2 #f0efec, border #dcdbd6, text #0b0b0b/#52514e/#73726c, series #2a78d6) 적용 및 Claude 진행 막대 트랙 색상 유지"
+  - "AC3: 언어 및 테마 설정을 localStorage에 try/catch로 안전하게 영속화하고 재방문 시 자동 복원"
+  - "AC4: 모든 표(에이전트 토큰, 모델별, 스냅샷 이력, 스킬)의 헤더에 정렬 버튼(<button>), aria-sort(ascending/descending/none), 시각적 정렬 화살표를 적용. 문자열(Intl.Collator numeric: true), 숫자(수치), 날짜(시각) 정렬 지원 및 null/미확인/미계측 값은 방향과 관계없이 항상 맨 아래에 위치하도록 보장 (안정 정렬)"
+  - "AC5: 테이블 정렬 상태를 15초 자동 폴링 갱신, 언어/테마 전환, 검색 및 필터 변경 후에도 유지"
+  - "AC6: 에이전트 카드에 telemetry.usage 및 telemetry.quota 배지(네이티브 OTel / 브리지 / 미지원)와 툴팁 출처를 표시. telemetry 필드 부재 시 오류 없이 배지 생략"
+  - "AC7: 이력 범위 버튼에 30d 추가. resolution='5m'일 때 '5분 집계 · 평균(최소~최대)', 'raw'일 때 '원본 스냅샷(약 15초)' 배지 표시 및 툴팁/샘플 수 연동"
+  - "AC8: strict CSP(외부 요청, 인라인 script/style 금지), textContent 기반 렌더링 유지로 이전 AC 및 api.md 의미 규칙 1~9 준수"
+blockers: []
+known_risks: []
+log_paths: []

@@ -34,4 +34,10 @@ Ponytail은 Claude 플러그인 4.10.3과 Codex import 1.0.0의 여섯 `SKILL.md
 
 ## 직접 작성할 때
 
+| 저장소 스킬 | 용도 | 상태 |
+| --- | --- | --- |
+| [herdr-orchestrate](herdr-orchestrate/SKILL.md) | 지정된 총괄을 통한 계약 기반 위임, 3열 작업자 그룹, 실제 결과 검증·정리 | 저장소 원본 작성·형식 검사 완료. 공급업체 Herdr 스킬을 덮어쓰지 않는 보완 스킬 |
+
+실제 운영 근거와 개선점은 [시험 기록](../test/monitor-study.md), 적용 절차는 [Herdr 워크플로](../herdr/workflows/claude-workers.md)에 남깁니다. 새 원본 추가가 기존 전역 활성화 프로필의 자동 변경을 뜻하지는 않습니다.
+
 `name`, `description`을 포함하고 목적·적용 조건·실행 절차·검증 방법을 작성합니다. 보조 파일은 같은 디렉터리의 `references/`, `scripts/`, `assets/`에 둡니다. [템플릿](../templates/skill/SKILL.md.template)과 [작성 가이드](../docs/authoring.md)를 참고합니다.
